@@ -58,7 +58,7 @@
             <p>妻とインコを愛するインフラエンジニアへの転換を図っている、オンプレ寄りのLinux/VMware系エンジニア</p>
             <h1>略歴</h1>
             <p>～2001年3月　東京都立工業高等専門学校（現：東京都立産業技術高等専門学校）　電気工学科卒</p>
-            <p>2001年4月～2020年1月　中小SIerにて正社員</p>
+            <p>2001年4月～2020年1月　SIerにて正社員</p>
             <p>2021年10月～現在　フリーランスとして独立し、案件参画中</p>
         </header>
 
@@ -75,6 +75,7 @@
                 <li class="skill-item">HTML</li>
                 <li class="skill-item">Perl</li>
                 <li class="skill-item">シェルスクリプト(主にBash)</li>
+                <li class="skill-item">脆弱性対応等のセキュリティ分野（自学自習中）</li>
                 </ul>
         </section>
 
@@ -82,7 +83,7 @@
             <h2>保有資格</h2>
             <ul class="skill-list">
                 <li class="skill-item">VCP2019-DCV（VMware）</li>
-                <li class="skill-item">LPIC2（Linux）</li>
+                <li class="skill-item">LPIC3-Security（Linux）</li>
                 <li class="skill-item">AWS SAA（AWS）</li>
                 <li class="skill-item">AWS SOA（AWS）</li>
                 <li class="skill-item">AWS DVA（AWS）</li>
@@ -93,16 +94,26 @@
             <h2>プロジェクト</h2>
             <ul class="project-list">
                 <li class="project-item">
-                    <h3>RHEL6EOL対応に伴うメールサーバ更改</h3>
-                    <p>RHEL6とRHEL9を並行稼働させ、順次切り替え</p>
+                    <h3>RHEL6EOL対応に伴うメールサーバ（POSTFIX）更改</h3>
+                    <p>移行元RHEL6とは別に移行先のRHEL9を構築して並行稼働させ、順次切り替え</p>
+                    <p>PM多忙のため、メンバーとして参画して積極的にキャッチアップ。PMO、リーダー経験を活かして順次切り替えシナリオ作成協力、事前検証、切り替え作業対応。</p>
                 </li>
                 <li class="project-item">
                     <h3>ANSIBLEを用いたIACでのインフラ（DNS,Proxy,Syslog等）構築・運用および既存のインフラ運用課題解決に向けた対応（アップグレード、ハードウェア故障対応等）</h3>
-                    <p>ANSIBLEを利用し、各種インフラサーバの構築用コード作成およびメンテナンス。</p>
+                    <p>既存のIACインフラ(ANSIBLE)をベースにDR用のIACインフラを構築プロジェクト</p>
+                    <p>既存のANSIBLEコードを利用し、各種インフラサーバの構築用コード修正および新規作成、メンテナンス。コード管理はGit</p>
+                    <p>IACインフラとしてVMwareのvCenter基盤を利用し、各種サーバはUbuntu Linuxベース</p>
+                    <p>プロパー1名との2名体制での稼働だったため、PMO、リーダー経験を活かしてプロジェクトを円滑に進めるよう努めた。</p>
+                    <p>インフラ運用課題解決に向けた対応については、プロパー側でフォローしきれないものを積極的にキャッチアップして対応を円滑に進めた。</p>
                 </li>
                 <li class="project-item">
                     <h3>VMware仮想化インフラリプレイス（6.0、6.5、6.7→7.0）VMware運用、保守等　ovirt仮想化インフラ保守運用</h3>
+                    <p>参画当初は6.0リプレース終盤だったため、基本的には現場の情報をキャッチアップして問題なくメンバーとして参画</p>
+                    <p>6.5リプレースは当初より参画し、プロパーのPM、メンバーの間に入りPMO的な立ち回りでプロジェクトを円滑に進めるよう努めた。</p>
+                    <p>6.7リプレースは当初より参画し、過去リプレースプロジェクトのノウハウを活かして他BPへの引継ぎ含めてPMO的な立ち回りでプロジェクトを円滑に進めるよう努めた。</p>
                     <p>VMware仮想化インフラのインプレースアップグレードのPMOおよびKVM（ovirt）の運用保守</p>
+                    <p>社内利用の仮想化インフラはKVM（ovirt）で構築されており、サーバは稼働しているものの全6台のうち2台は故障の状況だった。</p>
+                    <p>前任の担当者は離職済みであり、担当者不在ながらも業務を巻き取り仮想化インフラが致命的な問題にならないよう運用・保守対応を主体的に巻き取って行った。</p>
                 </li>
                 <li class="project-item">
                     <h3>インフラエンジニア（リーダー）</h3>
