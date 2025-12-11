@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Daisuke Hatada - Cloud Engineer Portfolio</title>
+    <title>Daisuke Hatada - Cloud & AI Infrastructure Engineer Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -100,6 +100,11 @@
             border-left: 5px solid #667eea;
         }
         
+        .skill-category.ai-highlight {
+            border-left: 5px solid #e74c3c;
+            background: linear-gradient(135deg, #fff5f5 0%, #f8f9fa 100%);
+        }
+        
         .skill-category h3 {
             color: #2c3e50;
             margin-bottom: 15px;
@@ -133,6 +138,10 @@
             margin-left: 10px;
         }
         
+        .experience-level.new {
+            background: #e74c3c;
+        }
+        
         .project-grid {
             display: grid;
             gap: 25px;
@@ -152,10 +161,26 @@
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
         
+        .project-card.featured {
+            border-left: 5px solid #e74c3c;
+            background: linear-gradient(135deg, #fff5f5 0%, #f8f9fa 100%);
+        }
+        
         .project-card h3 {
             color: #2c3e50;
             margin-bottom: 15px;
             font-size: 1.4em;
+        }
+        
+        .featured-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            margin-left: 10px;
+            vertical-align: middle;
         }
         
         .project-meta {
@@ -191,6 +216,10 @@
             padding: 5px 12px;
             border-radius: 15px;
             font-size: 0.8em;
+        }
+        
+        .tech-tag.ai {
+            background: #e74c3c;
         }
         
         .contact-info {
@@ -239,6 +268,24 @@
             font-size: 1.2em;
         }
         
+        .cert-status {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.75em;
+            margin-left: 8px;
+        }
+        
+        .cert-status.acquired {
+            background: #27ae60;
+            color: white;
+        }
+        
+        .cert-status.planned {
+            background: #f39c12;
+            color: white;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -264,16 +311,17 @@
         <header class="header">
             <div class="profile-image">DH</div>
             <h1>畑田 大介（Daisuke Hatada）</h1>
-            <div class="subtitle">Cloud Infrastructure Engineer</div>
+            <div class="subtitle">Cloud & AI Infrastructure Engineer</div>
             <div class="description">
-                20年以上のインフラ経験を活かし、オンプレミスからクラウドへの移行支援に特化したクラウドエンジニア。<br>
-                Ansible等のIaC活用による自動化・効率化を得意とし、VMware基盤での豊富な仮想化経験を持つ。<br>
-                現在はAWS、Docker、Kubernetesを活用したモダンなインフラ構築・運用に注力中。
+                インフラアーキテクトとして、オンプレミスからクラウドまで幅広い技術領域で設計・構築・運用を担当。<br>
+                VMware/KVM等の仮想化基盤設計、RHEL等のOS基盤構築、AWS上でのインフラアーキテクチャ設計まで、上流工程から実装まで一貫して対応可能。<br><br>
+                <strong>直近では、AI活用（AWS Bedrock）による異常検知システムを0から立ち上げ、実運用で攻撃検出実績を獲得。</strong><br>
+                IaC（Terraform/Ansible）による自動化推進、大規模システム移行プロジェクトでの技術経験も豊富。<br>
+                オンプレミス時代の深い知見とクラウドネイティブな技術の両方を活かし、モダナイゼーション案件で価値を発揮。
             </div>
             <div class="contact-info">
                 <a href="mailto:dhc4menz@gmail.com">📧 dhc4menz@gmail.com</a>
                 <a href="https://github.com/dhc4mens">🐙 GitHub</a>
-                <a href="https://linkedin.com/in/example">💼 LinkedIn</a>
             </div>
         </header>
 
@@ -281,20 +329,40 @@
         <section class="section">
             <h2>🛠️ 技術スキル</h2>
             <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>☁️ クラウドプラットフォーム</h3>
+                <div class="skill-category ai-highlight">
+                    <h3>🤖 AI/ML・データエンジニアリング</h3>
                     <div class="skill-item">
-                        <div class="skill-name">Amazon Web Services (AWS)<span class="experience-level">実務3年</span></div>
-                        <div class="skill-detail">EC2, VPC, S3, RDS, ELB, CloudWatch, IAM設計・運用</div>
+                        <div class="skill-name">AWS Bedrock (Claude)<span class="experience-level new">実績あり</span></div>
+                        <div class="skill-detail">AI異常検知システム構築、プロンプトエンジニアリング、実運用での攻撃検出実績</div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">VMware vCenter<span class="experience-level">実務15年</span></div>
-                        <div class="skill-detail">仮想化基盤構築・運用、vSphere管理、リソース最適化</div>
+                        <div class="skill-name">データパイプライン<span class="experience-level new">実務1年</span></div>
+                        <div class="skill-detail">Glue, Athena, Kinesis, S3によるログ分析基盤構築</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Python<span class="experience-level">実務1年</span></div>
+                        <div class="skill-detail">Lambda関数開発、boto3、データ処理スクリプト</div>
                     </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3>🤖 インフラ自動化・IaC</h3>
+                    <h3>☁️ クラウドプラットフォーム</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">Amazon Web Services (AWS)<span class="experience-level">実務3年</span></div>
+                        <div class="skill-detail">Lambda, S3, Glue, Athena, Bedrock, SNS, CloudWatch, VPC, IAM設計・運用</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">VMware vCenter<span class="experience-level">実務15年</span></div>
+                        <div class="skill-detail">仮想化基盤構築・運用、vSphere 6.0→7.0移行、リソース最適化</div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>🔧 インフラ自動化・IaC</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">Terraform<span class="experience-level">実務1年</span></div>
+                        <div class="skill-detail">AWS基盤のコード化、マルチ環境管理、モジュール設計</div>
+                    </div>
                     <div class="skill-item">
                         <div class="skill-name">Ansible<span class="experience-level">実務2年</span></div>
                         <div class="skill-detail">既存環境のコード化、DR環境構築、運用自動化</div>
@@ -308,12 +376,12 @@
                 <div class="skill-category">
                     <h3>🖥️ OS・サーバー管理</h3>
                     <div class="skill-item">
-                        <div class="skill-name">Red Hat Enterprise Linux<span class="experience-level">実務18年</span></div>
-                        <div class="skill-detail">RHEL6→RHEL9移行、システム運用、パフォーマンス調整</div>
+                        <div class="skill-name">Red Hat Enterprise Linux<span class="experience-level">実務20年</span></div>
+                        <div class="skill-detail">RHEL4→RHEL9移行、システム運用、パフォーマンス調整</div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">Ubuntu Linux<span class="experience-level">実務3年</span></div>
-                        <div class="skill-detail">仮想化基盤でのサーバ構築、運用保守</div>
+                        <div class="skill-name">Windows Server<span class="experience-level">実務15年</span></div>
+                        <div class="skill-detail">NT〜2019、Active Directory、サーバー構築・運用</div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">KVM/oVirt<span class="experience-level">実務2年</span></div>
@@ -322,14 +390,26 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3>🔒 セキュリティ</h3>
+                    <h3>🔒 セキュリティ・ネットワーク</h3>
                     <div class="skill-item">
                         <div class="skill-name">Firewall構築・運用<span class="experience-level">実務10年</span></div>
-                        <div class="skill-detail">外部公開サーバのセキュリティ設計、アクセス制御</div>
+                        <div class="skill-detail">Fortigate, SonicWall, セキュリティ設計、アクセス制御</div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">ネットワークセキュリティ<span class="experience-level">実務8年</span></div>
-                        <div class="skill-detail">VPN構築、セキュリティポリシー策定</div>
+                        <div class="skill-name">ネットワーク設計<span class="experience-level">実務10年</span></div>
+                        <div class="skill-detail">Cisco/Fujitsu L2,L3, VPN構築、VLAN設計</div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>📊 監視・運用</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">監視基盤<span class="experience-level">実務10年</span></div>
+                        <div class="skill-detail">Zabbix, CloudWatch, SystemWalker, OpManager</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">ストレージ<span class="experience-level">実務8年</span></div>
+                        <div class="skill-detail">NetApp FAS, Tintri, S3設計・運用</div>
                     </div>
                 </div>
             </div>
@@ -339,85 +419,134 @@
         <section class="section">
             <h2>📂 プロジェクト実績</h2>
             <div class="project-grid">
-                <div class="project-card">
-                    <h3>RHEL6→RHEL9システム移行プロジェクト</h3>
+                <div class="project-card featured">
+                    <h3>AI活用Webサイト自動ログ監視システム<span class="featured-badge">🔥 最新</span></h3>
                     <div class="project-meta">
-                        <span>📅 2024年</span>
-                        <span>👥 PMOメンバー</span>
-                        <span>🎯 クラウド移行・モダナイゼーション</span>
+                        <span>📅 2025年9月〜</span>
+                        <span>👥 PM（1名体制）</span>
+                        <span>🎯 AI/サーバーレス</span>
                     </div>
                     <div class="project-description">
-                        <strong>概要：</strong>基幹システムのOS移行における並行稼働・段階的切替プロジェクト<br>
-                        <strong>成果：</strong>ダウンタイム最小化での移行完了、運用継続性確保<br>
-                        <strong>役割：</strong>移行シナリオ作成協力、事前検証実施、切替作業対応
+                        <strong>概要：</strong>AWS Bedrockを活用したAI異常検知システムをゼロから設計・構築<br>
+                        <strong>成果：</strong>実運用で攻撃を検出（41.6%エラー率の不正アクセス検知）、月額$1.15で24/7監視実現<br>
+                        <strong>役割：</strong>要件定義〜設計〜実装〜運用まで全工程を単独担当
                     </div>
                     <div class="tech-tags">
-                        <span class="tech-tag">RHEL6/9</span>
-                        <span class="tech-tag">VMware</span>
-                        <span class="tech-tag">移行設計</span>
-                        <span class="tech-tag">検証</span>
+                        <span class="tech-tag ai">AWS Bedrock</span>
+                        <span class="tech-tag ai">Claude AI</span>
+                        <span class="tech-tag">Lambda</span>
+                        <span class="tech-tag">S3</span>
+                        <span class="tech-tag">Glue</span>
+                        <span class="tech-tag">Athena</span>
+                        <span class="tech-tag">SNS</span>
+                        <span class="tech-tag">Terraform</span>
+                        <span class="tech-tag">Python</span>
                     </div>
                 </div>
 
                 <div class="project-card">
-                    <h3>DR環境構築自動化プロジェクト</h3>
+                    <h3>オンプレ＋AWS環境のテスト基盤構築・運用</h3>
                     <div class="project-meta">
-                        <span>📅 2023年</span>
-                        <span>👥 2名体制</span>
+                        <span>📅 2025年3月〜10月</span>
+                        <span>👥 メンバー（5名体制）</span>
+                        <span>🎯 ハイブリッドインフラ</span>
+                    </div>
+                    <div class="project-description">
+                        <strong>概要：</strong>オンプレミスとAWS環境のハイブリッド構成でのテスト基盤構築<br>
+                        <strong>成果：</strong>IaCによる環境自動構築、テスト効率化<br>
+                        <strong>役割：</strong>Ansible/Terraform実装、Postfix構築、Git管理
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Ansible</span>
+                        <span class="tech-tag">Terraform</span>
+                        <span class="tech-tag">Git</span>
+                        <span class="tech-tag">Postfix</span>
+                        <span class="tech-tag">Windows</span>
+                        <span class="tech-tag">Linux</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>LINUXメールサーバEOL対応（RHEL6→9）</h3>
+                    <div class="project-meta">
+                        <span>📅 2024年10月〜2025年1月</span>
+                        <span>👥 メンバー（5名体制）</span>
+                        <span>🎯 OS移行・モダナイゼーション</span>
+                    </div>
+                    <div class="project-description">
+                        <strong>概要：</strong>基幹メールシステムのRHEL6→RHEL9移行<br>
+                        <strong>成果：</strong>ダウンタイム最小化での移行完了<br>
+                        <strong>役割：</strong>Postfix設計・構築、Symantec連携、移行テスト
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">RHEL6/9</span>
+                        <span class="tech-tag">Postfix</span>
+                        <span class="tech-tag">Symantec</span>
+                        <span class="tech-tag">移行設計</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>Ansible IaC基盤構築・運用改善</h3>
+                    <div class="project-meta">
+                        <span>📅 2024年1月〜9月</span>
+                        <span>👥 メンバー（10名体制）</span>
                         <span>🎯 Infrastructure as Code</span>
                     </div>
                     <div class="project-description">
-                        <strong>概要：</strong>既存AnsibleベースのIaCをDR環境向けに拡張<br>
-                        <strong>成果：</strong>DR環境の自動構築基盤確立、運用効率化30%向上<br>
-                        <strong>役割：</strong>Ansibleコード修正・新規作成、Git管理、PMO支援
+                        <strong>概要：</strong>DNS/Proxy/Syslog等インフラのAnsible化、運用課題解決<br>
+                        <strong>成果：</strong>構築時間70%削減、運用自動化推進<br>
+                        <strong>役割：</strong>Ansibleコード開発、Vault連携、Git管理
                     </div>
                     <div class="tech-tags">
                         <span class="tech-tag">Ansible</span>
                         <span class="tech-tag">Git</span>
-                        <span class="tech-tag">VMware vCenter</span>
-                        <span class="tech-tag">Ubuntu</span>
-                        <span class="tech-tag">IaC</span>
+                        <span class="tech-tag">Vault</span>
+                        <span class="tech-tag">VMware</span>
+                        <span class="tech-tag">PostgreSQL</span>
                     </div>
                 </div>
 
                 <div class="project-card">
-                    <h3>KVM仮想化基盤緊急復旧・安定化</h3>
+                    <h3>VMware仮想化基盤リプレイス・PMO</h3>
                     <div class="project-meta">
-                        <span>📅 2022年</span>
-                        <span>👥 単独対応</span>
-                        <span>🎯 仮想化基盤運用</span>
-                    </div>
-                    <div class="project-description">
-                        <strong>概要：</strong>担当者不在の仮想化基盤（oVirt）の主体的運用継続<br>
-                        <strong>成果：</strong>6台中2台故障状態からの運用継続、業務停止回避<br>
-                        <strong>役割：</strong>単独での運用保守、故障機器対応、運用手順書整備
-                    </div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">KVM</span>
-                        <span class="tech-tag">oVirt</span>
-                        <span class="tech-tag">Linux</span>
-                        <span class="tech-tag">故障対応</span>
-                        <span class="tech-tag">運用保守</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3>VMware基盤アップグレードPMO</h3>
-                    <div class="project-meta">
-                        <span>📅 2021年-2023年</span>
-                        <span>👥 PMO</span>
+                        <span>📅 2021年10月〜2024年1月</span>
+                        <span>👥 PMO（15名体制）</span>
                         <span>🎯 仮想化基盤モダナイゼーション</span>
                     </div>
                     <div class="project-description">
-                        <strong>概要：</strong>VMware 6.0→6.5→6.7の段階的アップグレード統括<br>
-                        <strong>成果：</strong>3回のアップグレードすべて予定通り完了、引継ぎ体制構築<br>
-                        <strong>役割：</strong>プロジェクト統括、他BP引継ぎ支援、リスク管理
+                        <strong>概要：</strong>VMware 6.0→6.5→6.7→7.0の段階的アップグレード統括、oVirt並行運用<br>
+                        <strong>成果：</strong>4回のアップグレード全て予定通り完了、ゼロダウンタイム達成<br>
+                        <strong>役割：</strong>プロジェクト統括、設計レビュー、リスク管理
                     </div>
                     <div class="tech-tags">
                         <span class="tech-tag">VMware vSphere</span>
+                        <span class="tech-tag">oVirt</span>
+                        <span class="tech-tag">Tintri</span>
+                        <span class="tech-tag">Zabbix</span>
                         <span class="tech-tag">PMO</span>
-                        <span class="tech-tag">アップグレード</span>
-                        <span class="tech-tag">プロジェクト管理</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3>データセンター仮想化基盤 設計・構築・運用</h3>
+                    <div class="project-meta">
+                        <span>📅 2010年5月〜2020年1月</span>
+                        <span>👥 リーダー（15名体制）</span>
+                        <span>🎯 大規模仮想化基盤</span>
+                    </div>
+                    <div class="project-description">
+                        <strong>概要：</strong>データセンターのVMware仮想化基盤の設計・構築・運用（10年間）<br>
+                        <strong>成果：</strong>100台以上のVMホスト管理、SLA 99.99%達成<br>
+                        <strong>役割：</strong>チームリーダー、アーキテクチャ設計、運用改善推進
+                    </div>
+                    <div class="tech-tags">
+                        <span class="tech-tag">VMware</span>
+                        <span class="tech-tag">NetApp</span>
+                        <span class="tech-tag">Cisco</span>
+                        <span class="tech-tag">Fortigate</span>
+                        <span class="tech-tag">RHEL</span>
+                        <span class="tech-tag">Windows Server</span>
                     </div>
                 </div>
             </div>
@@ -428,20 +557,20 @@
             <h2>🚀 現在の学習・今後の取り組み</h2>
             <div class="learning-grid">
                 <div class="learning-item">
-                    <h3>🐳 Docker・コンテナ化</h3>
-                    <p>アプリケーションのコンテナ化技術習得、実践環境構築中</p>
+                    <h3>🤖 AI/ML on AWS</h3>
+                    <p>SageMaker、Bedrock活用の深化<br>DEA/MLA資格取得に向けた学習中</p>
                 </div>
                 <div class="learning-item">
-                    <h3>☸️ Kubernetes</h3>
-                    <p>オーケストレーション基盤の基礎学習、クラスタ構築実践</p>
+                    <h3>📊 データエンジニアリング</h3>
+                    <p>Kinesis, Glue, Athena, Redshift<br>リアルタイムデータ処理基盤</p>
                 </div>
                 <div class="learning-item">
-                    <h3>📊 監視・ログ管理</h3>
-                    <p>Prometheus、ELKスタック等のモダンな監視基盤構築</p>
+                    <h3>🐳 コンテナ・Kubernetes</h3>
+                    <p>ECS/EKS活用、コンテナ化推進<br>マイクロサービスアーキテクチャ</p>
                 </div>
                 <div class="learning-item">
-                    <h3>🏗️ AWS拡充学習</h3>
-                    <p>ECS/EKS、CloudFormation等のサービス活用拡大</p>
+                    <h3>🔧 DevOps/MLOps</h3>
+                    <p>CI/CDパイプライン構築<br>Infrastructure as Code深化</p>
                 </div>
             </div>
         </section>
@@ -451,66 +580,65 @@
             <h2>🏆 資格・認定</h2>
             <div class="contact-info" style="margin-bottom: 25px;">
                 <a href="https://www.credly.com/users/daisuke-hatada.akiko/badges" target="_blank" style="background: linear-gradient(135deg, #FF6B35, #F7931E); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: bold; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3); transition: transform 0.3s ease;">
-                    🎖️ Credlyで資格を確認する
+                    🎖️ Credlyで資格バッジを確認する
                 </a>
             </div>
             <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>☁️ AWS認定資格（取得済み）</h3>
+                <div class="skill-category ai-highlight">
+                    <h3>☁️ AWS認定資格</h3>
                     <div class="skill-item">
-                        <div class="skill-name">AWS認定ソリューションアーキテクト - アソシエイト</div>
-                        <div class="skill-detail">クラウドアーキテクチャ設計・構築の専門知識を証明</div>
+                        <div class="skill-name">AWS Certified Cloud Practitioner (CLF)<span class="cert-status acquired">取得済</span></div>
+                        <div class="skill-detail">AWSクラウドの基礎知識を証明</div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">AWS認定デベロッパー - アソシエイト</div>
-                        <div class="skill-detail">AWSでのアプリケーション開発・デプロイメント専門知識</div>
+                        <div class="skill-name">AWS Certified Solutions Architect - Associate (SAA)<span class="cert-status acquired">取得済</span></div>
+                        <div class="skill-detail">クラウドアーキテクチャ設計・構築の専門知識</div>
                     </div>
                     <div class="skill-item">
-                        <div class="skill-name">AWS認定システム運用管理者 - アソシエイト</div>
+                        <div class="skill-name">AWS Certified SysOps Administrator - Associate (SOA)<span class="cert-status acquired">取得済</span></div>
                         <div class="skill-detail">AWS環境でのシステム運用・管理の専門知識</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">AWS Certified Developer - Associate (DVA)<span class="cert-status acquired">取得済</span></div>
+                        <div class="skill-detail">AWSでのアプリケーション開発・デプロイメント</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">AWS Certified AI Practitioner (AIF)<span class="cert-status acquired">取得済</span></div>
+                        <div class="skill-detail">AI/ML基礎とAWSのAIサービス活用</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">AWS Certified Data Engineer - Associate (DEA)<span class="cert-status planned">2025/12予定</span></div>
+                        <div class="skill-detail">データエンジニアリングの専門知識</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">AWS Certified Machine Learning Engineer - Associate (MLA)<span class="cert-status planned">2026年予定</span></div>
+                        <div class="skill-detail">機械学習エンジニアリングの専門知識</div>
                     </div>
                 </div>
                 
                 <div class="skill-category">
-                    <h3>🐧 Linux認定資格（取得済み）</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            LPIC-1（Linux Professional Institute Certification Level 1）
-                            <div style="display: inline-block; margin-left: 15px; vertical-align: middle;">
-                                <img src="https://images.credly.com/size/110x110/images/e7d78b91-9b4b-45f3-8e65-57ba6b7e7ff9/LPI_LPIC-1_3x.png" alt="LPIC-1 Badge" style="width: 50px; height: 50px; border-radius: 8px; cursor: pointer;" onclick="window.open('https://www.credly.com/users/daisuke-hatada.akiko/badges', '_blank')">
-                            </div>
-                        </div>
-                        <div class="skill-detail">Linux基本システム管理の知識・技能を証明</div>
-                    </div>
+                    <h3>🐧 Linux認定資格</h3>
                     <div class="skill-item">
                         <div class="skill-name">
                             LPIC-2（Linux Professional Institute Certification Level 2）
-                            <div style="display: inline-block; margin-left: 15px; vertical-align: middle;">
-                                <img src="https://images.credly.com/size/110x110/images/4d36de39-a5a1-43da-84c3-90b62cd6b265/LPI_LPIC-2_3x.png" alt="LPIC-2 Badge" style="width: 50px; height: 50px; border-radius: 8px; cursor: pointer;" onclick="window.open('https://www.credly.com/users/daisuke-hatada.akiko/badges', '_blank')">
-                            </div>
+                            <span class="cert-status acquired">取得済</span>
                         </div>
-                        <div class="skill-detail">高度なLinuxシステム管理・ネットワーク管理の専門知識</div>
+                        <div class="skill-detail">高度なLinuxシステム管理・ネットワーク管理</div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">
                             LPIC-303（Security）
-                            <div style="display: inline-block; margin-left: 15px; vertical-align: middle;">
-                                <img src="https://images.credly.com/size/110x110/images/ab662c05-f8a1-450d-a6b8-8e54a4b15db6/LPI_LPIC-3_Security_3x.png" alt="LPIC-303 Badge" style="width: 50px; height: 50px; border-radius: 8px; cursor: pointer;" onclick="window.open('https://www.credly.com/users/daisuke-hatada.akiko/badges', '_blank')">
-                            </div>
+                            <span class="cert-status acquired">取得済</span>
                         </div>
-                        <div class="skill-detail">Linuxセキュリティの専門知識・実装技能を証明</div>
+                        <div class="skill-detail">Linuxセキュリティの専門知識・実装技能</div>
                     </div>
                 </div>
-                
+
                 <div class="skill-category">
-                    <h3>📚 取得予定資格（2026年）</h3>
+                    <h3>🖥️ 仮想化認定資格</h3>
                     <div class="skill-item">
-                        <div class="skill-name">AWS認定ソリューションアーキテクト - プロフェッショナル</div>
-                        <div class="skill-detail">複雑なAWSアーキテクチャ設計の高度な専門知識</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">AWS認定DevOpsエンジニア - プロフェッショナル</div>
-                        <div class="skill-detail">AWS環境でのDevOpsプラクティス実装の高度な専門知識</div>
+                        <div class="skill-name">VCP2019-DCV（VMware Certified Professional）<span class="cert-status acquired">取得済</span></div>
+                        <div class="skill-detail">VMware vSphere環境の設計・構築・運用</div>
                     </div>
                 </div>
                 
