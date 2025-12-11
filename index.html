@@ -33,12 +33,29 @@
             display: flex;
             flex-direction: column;
             padding: 20px 0;
+            transition: transform 0.3s ease;
         }
         
         .sidebar-header {
             text-align: center;
             padding: 20px;
             border-bottom: 1px solid #ecf0f1;
+            position: relative;
+        }
+        
+        .sidebar-close {
+            display: none;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            background: #f8f9fa;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            color: #666;
         }
         
         .sidebar-avatar {
@@ -120,8 +137,8 @@
         .mobile-menu-btn {
             display: none;
             position: fixed;
-            top: 20px;
-            left: 20px;
+            top: 15px;
+            left: 15px;
             z-index: 1001;
             width: 50px;
             height: 50px;
@@ -131,6 +148,26 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             cursor: pointer;
             font-size: 24px;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* オーバーレイ */
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .sidebar-overlay.show {
+            opacity: 1;
         }
         
         /* メインコンテンツ */
@@ -441,32 +478,88 @@
         @media (max-width: 900px) {
             .sidebar {
                 transform: translateX(-100%);
-                transition: transform 0.3s ease;
             }
             
             .sidebar.open {
                 transform: translateX(0);
             }
             
+            .sidebar-close {
+                display: block;
+            }
+            
+            .sidebar-overlay {
+                display: block;
+            }
+            
             .mobile-menu-btn {
                 display: flex;
-                align-items: center;
-                justify-content: center;
             }
             
             .main-content {
                 margin-left: 0;
+                padding-top: 80px;
             }
             
             .header h1 {
-                font-size: 1.8em;
+                font-size: 1.6em;
+            }
+            
+            .header .subtitle {
+                font-size: 1em;
             }
             
             .section {
-                padding: 20px;
+                padding: 20px 15px;
+                border-radius: 15px;
+            }
+            
+            .section h2 {
+                font-size: 1.4em;
             }
             
             .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pr-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .pr-stat-number {
+                font-size: 1.6em;
+            }
+            
+            .project-card h3 {
+                font-size: 1.1em;
+            }
+            
+            .featured-badge {
+                display: block;
+                margin: 8px 0 0 0;
+                width: fit-content;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .header {
+                padding: 25px 15px;
+            }
+            
+            .header h1 {
+                font-size: 1.4em;
+            }
+            
+            .pr-stats {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .pr-stat {
+                padding: 15px;
+            }
+            
+            .learning-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -474,11 +567,15 @@
 </head>
 <body>
     <!-- モバイルメニューボタン -->
-    <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+    <button class="mobile-menu-btn" id="menuBtn" aria-label="メニューを開く">☰</button>
+    
+    <!-- オーバーレイ -->
+    <div class="sidebar-overlay" id="overlay"></div>
     
     <!-- サイドバー -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-header">
+            <button class="sidebar-close" id="closeBtn" aria-label="メニューを閉じる">✕</button>
             <div class="sidebar-avatar">DH</div>
             <div class="sidebar-name">畑田 大介</div>
             <div class="sidebar-title">Cloud & AI Engineer</div>
@@ -862,12 +959,31 @@
     </main>
 
     <script>
-        // モバイルメニュー切り替え
-        function toggleSidebar() {
-            document.getElementById('sidebar').classList.toggle('open');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+        const menuBtn = document.getElementById('menuBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        
+        // メニューを開く
+        function openSidebar() {
+            sidebar.classList.add('open');
+            overlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
         }
         
-        // スムーススクロール & アクティブ状態管理
+        // メニューを閉じる
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            overlay.classList.remove('show');
+            document.body.style.overflow = '';
+        }
+        
+        // イベントリスナー
+        menuBtn.addEventListener('click', openSidebar);
+        closeBtn.addEventListener('click', closeSidebar);
+        overlay.addEventListener('click', closeSidebar);
+        
+        // ナビゲーションクリック
         document.querySelectorAll('.nav-item').forEach(link => {
             link.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -875,17 +991,20 @@
                 const target = document.querySelector(targetId);
                 
                 if (target) {
-                    target.scrollIntoView({ behavior: 'smooth' });
+                    // モバイルではメニューを閉じる
+                    if (window.innerWidth <= 900) {
+                        closeSidebar();
+                    }
+                    
+                    // 少し遅延してスクロール（メニューが閉じるのを待つ）
+                    setTimeout(() => {
+                        target.scrollIntoView({ behavior: 'smooth' });
+                    }, 100);
                 }
                 
                 // アクティブ状態更新
                 document.querySelectorAll('.nav-item').forEach(l => l.classList.remove('active'));
                 this.classList.add('active');
-                
-                // モバイルではメニューを閉じる
-                if (window.innerWidth <= 900) {
-                    document.getElementById('sidebar').classList.remove('open');
-                }
             });
         });
         
