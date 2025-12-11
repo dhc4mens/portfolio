@@ -19,10 +19,129 @@
             min-height: 100vh;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+        /* サイドバー */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 220px;
+            height: 100vh;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0;
+        }
+        
+        .sidebar-header {
+            text-align: center;
             padding: 20px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+        
+        .sidebar-avatar {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .sidebar-name {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        
+        .sidebar-title {
+            font-size: 0.8em;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        .sidebar-nav {
+            flex: 1;
+            padding: 20px 0;
+        }
+        
+        .nav-item {
+            display: block;
+            padding: 12px 25px;
+            color: #34495e;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .nav-item:hover {
+            background: #f8f9fa;
+            border-left-color: #667eea;
+            color: #667eea;
+        }
+        
+        .nav-item.active {
+            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1), transparent);
+            border-left-color: #667eea;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .nav-icon {
+            margin-right: 10px;
+        }
+        
+        .sidebar-footer {
+            padding: 20px;
+            border-top: 1px solid #ecf0f1;
+        }
+        
+        .sidebar-contact a {
+            display: block;
+            padding: 8px 0;
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.85em;
+        }
+        
+        .sidebar-contact a:hover {
+            text-decoration: underline;
+        }
+        
+        /* モバイルメニューボタン */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.95);
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            font-size: 24px;
+        }
+        
+        /* メインコンテンツ */
+        .main-content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
         }
         
         .header {
@@ -33,20 +152,6 @@
             margin-bottom: 30px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
             text-align: center;
-        }
-        
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 48px;
-            font-weight: bold;
         }
         
         .header h1 {
@@ -61,14 +166,6 @@
             margin-bottom: 20px;
         }
         
-        .header .description {
-            font-size: 1.1em;
-            color: #34495e;
-            max-width: 800px;
-            margin: 0 auto;
-            line-height: 1.8;
-        }
-        
         .section {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
@@ -76,20 +173,63 @@
             padding: 30px;
             margin-bottom: 30px;
             box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            scroll-margin-top: 20px;
         }
         
         .section h2 {
-            font-size: 2em;
+            font-size: 1.8em;
             margin-bottom: 25px;
             color: #2c3e50;
             border-bottom: 3px solid #667eea;
             padding-bottom: 10px;
         }
         
+        /* PRセクション */
+        .pr-content {
+            font-size: 1.05em;
+            color: #34495e;
+            line-height: 1.9;
+        }
+        
+        .pr-highlight {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(231, 76, 60, 0.05));
+            border-left: 4px solid #e74c3c;
+            padding: 15px 20px;
+            margin: 20px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        
+        .pr-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .pr-stat {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+        
+        .pr-stat-number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #667eea;
+        }
+        
+        .pr-stat-label {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            margin-top: 5px;
+        }
+        
+        /* スキルグリッド */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             margin-top: 20px;
         }
         
@@ -108,24 +248,25 @@
         .skill-category h3 {
             color: #2c3e50;
             margin-bottom: 15px;
-            font-size: 1.3em;
+            font-size: 1.2em;
         }
         
         .skill-item {
-            margin-bottom: 12px;
-            padding: 8px 0;
+            margin-bottom: 10px;
+            padding: 6px 0;
             border-bottom: 1px solid #ecf0f1;
         }
         
         .skill-name {
             font-weight: bold;
             color: #34495e;
+            font-size: 0.95em;
         }
         
         .skill-detail {
-            font-size: 0.9em;
+            font-size: 0.85em;
             color: #7f8c8d;
-            margin-top: 5px;
+            margin-top: 3px;
         }
         
         .experience-level {
@@ -134,17 +275,18 @@
             color: white;
             padding: 2px 8px;
             border-radius: 10px;
-            font-size: 0.8em;
-            margin-left: 10px;
+            font-size: 0.75em;
+            margin-left: 8px;
         }
         
         .experience-level.new {
             background: #e74c3c;
         }
         
+        /* プロジェクトグリッド */
         .project-grid {
             display: grid;
-            gap: 25px;
+            gap: 20px;
             margin-top: 20px;
         }
         
@@ -157,8 +299,8 @@
         }
         
         .project-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
         }
         
         .project-card.featured {
@@ -168,8 +310,8 @@
         
         .project-card h3 {
             color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.4em;
+            margin-bottom: 12px;
+            font-size: 1.25em;
         }
         
         .featured-badge {
@@ -178,7 +320,7 @@
             color: white;
             padding: 3px 10px;
             border-radius: 12px;
-            font-size: 0.75em;
+            font-size: 0.7em;
             margin-left: 10px;
             vertical-align: middle;
         }
@@ -186,58 +328,44 @@
         .project-meta {
             display: flex;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 15px;
+            gap: 10px;
+            margin-bottom: 12px;
         }
         
         .project-meta span {
             background: #ecf0f1;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.9em;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
             color: #2c3e50;
         }
         
         .project-description {
             color: #34495e;
-            line-height: 1.8;
+            line-height: 1.7;
+            font-size: 0.95em;
         }
         
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
+            gap: 6px;
+            margin-top: 12px;
         }
         
         .tech-tag {
             background: #667eea;
             color: white;
-            padding: 5px 12px;
-            border-radius: 15px;
-            font-size: 0.8em;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.75em;
         }
         
         .tech-tag.ai {
             background: #e74c3c;
         }
         
-        .contact-info {
-            text-align: center;
-            margin-top: 20px;
-        }
-        
-        .contact-info a {
-            color: #667eea;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-        
-        .contact-info a:hover {
-            text-decoration: underline;
-        }
-        
+        /* 学習セクション */
         .learning-section {
             background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
@@ -250,29 +378,35 @@
         
         .learning-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
             margin-top: 20px;
         }
         
         .learning-item {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
-            border-radius: 15px;
+            border-radius: 12px;
             padding: 20px;
             text-align: center;
         }
         
         .learning-item h3 {
             margin-bottom: 10px;
-            font-size: 1.2em;
+            font-size: 1.1em;
         }
         
+        .learning-item p {
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+        
+        /* 資格セクション */
         .cert-status {
             display: inline-block;
             padding: 2px 8px;
             border-radius: 10px;
-            font-size: 0.75em;
+            font-size: 0.7em;
             margin-left: 8px;
         }
         
@@ -286,17 +420,50 @@
             color: white;
         }
         
-        @media (max-width: 768px) {
-            .container {
-                padding: 10px;
+        .credly-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B35, #F7931E);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+            transition: transform 0.3s ease;
+            margin-bottom: 25px;
+        }
+        
+        .credly-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* レスポンシブ */
+        @media (max-width: 900px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
             }
             
-            .header {
-                padding: 20px;
+            .sidebar.open {
+                transform: translateX(0);
+            }
+            
+            .mobile-menu-btn {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            
+            .main-content {
+                margin-left: 0;
             }
             
             .header h1 {
-                font-size: 2em;
+                font-size: 1.8em;
+            }
+            
+            .section {
+                padding: 20px;
             }
             
             .skills-grid {
@@ -306,351 +473,444 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- ヘッダー・プロフィール -->
-        <header class="header">
-            <div class="profile-image">DH</div>
-            <h1>畑田 大介（Daisuke Hatada）</h1>
-            <div class="subtitle">Cloud & AI Infrastructure Engineer</div>
-            <div class="description">
-                インフラアーキテクトとして、オンプレミスからクラウドまで幅広い技術領域で設計・構築・運用を担当。<br>
-                VMware/KVM等の仮想化基盤設計、RHEL等のOS基盤構築、AWS上でのインフラアーキテクチャ設計まで、上流工程から実装まで一貫して対応可能。<br><br>
-                <strong>直近では、AI活用（AWS Bedrock）による異常検知システムを0から立ち上げ、実運用で攻撃検出実績を獲得。</strong><br>
-                IaC（Terraform/Ansible）による自動化推進、大規模システム移行プロジェクトでの技術経験も豊富。<br>
-                オンプレミス時代の深い知見とクラウドネイティブな技術の両方を活かし、モダナイゼーション案件で価値を発揮。
-            </div>
-            <div class="contact-info">
+    <!-- モバイルメニューボタン -->
+    <button class="mobile-menu-btn" onclick="toggleSidebar()">☰</button>
+    
+    <!-- サイドバー -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-avatar">DH</div>
+            <div class="sidebar-name">畑田 大介</div>
+            <div class="sidebar-title">Cloud & AI Engineer</div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="#pr" class="nav-item active">
+                <span class="nav-icon">📋</span>自己PR
+            </a>
+            <a href="#skills" class="nav-item">
+                <span class="nav-icon">🛠️</span>技術スキル
+            </a>
+            <a href="#projects" class="nav-item">
+                <span class="nav-icon">📂</span>プロジェクト実績
+            </a>
+            <a href="#learning" class="nav-item">
+                <span class="nav-icon">🚀</span>学習・今後
+            </a>
+            <a href="#certifications" class="nav-item">
+                <span class="nav-icon">🏆</span>資格・認定
+            </a>
+        </nav>
+        
+        <div class="sidebar-footer">
+            <div class="sidebar-contact">
                 <a href="mailto:dhc4menz@gmail.com">📧 dhc4menz@gmail.com</a>
-                <a href="https://github.com/dhc4mens">🐙 GitHub</a>
+                <a href="https://github.com/dhc4mens" target="_blank">🐙 GitHub</a>
             </div>
-        </header>
+        </div>
+    </aside>
+    
+    <!-- メインコンテンツ -->
+    <main class="main-content">
+        <div class="container">
+            <!-- ヘッダー -->
+            <header class="header">
+                <h1>畑田 大介（Daisuke Hatada）</h1>
+                <div class="subtitle">Cloud & AI Infrastructure Engineer</div>
+            </header>
 
-        <!-- 技術スキル -->
-        <section class="section">
-            <h2>🛠️ 技術スキル</h2>
-            <div class="skills-grid">
-                <div class="skill-category ai-highlight">
-                    <h3>🤖 AI/ML・データエンジニアリング</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">AWS Bedrock (Claude)<span class="experience-level new">実績あり</span></div>
-                        <div class="skill-detail">AI異常検知システム構築、プロンプトエンジニアリング、実運用での攻撃検出実績</div>
+            <!-- 自己PR -->
+            <section class="section" id="pr">
+                <h2>📋 自己PR</h2>
+                <div class="pr-content">
+                    <p>
+                        インフラアーキテクトとして、オンプレミスからクラウドまで幅広い技術領域で設計・構築・運用を担当してきました。
+                        VMware/KVM等の仮想化基盤設計、RHEL等のOS基盤構築、AWS上でのインフラアーキテクチャ設計まで、
+                        <strong>上流工程から実装まで一貫して対応可能</strong>です。
+                    </p>
+                    
+                    <div class="pr-highlight">
+                        <strong>🔥 直近の実績:</strong><br>
+                        AI活用（AWS Bedrock）による異常検知システムを0から立ち上げ、実運用で攻撃検出実績を獲得。
+                        月額$1.15で24/7監視を実現し、41.6%エラー率の不正アクセスを自動検知しました。
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-name">データパイプライン<span class="experience-level new">実務1年</span></div>
-                        <div class="skill-detail">Glue, Athena, Kinesis, S3によるログ分析基盤構築</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">Python<span class="experience-level">実務1年</span></div>
-                        <div class="skill-detail">Lambda関数開発、boto3、データ処理スクリプト</div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>☁️ クラウドプラットフォーム</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">Amazon Web Services (AWS)<span class="experience-level">実務3年</span></div>
-                        <div class="skill-detail">Lambda, S3, Glue, Athena, Bedrock, SNS, CloudWatch, VPC, IAM設計・運用</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">VMware vCenter<span class="experience-level">実務15年</span></div>
-                        <div class="skill-detail">仮想化基盤構築・運用、vSphere 6.0→7.0移行、リソース最適化</div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>🔧 インフラ自動化・IaC</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">Terraform<span class="experience-level">実務1年</span></div>
-                        <div class="skill-detail">AWS基盤のコード化、マルチ環境管理、モジュール設計</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">Ansible<span class="experience-level">実務2年</span></div>
-                        <div class="skill-detail">既存環境のコード化、DR環境構築、運用自動化</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">Git<span class="experience-level">実務2年</span></div>
-                        <div class="skill-detail">IaCコード管理、バージョン管理、チーム開発</div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>🖥️ OS・サーバー管理</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">Red Hat Enterprise Linux<span class="experience-level">実務20年</span></div>
-                        <div class="skill-detail">RHEL4→RHEL9移行、システム運用、パフォーマンス調整</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">Windows Server<span class="experience-level">実務15年</span></div>
-                        <div class="skill-detail">NT〜2019、Active Directory、サーバー構築・運用</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">KVM/oVirt<span class="experience-level">実務2年</span></div>
-                        <div class="skill-detail">仮想化基盤の運用保守、故障対応</div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>🔒 セキュリティ・ネットワーク</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">Firewall構築・運用<span class="experience-level">実務10年</span></div>
-                        <div class="skill-detail">Fortigate, SonicWall, セキュリティ設計、アクセス制御</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">ネットワーク設計<span class="experience-level">実務10年</span></div>
-                        <div class="skill-detail">Cisco/Fujitsu L2,L3, VPN構築、VLAN設計</div>
-                    </div>
-                </div>
-
-                <div class="skill-category">
-                    <h3>📊 監視・運用</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">監視基盤<span class="experience-level">実務10年</span></div>
-                        <div class="skill-detail">Zabbix, CloudWatch, SystemWalker, OpManager</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">ストレージ<span class="experience-level">実務8年</span></div>
-                        <div class="skill-detail">NetApp FAS, Tintri, S3設計・運用</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- プロジェクト実績 -->
-        <section class="section">
-            <h2>📂 プロジェクト実績</h2>
-            <div class="project-grid">
-                <div class="project-card featured">
-                    <h3>AI活用Webサイト自動ログ監視システム<span class="featured-badge">🔥 最新</span></h3>
-                    <div class="project-meta">
-                        <span>📅 2025年9月〜</span>
-                        <span>👥 PM（1名体制）</span>
-                        <span>🎯 AI/サーバーレス</span>
-                    </div>
-                    <div class="project-description">
-                        <strong>概要：</strong>AWS Bedrockを活用したAI異常検知システムをゼロから設計・構築<br>
-                        <strong>成果：</strong>実運用で攻撃を検出（41.6%エラー率の不正アクセス検知）、月額$1.15で24/7監視実現<br>
-                        <strong>役割：</strong>要件定義〜設計〜実装〜運用まで全工程を単独担当
-                    </div>
-                    <div class="tech-tags">
-                        <span class="tech-tag ai">AWS Bedrock</span>
-                        <span class="tech-tag ai">Claude AI</span>
-                        <span class="tech-tag">Lambda</span>
-                        <span class="tech-tag">S3</span>
-                        <span class="tech-tag">Glue</span>
-                        <span class="tech-tag">Athena</span>
-                        <span class="tech-tag">SNS</span>
-                        <span class="tech-tag">Terraform</span>
-                        <span class="tech-tag">Python</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3>オンプレ＋AWS環境のテスト基盤構築・運用</h3>
-                    <div class="project-meta">
-                        <span>📅 2025年3月〜10月</span>
-                        <span>👥 メンバー（5名体制）</span>
-                        <span>🎯 ハイブリッドインフラ</span>
-                    </div>
-                    <div class="project-description">
-                        <strong>概要：</strong>オンプレミスとAWS環境のハイブリッド構成でのテスト基盤構築<br>
-                        <strong>成果：</strong>IaCによる環境自動構築、テスト効率化<br>
-                        <strong>役割：</strong>Ansible/Terraform実装、Postfix構築、Git管理
-                    </div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Ansible</span>
-                        <span class="tech-tag">Terraform</span>
-                        <span class="tech-tag">Git</span>
-                        <span class="tech-tag">Postfix</span>
-                        <span class="tech-tag">Windows</span>
-                        <span class="tech-tag">Linux</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3>LINUXメールサーバEOL対応（RHEL6→9）</h3>
-                    <div class="project-meta">
-                        <span>📅 2024年10月〜2025年1月</span>
-                        <span>👥 メンバー（5名体制）</span>
-                        <span>🎯 OS移行・モダナイゼーション</span>
-                    </div>
-                    <div class="project-description">
-                        <strong>概要：</strong>基幹メールシステムのRHEL6→RHEL9移行<br>
-                        <strong>成果：</strong>ダウンタイム最小化での移行完了<br>
-                        <strong>役割：</strong>Postfix設計・構築、Symantec連携、移行テスト
-                    </div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">RHEL6/9</span>
-                        <span class="tech-tag">Postfix</span>
-                        <span class="tech-tag">Symantec</span>
-                        <span class="tech-tag">移行設計</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3>Ansible IaC基盤構築・運用改善</h3>
-                    <div class="project-meta">
-                        <span>📅 2024年1月〜9月</span>
-                        <span>👥 メンバー（10名体制）</span>
-                        <span>🎯 Infrastructure as Code</span>
-                    </div>
-                    <div class="project-description">
-                        <strong>概要：</strong>DNS/Proxy/Syslog等インフラのAnsible化、運用課題解決<br>
-                        <strong>成果：</strong>構築時間70%削減、運用自動化推進<br>
-                        <strong>役割：</strong>Ansibleコード開発、Vault連携、Git管理
-                    </div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Ansible</span>
-                        <span class="tech-tag">Git</span>
-                        <span class="tech-tag">Vault</span>
-                        <span class="tech-tag">VMware</span>
-                        <span class="tech-tag">PostgreSQL</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3>VMware仮想化基盤リプレイス・PMO</h3>
-                    <div class="project-meta">
-                        <span>📅 2021年10月〜2024年1月</span>
-                        <span>👥 PMO（15名体制）</span>
-                        <span>🎯 仮想化基盤モダナイゼーション</span>
-                    </div>
-                    <div class="project-description">
-                        <strong>概要：</strong>VMware 6.0→6.5→6.7→7.0の段階的アップグレード統括、oVirt並行運用<br>
-                        <strong>成果：</strong>4回のアップグレード全て予定通り完了、ゼロダウンタイム達成<br>
-                        <strong>役割：</strong>プロジェクト統括、設計レビュー、リスク管理
-                    </div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">VMware vSphere</span>
-                        <span class="tech-tag">oVirt</span>
-                        <span class="tech-tag">Tintri</span>
-                        <span class="tech-tag">Zabbix</span>
-                        <span class="tech-tag">PMO</span>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <h3>データセンター仮想化基盤 設計・構築・運用</h3>
-                    <div class="project-meta">
-                        <span>📅 2010年5月〜2020年1月</span>
-                        <span>👥 リーダー（15名体制）</span>
-                        <span>🎯 大規模仮想化基盤</span>
-                    </div>
-                    <div class="project-description">
-                        <strong>概要：</strong>データセンターのVMware仮想化基盤の設計・構築・運用（10年間）<br>
-                        <strong>成果：</strong>100台以上のVMホスト管理、SLA 99.99%達成<br>
-                        <strong>役割：</strong>チームリーダー、アーキテクチャ設計、運用改善推進
-                    </div>
-                    <div class="tech-tags">
-                        <span class="tech-tag">VMware</span>
-                        <span class="tech-tag">NetApp</span>
-                        <span class="tech-tag">Cisco</span>
-                        <span class="tech-tag">Fortigate</span>
-                        <span class="tech-tag">RHEL</span>
-                        <span class="tech-tag">Windows Server</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- 学習・成長への取り組み -->
-        <section class="section learning-section">
-            <h2>🚀 現在の学習・今後の取り組み</h2>
-            <div class="learning-grid">
-                <div class="learning-item">
-                    <h3>🤖 AI/ML on AWS</h3>
-                    <p>SageMaker、Bedrock活用の深化<br>DEA/MLA資格取得に向けた学習中</p>
-                </div>
-                <div class="learning-item">
-                    <h3>📊 データエンジニアリング</h3>
-                    <p>Kinesis, Glue, Athena, Redshift<br>リアルタイムデータ処理基盤</p>
-                </div>
-                <div class="learning-item">
-                    <h3>🐳 コンテナ・Kubernetes</h3>
-                    <p>ECS/EKS活用、コンテナ化推進<br>マイクロサービスアーキテクチャ</p>
-                </div>
-                <div class="learning-item">
-                    <h3>🔧 DevOps/MLOps</h3>
-                    <p>CI/CDパイプライン構築<br>Infrastructure as Code深化</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 資格・認定 -->
-        <section class="section">
-            <h2>🏆 資格・認定</h2>
-            <div class="contact-info" style="margin-bottom: 25px;">
-                <a href="https://www.credly.com/users/daisuke-hatada.akiko/badges" target="_blank" style="background: linear-gradient(135deg, #FF6B35, #F7931E); color: white; padding: 10px 20px; border-radius: 25px; text-decoration: none; display: inline-block; font-weight: bold; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3); transition: transform 0.3s ease;">
-                    🎖️ Credlyで資格バッジを確認する
-                </a>
-            </div>
-            <div class="skills-grid">
-                <div class="skill-category ai-highlight">
-                    <h3>☁️ AWS認定資格</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">AWS Certified Cloud Practitioner (CLF)<span class="cert-status acquired">取得済</span></div>
-                        <div class="skill-detail">AWSクラウドの基礎知識を証明</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">AWS Certified Solutions Architect - Associate (SAA)<span class="cert-status acquired">取得済</span></div>
-                        <div class="skill-detail">クラウドアーキテクチャ設計・構築の専門知識</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">AWS Certified SysOps Administrator - Associate (SOA)<span class="cert-status acquired">取得済</span></div>
-                        <div class="skill-detail">AWS環境でのシステム運用・管理の専門知識</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">AWS Certified Developer - Associate (DVA)<span class="cert-status acquired">取得済</span></div>
-                        <div class="skill-detail">AWSでのアプリケーション開発・デプロイメント</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">AWS Certified AI Practitioner (AIF)<span class="cert-status acquired">取得済</span></div>
-                        <div class="skill-detail">AI/ML基礎とAWSのAIサービス活用</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">AWS Certified Data Engineer - Associate (DEA)<span class="cert-status planned">2025/12予定</span></div>
-                        <div class="skill-detail">データエンジニアリングの専門知識</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">AWS Certified Machine Learning Engineer - Associate (MLA)<span class="cert-status planned">2026年予定</span></div>
-                        <div class="skill-detail">機械学習エンジニアリングの専門知識</div>
-                    </div>
-                </div>
-                
-                <div class="skill-category">
-                    <h3>🐧 Linux認定資格</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            LPIC-2（Linux Professional Institute Certification Level 2）
-                            <span class="cert-status acquired">取得済</span>
+                    
+                    <p>
+                        IaC（Terraform/Ansible）による自動化推進、大規模システム移行プロジェクトでの技術経験も豊富です。
+                        オンプレミス時代の深い知見とクラウドネイティブな技術の両方を活かし、モダナイゼーション案件で価値を発揮できます。
+                    </p>
+                    
+                    <div class="pr-stats">
+                        <div class="pr-stat">
+                            <div class="pr-stat-number">23+</div>
+                            <div class="pr-stat-label">年の実務経験</div>
                         </div>
-                        <div class="skill-detail">高度なLinuxシステム管理・ネットワーク管理</div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            LPIC-303（Security）
-                            <span class="cert-status acquired">取得済</span>
+                        <div class="pr-stat">
+                            <div class="pr-stat-number">5</div>
+                            <div class="pr-stat-label">AWS認定資格</div>
                         </div>
-                        <div class="skill-detail">Linuxセキュリティの専門知識・実装技能</div>
+                        <div class="pr-stat">
+                            <div class="pr-stat-number">15+</div>
+                            <div class="pr-stat-label">年のVMware経験</div>
+                        </div>
+                        <div class="pr-stat">
+                            <div class="pr-stat-number">20+</div>
+                            <div class="pr-stat-label">年のLinux経験</div>
+                        </div>
                     </div>
                 </div>
+            </section>
 
-                <div class="skill-category">
-                    <h3>🖥️ 仮想化認定資格</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">VCP2019-DCV（VMware Certified Professional）<span class="cert-status acquired">取得済</span></div>
-                        <div class="skill-detail">VMware vSphere環境の設計・構築・運用</div>
+            <!-- 技術スキル -->
+            <section class="section" id="skills">
+                <h2>🛠️ 技術スキル</h2>
+                <div class="skills-grid">
+                    <div class="skill-category ai-highlight">
+                        <h3>🤖 AI/ML・データエンジニアリング</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">AWS Bedrock (Claude)<span class="experience-level new">実績あり</span></div>
+                            <div class="skill-detail">AI異常検知システム構築、プロンプトエンジニアリング</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">データパイプライン<span class="experience-level new">実務1年</span></div>
+                            <div class="skill-detail">Glue, Athena, Kinesis, S3によるログ分析基盤</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Python<span class="experience-level">実務1年</span></div>
+                            <div class="skill-detail">Lambda関数開発、boto3、データ処理</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>☁️ クラウド（AWS）</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">AWS<span class="experience-level">実務3年</span></div>
+                            <div class="skill-detail">Lambda, S3, Glue, Athena, Bedrock, SNS, CloudWatch, VPC, IAM</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">VMware vCenter<span class="experience-level">実務15年</span></div>
+                            <div class="skill-detail">vSphere 6.0→7.0移行、大規模仮想化基盤</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>🔧 IaC・自動化</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">Terraform<span class="experience-level">実務1年</span></div>
+                            <div class="skill-detail">AWS基盤のコード化、マルチ環境管理</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Ansible<span class="experience-level">実務2年</span></div>
+                            <div class="skill-detail">DR環境構築、運用自動化</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Git<span class="experience-level">実務2年</span></div>
+                            <div class="skill-detail">IaCコード管理、チーム開発</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>🖥️ OS・サーバー</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">RHEL<span class="experience-level">実務20年</span></div>
+                            <div class="skill-detail">RHEL4→9移行、運用、チューニング</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Windows Server<span class="experience-level">実務15年</span></div>
+                            <div class="skill-detail">NT〜2019、AD、構築・運用</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>🔒 セキュリティ・NW</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">Firewall<span class="experience-level">実務10年</span></div>
+                            <div class="skill-detail">Fortigate, SonicWall設計・運用</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">ネットワーク<span class="experience-level">実務10年</span></div>
+                            <div class="skill-detail">Cisco/Fujitsu L2,L3, VPN, VLAN</div>
+                        </div>
+                    </div>
+
+                    <div class="skill-category">
+                        <h3>📊 監視・ストレージ</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">監視基盤<span class="experience-level">実務10年</span></div>
+                            <div class="skill-detail">Zabbix, CloudWatch, SystemWalker</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">ストレージ<span class="experience-level">実務8年</span></div>
+                            <div class="skill-detail">NetApp FAS, Tintri, S3</div>
+                        </div>
                     </div>
                 </div>
+            </section>
+
+            <!-- プロジェクト実績 -->
+            <section class="section" id="projects">
+                <h2>📂 プロジェクト実績</h2>
+                <div class="project-grid">
+                    <div class="project-card featured">
+                        <h3>AI活用Webサイト自動ログ監視システム<span class="featured-badge">🔥 最新</span></h3>
+                        <div class="project-meta">
+                            <span>📅 2025年9月〜</span>
+                            <span>👥 PM（1名）</span>
+                            <span>🎯 AI/サーバーレス</span>
+                        </div>
+                        <div class="project-description">
+                            <strong>概要：</strong>AWS Bedrockを活用したAI異常検知システムをゼロから設計・構築<br>
+                            <strong>成果：</strong>実運用で攻撃検出（41.6%エラー率検知）、月額$1.15で24/7監視<br>
+                            <strong>役割：</strong>要件定義〜設計〜実装〜運用まで全工程を単独担当
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag ai">AWS Bedrock</span>
+                            <span class="tech-tag ai">Claude AI</span>
+                            <span class="tech-tag">Lambda</span>
+                            <span class="tech-tag">S3</span>
+                            <span class="tech-tag">Glue</span>
+                            <span class="tech-tag">Athena</span>
+                            <span class="tech-tag">Terraform</span>
+                            <span class="tech-tag">Python</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>オンプレ＋AWS環境のテスト基盤構築・運用</h3>
+                        <div class="project-meta">
+                            <span>📅 2025年3月〜10月</span>
+                            <span>👥 メンバー（5名）</span>
+                            <span>🎯 ハイブリッド</span>
+                        </div>
+                        <div class="project-description">
+                            <strong>概要：</strong>オンプレ＋AWSハイブリッド構成でのテスト基盤構築<br>
+                            <strong>成果：</strong>IaCによる環境自動構築、テスト効率化<br>
+                            <strong>役割：</strong>Ansible/Terraform実装、Postfix構築
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Ansible</span>
+                            <span class="tech-tag">Terraform</span>
+                            <span class="tech-tag">Git</span>
+                            <span class="tech-tag">Postfix</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>メールサーバEOL対応（RHEL6→9）</h3>
+                        <div class="project-meta">
+                            <span>📅 2024年10月〜2025年1月</span>
+                            <span>👥 メンバー（5名）</span>
+                            <span>🎯 OS移行</span>
+                        </div>
+                        <div class="project-description">
+                            <strong>概要：</strong>基幹メールシステムのRHEL6→RHEL9移行<br>
+                            <strong>成果：</strong>ダウンタイム最小化での移行完了<br>
+                            <strong>役割：</strong>Postfix設計・構築、移行テスト
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">RHEL6/9</span>
+                            <span class="tech-tag">Postfix</span>
+                            <span class="tech-tag">Symantec</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>Ansible IaC基盤構築・運用改善</h3>
+                        <div class="project-meta">
+                            <span>📅 2024年1月〜9月</span>
+                            <span>👥 メンバー（10名）</span>
+                            <span>🎯 IaC</span>
+                        </div>
+                        <div class="project-description">
+                            <strong>概要：</strong>DNS/Proxy/Syslog等インフラのAnsible化<br>
+                            <strong>成果：</strong>構築時間70%削減、運用自動化推進<br>
+                            <strong>役割：</strong>Ansibleコード開発、Vault連携
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Ansible</span>
+                            <span class="tech-tag">Git</span>
+                            <span class="tech-tag">Vault</span>
+                            <span class="tech-tag">VMware</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>VMware仮想化基盤リプレイス・PMO</h3>
+                        <div class="project-meta">
+                            <span>📅 2021年10月〜2024年1月</span>
+                            <span>👥 PMO（15名）</span>
+                            <span>🎯 仮想化</span>
+                        </div>
+                        <div class="project-description">
+                            <strong>概要：</strong>VMware 6.0→7.0段階的アップグレード統括<br>
+                            <strong>成果：</strong>4回のアップグレード全て予定通り完了<br>
+                            <strong>役割：</strong>プロジェクト統括、設計レビュー
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">VMware</span>
+                            <span class="tech-tag">oVirt</span>
+                            <span class="tech-tag">Tintri</span>
+                            <span class="tech-tag">PMO</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <h3>データセンター仮想化基盤（10年間）</h3>
+                        <div class="project-meta">
+                            <span>📅 2010年5月〜2020年1月</span>
+                            <span>👥 リーダー（15名）</span>
+                            <span>🎯 大規模基盤</span>
+                        </div>
+                        <div class="project-description">
+                            <strong>概要：</strong>データセンターVMware基盤の設計・構築・運用<br>
+                            <strong>成果：</strong>100台以上のVMホスト管理、SLA 99.99%達成<br>
+                            <strong>役割：</strong>チームリーダー、アーキテクチャ設計
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">VMware</span>
+                            <span class="tech-tag">NetApp</span>
+                            <span class="tech-tag">Cisco</span>
+                            <span class="tech-tag">Fortigate</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 学習・今後 -->
+            <section class="section learning-section" id="learning">
+                <h2>🚀 現在の学習・今後の取り組み</h2>
+                <div class="learning-grid">
+                    <div class="learning-item">
+                        <h3>🤖 AI/ML on AWS</h3>
+                        <p>SageMaker、Bedrock活用深化<br>DEA/MLA資格取得</p>
+                    </div>
+                    <div class="learning-item">
+                        <h3>📊 データエンジニアリング</h3>
+                        <p>Kinesis, Glue, Athena<br>リアルタイム処理基盤</p>
+                    </div>
+                    <div class="learning-item">
+                        <h3>🐳 コンテナ</h3>
+                        <p>ECS/EKS活用<br>マイクロサービス</p>
+                    </div>
+                    <div class="learning-item">
+                        <h3>🔧 DevOps/MLOps</h3>
+                        <p>CI/CDパイプライン<br>IaC深化</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 資格・認定 -->
+            <section class="section" id="certifications">
+                <h2>🏆 資格・認定</h2>
+                <div style="text-align: center; margin-bottom: 25px;">
+                    <a href="https://www.credly.com/users/daisuke-hatada.akiko/badges" target="_blank" class="credly-btn">
+                        🎖️ Credlyで資格バッジを確認
+                    </a>
+                </div>
+                <div class="skills-grid">
+                    <div class="skill-category ai-highlight">
+                        <h3>☁️ AWS認定資格</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">Cloud Practitioner (CLF)<span class="cert-status acquired">取得済</span></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Solutions Architect - Associate (SAA)<span class="cert-status acquired">取得済</span></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">SysOps Administrator - Associate (SOA)<span class="cert-status acquired">取得済</span></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Developer - Associate (DVA)<span class="cert-status acquired">取得済</span></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">AI Practitioner (AIF)<span class="cert-status acquired">取得済</span></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">Data Engineer - Associate (DEA)<span class="cert-status planned">2025/12予定</span></div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">ML Engineer - Associate (MLA)<span class="cert-status planned">2026年予定</span></div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>🐧 Linux / 仮想化</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">LPIC-2<span class="cert-status acquired">取得済</span></div>
+                            <div class="skill-detail">高度なLinuxシステム管理</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">LPIC-303 Security<span class="cert-status acquired">取得済</span></div>
+                            <div class="skill-detail">Linuxセキュリティ専門</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">VCP2019-DCV<span class="cert-status acquired">取得済</span></div>
+                            <div class="skill-detail">VMware vSphere専門</div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-category">
+                        <h3>🎓 学歴</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">東京都立工業高等専門学校</div>
+                            <div class="skill-detail">電気工学科卒（2001年3月）<br>※現：東京都立産業技術高等専門学校</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // モバイルメニュー切り替え
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+        
+        // スムーススクロール & アクティブ状態管理
+        document.querySelectorAll('.nav-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const target = document.querySelector(targetId);
                 
-                <div class="skill-category">
-                    <h3>🎓 学歴</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">東京都立工業高等専門学校</div>
-                        <div class="skill-detail">電気工学科卒（2001年3月）<br>※現：東京都立産業技術高等専門学校</div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                // アクティブ状態更新
+                document.querySelectorAll('.nav-item').forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+                
+                // モバイルではメニューを閉じる
+                if (window.innerWidth <= 900) {
+                    document.getElementById('sidebar').classList.remove('open');
+                }
+            });
+        });
+        
+        // スクロール時のアクティブ状態更新
+        window.addEventListener('scroll', function() {
+            const sections = ['pr', 'skills', 'projects', 'learning', 'certifications'];
+            let current = '';
+            
+            sections.forEach(id => {
+                const section = document.getElementById(id);
+                if (section) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 150) {
+                        current = id;
+                    }
+                }
+            });
+            
+            document.querySelectorAll('.nav-item').forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
