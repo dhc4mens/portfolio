@@ -623,16 +623,23 @@
                 <div class="pr-content">
                     <p>
                         インフラアーキテクトとして、オンプレミスからクラウドまで幅広い技術領域で設計・構築・運用を担当してきました。
+                        2025年7月に<strong>だいほう合同会社を創業</strong>し、ITコンサルティング・SRE支援・Web制作・IT教育を提供しています。
                         VMware/KVM等の仮想化基盤設計、RHEL等のOS基盤構築、AWS上でのインフラアーキテクチャ設計まで、
                         <strong>上流工程から実装まで一貫して対応可能</strong>です。
                     </p>
-                    
+
                     <div class="pr-highlight">
-                        <strong>🔥 直近の実績:</strong><br>
-                        AI活用（AWS Bedrock）による異常検知システムを0から立ち上げ、実運用で攻撃検出実績を獲得。
+                        <strong>🔥 直近の実績（AI監視SaaS）:</strong><br>
+                        AWS Bedrockを活用したAI異常検知システム（CloudLogAI）を0から設計・構築。
                         月額$1.15で24/7監視を実現し、41.6%エラー率の不正アクセスを自動検知しました。
                     </div>
-                    
+
+                    <div class="pr-highlight">
+                        <strong>🛠️ SRE基盤構築実績:</strong><br>
+                        Terraform IaC（tfstate層分離・drift検知CI・OIDC認証）・CloudWatch Alarm 27本のコード管理化・
+                        SLI/SLO定義・ECS Fargate Runbook整備・Security Hub有効化まで、SRE基盤を一から構築。
+                    </div>
+
                     <p>
                         IaC（Terraform/Ansible）による自動化推進、大規模システム移行プロジェクトでの技術経験も豊富です。
                         オンプレミス時代の深い知見とクラウドネイティブな技術の両方を活かし、モダナイゼーション案件で価値を発揮できます。
@@ -674,8 +681,8 @@
                             <div class="skill-detail">Glue, Athena, Kinesis, S3によるログ分析基盤</div>
                         </div>
                         <div class="skill-item">
-                            <div class="skill-name">Python<span class="experience-level">実務1年</span></div>
-                            <div class="skill-detail">Lambda関数開発、boto3、データ処理</div>
+                            <div class="skill-name">Python<span class="experience-level">実務1年+</span></div>
+                            <div class="skill-detail">Lambda関数開発、boto3、FastAPI、データ処理</div>
                         </div>
                     </div>
 
@@ -683,7 +690,11 @@
                         <h3>☁️ クラウド（AWS）</h3>
                         <div class="skill-item">
                             <div class="skill-name">AWS<span class="experience-level">実務3年</span></div>
-                            <div class="skill-detail">Lambda, S3, Glue, Athena, Bedrock, SNS, CloudWatch, VPC, IAM</div>
+                            <div class="skill-detail">Lambda, ECS Fargate, S3, CloudFront, API Gateway, Bedrock, Glue, Athena, DynamoDB, CloudWatch, WAF, Security Hub</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">ECS Fargate<span class="experience-level new">実務あり</span></div>
+                            <div class="skill-detail">コンテナ基盤構築・Runbook整備（サービス停止・タスク起動失敗・ALB 5xx対応）</div>
                         </div>
                         <div class="skill-item">
                             <div class="skill-name">VMware vCenter<span class="experience-level">実務15年</span></div>
@@ -694,8 +705,12 @@
                     <div class="skill-category">
                         <h3>🔧 IaC・自動化</h3>
                         <div class="skill-item">
-                            <div class="skill-name">Terraform<span class="experience-level">実務1年</span></div>
-                            <div class="skill-detail">AWS基盤のコード化、マルチ環境管理</div>
+                            <div class="skill-name">Terraform<span class="experience-level">実務1年+</span></div>
+                            <div class="skill-detail">tfstate層分離・drift検知CI・OIDC認証・モジュール分割・マルチ環境管理</div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">GitHub Actions<span class="experience-level new">実務あり</span></div>
+                            <div class="skill-detail">OIDC認証CI/CD・Terraform plan自動化・S3自動デプロイ・ヘルスチェック</div>
                         </div>
                         <div class="skill-item">
                             <div class="skill-name">Ansible<span class="experience-level">実務2年</span></div>
@@ -750,16 +765,40 @@
                 <h2>📂 プロジェクト実績</h2>
                 <div class="project-grid">
                     <div class="project-card featured">
-                        <h3>AI活用Webサイト自動ログ監視システム<span class="featured-badge">🔥 最新</span></h3>
+                        <h3>SRE基盤構築（daihou-sre）<span class="featured-badge">🔥 最新</span></h3>
+                        <div class="project-meta">
+                            <span>📅 2025年7月〜</span>
+                            <span>👥 PM/エンジニア（1名）</span>
+                            <span>🎯 SRE/IaC</span>
+                        </div>
+                        <div class="project-description">
+                            <strong>概要：</strong>だいほう合同会社のSRE基盤をゼロから設計・構築・運用<br>
+                            <strong>成果：</strong>Terraform IaC化（tfstate層分離・drift検知CI）・CloudWatch Alarm 27本のコード管理化・SLI/SLO定義・ECS Fargate Runbook 4本整備・Security Hub有効化<br>
+                            <strong>役割：</strong>SRE全体設計・Terraform実装・CI/CD整備・ドキュメント化を単独担当
+                        </div>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Terraform</span>
+                            <span class="tech-tag">ECS Fargate</span>
+                            <span class="tech-tag">GitHub Actions</span>
+                            <span class="tech-tag">CloudWatch</span>
+                            <span class="tech-tag">Security Hub</span>
+                            <span class="tech-tag">EventBridge</span>
+                            <span class="tech-tag">SLI/SLO</span>
+                            <span class="tech-tag">OIDC</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card featured">
+                        <h3>AI監視SaaS（CloudLogAI）<span class="featured-badge">📡 本番運用中</span></h3>
                         <div class="project-meta">
                             <span>📅 2025年9月〜</span>
-                            <span>👥 PM（1名）</span>
+                            <span>👥 PM/エンジニア（1名）</span>
                             <span>🎯 AI/サーバーレス</span>
                         </div>
                         <div class="project-description">
-                            <strong>概要：</strong>AWS Bedrockを活用したAI異常検知システムをゼロから設計・構築<br>
-                            <strong>成果：</strong>実運用で攻撃検出（41.6%エラー率検知）、月額$1.15で24/7監視<br>
-                            <strong>役割：</strong>要件定義〜設計〜実装〜運用まで全工程を単独担当
+                            <strong>概要：</strong>AWS Bedrockを活用したAI異常検知SaaSをゼロから設計・構築し本番運用中<br>
+                            <strong>成果：</strong>実運用で攻撃検出（41.6%エラー率検知）・月額$1.15で24/7監視・SLI/SLO・エラーバジェット管理まで整備<br>
+                            <strong>役割：</strong>要件定義〜設計〜実装〜SRE運用まで全工程を単独担当
                         </div>
                         <div class="tech-tags">
                             <span class="tech-tag ai">AWS Bedrock</span>
@@ -770,6 +809,7 @@
                             <span class="tech-tag">Athena</span>
                             <span class="tech-tag">Terraform</span>
                             <span class="tech-tag">Python</span>
+                            <span class="tech-tag">SLI/SLO</span>
                         </div>
                     </div>
 
@@ -879,20 +919,20 @@
                 <h2>🚀 現在の学習・今後の取り組み</h2>
                 <div class="learning-grid">
                     <div class="learning-item">
-                        <h3>🤖 AI/ML on AWS</h3>
-                        <p>SageMaker、Bedrock活用深化<br>SAP/DOP取得（2026年後半）</p>
+                        <h3>🏆 DOP-C02取得</h3>
+                        <p>AWS DevOps Engineer Professional<br>2026年取得目標</p>
                     </div>
                     <div class="learning-item">
-                        <h3>📊 データエンジニアリング</h3>
-                        <p>Kinesis, Glue, Athena<br>リアルタイム処理基盤</p>
+                        <h3>🛠️ SRE深化</h3>
+                        <p>Observability強化<br>カオスエンジニアリング</p>
                     </div>
                     <div class="learning-item">
-                        <h3>🐳 コンテナ</h3>
-                        <p>ECS/EKS活用<br>マイクロサービス</p>
+                        <h3>🐍 Python(boto3)</h3>
+                        <p>AWS運用自動化スクリプト<br>データパイプライン構築</p>
                     </div>
                     <div class="learning-item">
-                        <h3>🔧 DevOps/MLOps</h3>
-                        <p>CI/CDパイプライン<br>IaC深化</p>
+                        <h3>🤖 AI活用拡大</h3>
+                        <p>Bedrock活用深化<br>CloudLogAI機能拡張</p>
                     </div>
                 </div>
             </section>
