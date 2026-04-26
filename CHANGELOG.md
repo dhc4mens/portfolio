@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+- **SRE実績を最新化（Lambda@Edge認証・drift検知・tfstate層分離）**
+  - 自己PR: SRE基盤構築実績ハイライトにinfra/app層分離・Lambda@Edge Cognito認証・週次drift検知を追記
+  - プロジェクト: daihou-sre の成果にLambda@Edge Cognito認証基盤（SecretsManager統合）・OIDC IAMロール保護設計を追記
+  - プロジェクト: daihou-sre の技術タグに Lambda@Edge / Cognito / SecretsManager を追加
+  - 学習・今後: DOP目標を「2026年夏」に具体化・SAP-C02を新規追加・SRE深化の内容を更新
+
 ### Added
 - **SRE実績・スキルセクション最新化（#8）**
   - 自己PR: だいほう合同会社創業（2025年7月）・SRE基盤構築実績ハイライト追加
