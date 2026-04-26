@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+- **直近案件・初期キャリア追加・スキル更新（#12）**
+  - プロジェクト: 直近案件（2026/02-05）オンプレプリントサービス基盤更改AWS環境構築（Terraform IaC）を追加
+  - プロジェクト: 初期キャリア（2001/04-2010/04）インフラエンジニア（OS/NW/Firewall）をデータセンター仮想化基盤の前に追加
+  - スキル: セキュリティ・NWにAWSセキュリティ（GuardDuty/Security Hub/WAF/Config/CloudTrail/KMS/SecretsManager）を追加
+  - 学習: SRE深化の「カオスエンジニアリング実践」を削除してシンプル化
+
 ### Changed
 - **SRE実績を最新化（Lambda@Edge認証・drift検知・tfstate層分離）**
   - 自己PR: SRE基盤構築実績ハイライトにinfra/app層分離・Lambda@Edge Cognito認証・週次drift検知を追記
