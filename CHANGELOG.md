@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+- **ポートフォリオ定期更新 2026-06（#6）**
+  - SRE基盤カード成果: Issue駆動開発体制整備（Issue/PRテンプレート・ラベル・GitHub Flow統一）・標準リポジトリテンプレート作成（repo-setup-template）・GitHub Projects V2 横断管理ボード運用 を追記
+  - SRE基盤カード役割: 「開発プロセス整備」を追記
+  - CloudLogAI カード成果: マルチテナント対応完了・顧客管理CLI（customer-manage.fish）完成 を追記
+
 ### Fixed
 - **プロジェクト表示順修正（#14）**
   - インフラエンジニア（2001-2010）とデータセンター仮想化基盤（2010-2020）の順序を修正
