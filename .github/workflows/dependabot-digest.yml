@@ -1,0 +1,101 @@
+name: Dependabot alerts digest
+
+on:
+  schedule:
+    # 毎週月曜 00:00 UTC (= 09:00 JST) に実行
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+# Dependabot alerts API は GITHUB_TOKEN ではアクセス不可（`vulnerability_alerts=read` 権限必須）。
+# fine-grained PAT（Repository permissions: Dependabot alerts=Read, Issues=Read and write）を
+# `DEPENDABOT_ALERTS_TOKEN` として secrets に登録すること。
+jobs:
+  digest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch alerts and upsert digest Issue
+        uses: actions/github-script@v9
+        with:
+          github-token: ${{ secrets.DEPENDABOT_ALERTS_TOKEN }}
+          script: |
+            const alerts = await github.paginate(
+              github.rest.dependabot.listAlertsForRepo,
+              { owner: context.repo.owner, repo: context.repo.repo, state: 'open', per_page: 100 }
+            );
+
+            const bySeverity = { critical: [], high: [], medium: [], low: [] };
+            for (const a of alerts) {
+              const sev = a.security_advisory.severity;
+              if (bySeverity[sev]) bySeverity[sev].push(a);
+            }
+
+            const fmt = (arr) => arr.length
+              ? arr.map(a => {
+                  const patched = a.security_vulnerability.first_patched_version?.identifier ?? 'unpatched';
+                  return `- #${a.number} **${a.dependency.package.name}** (\`${a.dependency.manifest_path}\`) — ${a.security_advisory.summary} → patched: \`${patched}\``;
+                }).join('\n')
+              : '_なし_';
+
+            const now = new Date().toISOString().slice(0, 10);
+            const total = alerts.length;
+            const body = [
+              `> 自動生成: ${now} (週次・毎週月曜 09:00 JST)`,
+              ``,
+              `## 集計`,
+              ``,
+              `| Severity | Count |`,
+              `|:---|:---:|`,
+              `| Critical | ${bySeverity.critical.length} |`,
+              `| High | ${bySeverity.high.length} |`,
+              `| Medium | ${bySeverity.medium.length} |`,
+              `| Low | ${bySeverity.low.length} |`,
+              `| **合計** | **${total}** |`,
+              ``,
+              `## Critical`,
+              ``,
+              fmt(bySeverity.critical),
+              ``,
+              `## High`,
+              ``,
+              fmt(bySeverity.high),
+              ``,
+              `## Medium`,
+              ``,
+              fmt(bySeverity.medium),
+              ``,
+              `## Low`,
+              ``,
+              fmt(bySeverity.low),
+              ``,
+              `---`,
+              ``,
+              `[Dependabot alerts 一覧を開く](https://github.com/${context.repo.owner}/${context.repo.repo}/security/dependabot)`,
+              ``,
+              `<!-- dependabot-digest-marker -->`,
+            ].join('\n');
+
+            const title = '[Dependabot] Weekly alerts digest';
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: 'open', labels: 'dependencies,type/chore', per_page: 100,
+            });
+            const existing = issues.find(i => i.title === title);
+
+            if (existing) {
+              await github.rest.issues.update({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existing.number, body,
+              });
+              core.notice(`Updated existing digest Issue #${existing.number} (total: ${total})`);
+            } else {
+              const { data: created } = await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body,
+                labels: ['dependencies', 'type/chore'],
+              });
+              core.notice(`Created digest Issue #${created.number} (total: ${total})`);
+            }
