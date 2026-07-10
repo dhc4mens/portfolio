@@ -99,3 +99,12 @@ jobs:
               });
               core.notice(`Created digest Issue #${created.number} (total: ${total})`);
             }
+
+  notify-on-failure:
+    needs: [digest]
+    if: failure()
+    permissions:
+      issues: write
+    uses: dhc4mens/repo-setup-template/.github/workflows/notify-failure.yml@main
+    with:
+      workflow-name: ${{ github.workflow }}
