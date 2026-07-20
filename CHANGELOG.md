@@ -7,6 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Changed
+- **SREダッシュボードのデモリンクを外部公開版（ext-sre-dash）へ差し替え＋デモ用ログイン情報を併記**
+  - リンク先を `int-sre-dash.daihou-llc.com/demo/`（内部向け）から `ext-sre-dash.daihou-llc.com/`（外部公開用・ルート配信）へ変更
+  - デモ用クレデンシャル（`ext-guest@daihou-llc.com`）をカード内に併記。従来はクレデンシャルがどこにも公開されておらず、訪問者がCognitoログイン画面で止まる実質死にリンクだったため
+  - 表示内容はサニタイズ済みの静的ページである旨の注記を追加
 - **ポートフォリオ定期更新 2026-06（#6）**
   - SRE基盤カード成果: Issue駆動開発体制整備（Issue/PRテンプレート・ラベル・GitHub Flow統一）・標準リポジトリテンプレート作成（repo-setup-template）・GitHub Projects V2 横断管理ボード運用 を追記
   - SRE基盤カード役割: 「開発プロセス整備」を追記
@@ -18,6 +22,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - 新しい順（降順）に合わせ、データセンター仮想化基盤 → インフラエンジニアの順に変更
 
 ### Added
+- **SRE実績への直接導線をサイドバーとカード上部に追加**（未マージのまま残っていた作業をこのPRで合流）
 - **直近案件・初期キャリア追加・スキル更新（#12）**
   - プロジェクト: 直近案件（2026/02-05）オンプレプリントサービス基盤更改AWS環境構築（Terraform IaC）を追加
   - プロジェクト: 初期キャリア（2001/04-2010/04）インフラエンジニア（OS/NW/Firewall）をデータセンター仮想化基盤の前に追加
