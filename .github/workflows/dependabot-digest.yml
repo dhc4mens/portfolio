@@ -1,4 +1,6 @@
 name: Dependabot alerts digest
+# 2026-07-21: portfolio固有の startup failure（reusable workflow 参照の stale parse 疑い）解消のため、
+# 内容は動作中の daihou-sre 版と完全一致だが再コミットで GitHub に強制再パースさせる。
 
 on:
   schedule:
