@@ -1,6 +1,7 @@
 name: Dependabot alerts digest
-# 2026-07-21: portfolio固有の startup failure（reusable workflow 参照の stale parse 疑い）解消のため、
-# 内容は動作中の daihou-sre 版と完全一致だが再コミットで GitHub に強制再パースさせる。
+# 注: 他リポと違い notify-on-failure ジョブを持たない。portfolioは public リポで、
+# 失敗通知の reusable workflow は private の repo-setup-template にあり、
+# public リポは private リポの reusable workflow を呼べない（"workflow not found"）ため。
 
 on:
   schedule:
@@ -101,12 +102,3 @@ jobs:
               });
               core.notice(`Created digest Issue #${created.number} (total: ${total})`);
             }
-
-  notify-on-failure:
-    needs: [digest]
-    if: failure()
-    permissions:
-      issues: write
-    uses: dhc4mens/repo-setup-template/.github/workflows/notify-failure.yml@main
-    with:
-      workflow-name: ${{ github.workflow }}
