@@ -7,9 +7,10 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Fixed
-- **dependabot-digest.yml の startup failure を解消**（再パース強制）
-  - 7/13以降、portfolioの週次digestが "workflow file issue"（startup failure）で失敗していた。原因は `notify-on-failure` が参照する reusable workflow（`repo-setup-template/notify-failure.yml@main`）がパース時に解決できないもの。ファイル・設定は稼働中の daihou-sre 版と完全一致のため、GitHub側のportfolio固有のstale parse状態と判断
-  - ワークフローに説明コメントを追加して再コミットし、GitHubに強制再パースさせて解消
+- **dependabot-digest.yml の startup failure を解消**（notify-on-failure ジョブを削除）
+  - 7/13以降、portfolioの週次digestが "workflow file issue"（startup failure）で失敗していた
+  - 根本原因: portfolioは **public** リポで、`notify-on-failure` が参照する reusable workflow は **private** の repo-setup-template にある。**public リポは private リポの reusable workflow を呼べない**（"workflow not found" でパース失敗）ため。同じ参照でも private の daihou-sre で動くのはこの差
+  - 修正: portfolioから notify-on-failure ジョブを削除（public リポでは構造的に使えない）。digest本体は正常動作に戻る。※当初「stale parse」と誤診し再パース強制を試みたが無効だった経緯を経て根本原因を特定
 
 ### Changed
 - **SREダッシュボードのデモリンクを外部公開版（ext-sre-dash）へ差し替え＋デモ用ログイン情報を併記**
