@@ -6,6 +6,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Fixed
+- **dependabot-digest.yml の startup failure を解消**（再パース強制）
+  - 7/13以降、portfolioの週次digestが "workflow file issue"（startup failure）で失敗していた。原因は `notify-on-failure` が参照する reusable workflow（`repo-setup-template/notify-failure.yml@main`）がパース時に解決できないもの。ファイル・設定は稼働中の daihou-sre 版と完全一致のため、GitHub側のportfolio固有のstale parse状態と判断
+  - ワークフローに説明コメントを追加して再コミットし、GitHubに強制再パースさせて解消
+
 ### Changed
 - **SREダッシュボードのデモリンクを外部公開版（ext-sre-dash）へ差し替え＋デモ用ログイン情報を併記**
   - リンク先を `int-sre-dash.daihou-llc.com/demo/`（内部向け）から `ext-sre-dash.daihou-llc.com/`（外部公開用・ルート配信）へ変更
