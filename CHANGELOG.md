@@ -33,6 +33,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - 学習・今後: DOP 目標カードを削除し、SAP-C02 を「2026年11月受験予定／Professional 2冠目へ」に更新。「SRE深化」を「SRE・DevOps深化」に改め、DOP の知見を本番運用へ展開する旨を追記
 
 ### Fixed
+- **プロジェクト実績の誤字を修正**（「王手小売りチェーン」→「大手小売りチェーン」）
 - **dependabot-digest.yml の startup failure を解消**（notify-on-failure ジョブを削除）
   - 7/13以降、portfolioの週次digestが "workflow file issue"（startup failure）で失敗していた
   - 根本原因: portfolioは **public** リポで、`notify-on-failure` が参照する reusable workflow は **private** の repo-setup-template にある。**public リポは private リポの reusable workflow を呼べない**（"workflow not found" でパース失敗）ため。同じ参照でも private の daihou-sre で動くのはこの差
