@@ -7,6 +7,16 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Changed
+- **ビジュアルを全面刷新（AI生成感の除去・#37）**
+  - 原因だった紫グラデーション（`#667eea → #764ba2`）・ピンクグラデーション・Flat UI 系パレット・見出し17箇所の絵文字・全要素の角丸カードを撤去
+  - 生成り地＋墨色＋朱1色のエディトリアル調に変更。書体は IBM Plex Sans JP（本文）＋ IBM Plex Mono（番号・ラベル・数字）
+  - レイアウト: 左サイドバーを廃止し、上部固定ナビ＋ヒーロー（氏名・肩書き・連絡先・数字）＋「見出し左列／本文右列」の2カラムに。カードの代わりに罫線と余白で区切る
+  - プロジェクト実績は「期間｜本文」の年表形式、概要・成果・役割は定義リストに。CloudLogAI の「本番運用中」に稼働ドットを追加
+  - 小さい文字の色をコントラスト比 4.5 以上に調整。見出しは文節で折り返す（`word-break: auto-phrase`）
+  - 文言・実績・資格は全件維持（刷新前後の表示テキストを出現回数で突き合わせて確認）。**例外: ナビのラベルは英字（Profile / SRE / Skills / Work / Learning / Certs）に変更**し、セクション見出しは日本語のまま
+  - 等幅書体の日本語は IBM Plex Sans JP で描画（OS の代替フォントに落とさない）。モバイルではナビを2段にして全項目を表示
+  - ナビの現在地を一番内側のセクションで判定（SRE も光る）し、`aria-current` を付与。英字ラベルを見出しの外に出し、プロジェクトは本文→期間の順で読み上げられるようにした
+  - CLAUDE.md に「デザインの約束」を追加し、CSS クラス一覧・セクション構造・プロジェクトの並び順と書き方を新構造に更新。陳腐化していた「現在の状態」（資格7個）を削除
 - **Linux / 仮想化の資格を階層別表示に変更し、VCP を「失効」表記に**
   - LPIC-3 Security (303) を最上位として枠で強調、LPIC-2 をその下に配置（従来は LPIC-2 が先頭で上下関係が読めなかった）
   - VCP2019-DCV は再認定しておらず失効しているため、削除せずグレーの「失効」バッジに変更（取得時点の知識の証明として残す）
@@ -25,6 +35,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - 学習・今後: DOP 目標カードを削除し、SAP-C02 を「2026年11月受験予定／Professional 2冠目へ」に更新。「SRE深化」を「SRE・DevOps深化」に改め、DOP の知見を本番運用へ展開する旨を追記
 
 ### Fixed
+- **プロジェクト実績の誤字を修正**（「王手小売りチェーン」→「大手小売りチェーン」）
 - **dependabot-digest.yml の startup failure を解消**（notify-on-failure ジョブを削除）
   - 7/13以降、portfolioの週次digestが "workflow file issue"（startup failure）で失敗していた
   - 根本原因: portfolioは **public** リポで、`notify-on-failure` が参照する reusable workflow は **private** の repo-setup-template にある。**public リポは private リポの reusable workflow を呼べない**（"workflow not found" でパース失敗）ため。同じ参照でも private の daihou-sre で動くのはこの差
