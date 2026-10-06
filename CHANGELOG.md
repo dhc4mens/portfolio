@@ -7,6 +7,11 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Changed
+- **Linux / 仮想化の資格を階層別表示に変更し、VCP を「失効」表記に**
+  - LPIC-3 Security (303) を最上位として枠で強調、LPIC-2 をその下に配置（従来は LPIC-2 が先頭で上下関係が読めなかった）
+  - VCP2019-DCV は再認定しておらず失効しているため、削除せずグレーの「失効」バッジに変更（取得時点の知識の証明として残す）
+  - 強調枠のクラスを `cert-tier professional` → `cert-tier top`（`cert-pro-item` → `cert-top-item`）に汎用化。枠色は `ai-highlight` カード内で赤、それ以外は青紫にして DOP との主従を保つ
+  - CLAUDE.md の資格取得時の手順と CSS クラス一覧を更新
 - **AWS認定資格を階層別（Professional / Associate / Foundational）の表示に変更**
   - 8資格を同じ重さの「取得済」バッジで並べていたため、DOP（Professional）が埋もれていた
   - Professional は赤枠カードで強調、Associate ×5 は1ブロックに圧縮、Foundational ×2 は小さめのグレーで表示。バッジは階層ごとに1つに集約

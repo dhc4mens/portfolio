@@ -457,6 +457,11 @@
             color: white;
         }
 
+        .cert-status.expired {
+            background: #95a5a6;
+            color: white;
+        }
+
         /* AWS認定の階層表示（Professional / Associate / Foundational） */
         .cert-tier {
             margin-bottom: 14px;
@@ -477,24 +482,33 @@
             margin-bottom: 6px;
         }
 
-        .cert-tier.professional {
+        .cert-tier.top {
             background: white;
-            border: 2px solid #e74c3c;
+            border: 2px solid #667eea;
             border-radius: 10px;
             padding: 12px 14px;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.12);
+        }
+
+        .cert-tier.top .cert-tier-label {
+            color: #667eea;
+        }
+
+        .ai-highlight .cert-tier.top {
+            border-color: #e74c3c;
             box-shadow: 0 4px 12px rgba(231, 76, 60, 0.12);
         }
 
-        .cert-tier.professional .cert-tier-label {
+        .ai-highlight .cert-tier.top .cert-tier-label {
             color: #e74c3c;
         }
 
-        .cert-tier.professional .skill-name {
+        .cert-tier.top .skill-name {
             font-size: 1.02em;
             color: #2c3e50;
         }
 
-        .cert-pro-item + .cert-pro-item {
+        .cert-top-item + .cert-top-item {
             margin-top: 10px;
         }
 
@@ -1067,9 +1081,9 @@
                 <div class="skills-grid">
                     <div class="skill-category ai-highlight">
                         <h3>☁️ AWS認定資格（8）</h3>
-                        <div class="cert-tier professional">
+                        <div class="cert-tier top">
                             <div class="cert-tier-label">🏅 Professional</div>
-                            <div class="cert-pro-item">
+                            <div class="cert-top-item">
                                 <div class="skill-name">DevOps Engineer - Professional (DOP)<span class="cert-status acquired">取得済</span></div>
                                 <div class="skill-detail">2026年9月取得</div>
                             </div>
@@ -1095,16 +1109,21 @@
                     
                     <div class="skill-category">
                         <h3>🐧 Linux / 仮想化</h3>
-                        <div class="skill-item">
+                        <div class="cert-tier top">
+                            <div class="cert-tier-label">🏅 LPIC Level 3（最上位）</div>
+                            <div class="cert-top-item">
+                                <div class="skill-name">LPIC-3 Security (303)<span class="cert-status acquired">取得済</span></div>
+                                <div class="skill-detail">Linuxセキュリティ専門</div>
+                            </div>
+                        </div>
+                        <div class="cert-tier">
+                            <div class="cert-tier-label">LPIC Level 2</div>
                             <div class="skill-name">LPIC-2<span class="cert-status acquired">取得済</span></div>
                             <div class="skill-detail">高度なLinuxシステム管理</div>
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-name">LPIC-303 Security<span class="cert-status acquired">取得済</span></div>
-                            <div class="skill-detail">Linuxセキュリティ専門</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">VCP2019-DCV<span class="cert-status acquired">取得済</span></div>
+                        <div class="cert-tier">
+                            <div class="cert-tier-label">VMware</div>
+                            <div class="skill-name">VCP2019-DCV<span class="cert-status expired">失効</span></div>
                             <div class="skill-detail">VMware vSphere専門</div>
                         </div>
                     </div>

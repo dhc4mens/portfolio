@@ -37,10 +37,10 @@ portfolio/
 ## よくある更新パターン
 
 ### 資格取得時
-1. AWS認定は階層別（`cert-tier professional` / `cert-tier` Associate / `cert-tier foundational`）に置く
-   - Professional: `cert-tier professional` 内に `cert-pro-item` を1つ追加（資格名＋`cert-status acquired`＋取得年月）
-   - Associate / Foundational: 該当 `cert-tier-list` に `<li>` を追加し、ラベルの `×N` を +1
-   - AWS以外の資格: 従来どおり `skill-item` ＋ `cert-status acquired`
+1. 資格は階層別（`cert-tier top` / `cert-tier` / `cert-tier foundational`）に置く
+   - 最上位（AWS Professional・LPIC-3 等）: `cert-tier top` 内に `cert-top-item` を1つ追加（資格名＋`cert-status acquired`＋補足）
+   - AWS Associate / Foundational: 該当 `cert-tier-list` に `<li>` を追加し、ラベルの `×N` を +1
+   - 失効した資格は消さず `cert-status expired`（グレーの「失効」バッジ）にする
 2. AWS認定資格数: `pr-stat-number` と見出し「AWS認定資格（N）」の数字を +1
 3. 学習セクション: 次の目標に更新
 
@@ -60,10 +60,11 @@ portfolio/
 |:---|:---|
 | `cert-status acquired` | 取得済（緑バッジ） |
 | `cert-status planned` | 予定（オレンジバッジ） |
-| `cert-tier` | AWS認定の階層ブロック（Associate 等） |
-| `cert-tier professional` | Professional 階層（赤枠で強調） |
+| `cert-status expired` | 失効（グレーバッジ） |
+| `cert-tier` | 資格の階層ブロック（Associate・LPIC Level 2 等） |
+| `cert-tier top` | 最上位階層の強調枠（`ai-highlight` カード内は赤、それ以外は青紫） |
 | `cert-tier foundational` | Foundational 階層（小さめ・グレー） |
-| `cert-pro-item` | Professional 階層内の資格1件 |
+| `cert-top-item` | 最上位階層内の資格1件 |
 | `cert-tier-list` | 階層内の資格名リスト |
 | `experience-level` | 経験年数（紫バッジ） |
 | `experience-level new` | 新規スキル（赤バッジ） |
