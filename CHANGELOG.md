@@ -6,6 +6,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Added
+- **AWS Certified DevOps Engineer - Professional（DOP-C02）取得を反映（2026-09-26 合格）**
+  - 資格・認定: AWS認定資格の先頭に DOP（取得済・2026年9月取得）を追加
+  - 自己PR: AWS認定資格の数を 7 → 8 に更新、本文に DOP 取得の一文を追記
+  - 学習・今後: DOP 目標カードを削除し、SAP-C02 を「2026年11月受験予定／Professional 2冠目へ」に更新。「SRE深化」を「SRE・DevOps深化」に改め、DOP の知見を本番運用へ展開する旨を追記
+
 ### Fixed
 - **dependabot-digest.yml の startup failure を解消**（notify-on-failure ジョブを削除）
   - 7/13以降、portfolioの週次digestが "workflow file issue"（startup failure）で失敗していた
