@@ -6,6 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ## [Unreleased]
 
+### Changed
+- **AWS認定資格を階層別（Professional / Associate / Foundational）の表示に変更**
+  - 8資格を同じ重さの「取得済」バッジで並べていたため、DOP（Professional）が埋もれていた
+  - Professional は赤枠カードで強調、Associate ×5 は1ブロックに圧縮、Foundational ×2 は小さめのグレーで表示。バッジは階層ごとに1つに集約
+  - 資格は全件残す（SES の募集要項で「SAA 以上」などキーワード照合されるため）。見出しを「AWS認定資格（8）」に変更
+  - CLAUDE.md の資格取得時の更新手順と CSS クラス一覧を新構造に合わせて更新
+
 ### Added
 - **AWS Certified DevOps Engineer - Professional（DOP-C02）取得を反映（2026-09-26 合格）**
   - 資格・認定: AWS認定資格の先頭に DOP（取得済・2026年9月取得）を追加
