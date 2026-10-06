@@ -456,6 +456,64 @@
             background: #f39c12;
             color: white;
         }
+
+        /* AWS認定の階層表示（Professional / Associate / Foundational） */
+        .cert-tier {
+            margin-bottom: 14px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #ecf0f1;
+        }
+
+        .cert-tier:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .cert-tier-label {
+            font-size: 0.8em;
+            font-weight: bold;
+            color: #7f8c8d;
+            margin-bottom: 6px;
+        }
+
+        .cert-tier.professional {
+            background: white;
+            border: 2px solid #e74c3c;
+            border-radius: 10px;
+            padding: 12px 14px;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.12);
+        }
+
+        .cert-tier.professional .cert-tier-label {
+            color: #e74c3c;
+        }
+
+        .cert-tier.professional .skill-name {
+            font-size: 1.02em;
+            color: #2c3e50;
+        }
+
+        .cert-pro-item + .cert-pro-item {
+            margin-top: 10px;
+        }
+
+        .cert-tier-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .cert-tier-list li {
+            font-size: 0.9em;
+            color: #34495e;
+            padding: 2px 0;
+        }
+
+        .cert-tier.foundational .cert-tier-list li {
+            font-size: 0.85em;
+            color: #7f8c8d;
+        }
         
         .credly-btn {
             display: inline-block;
@@ -1008,31 +1066,30 @@
                 </div>
                 <div class="skills-grid">
                     <div class="skill-category ai-highlight">
-                        <h3>☁️ AWS認定資格</h3>
-                        <div class="skill-item">
-                            <div class="skill-name">DevOps Engineer - Professional (DOP)<span class="cert-status acquired">取得済</span></div>
-                            <div class="skill-detail">2026年9月取得</div>
+                        <h3>☁️ AWS認定資格（8）</h3>
+                        <div class="cert-tier professional">
+                            <div class="cert-tier-label">🏅 Professional</div>
+                            <div class="cert-pro-item">
+                                <div class="skill-name">DevOps Engineer - Professional (DOP)<span class="cert-status acquired">取得済</span></div>
+                                <div class="skill-detail">2026年9月取得</div>
+                            </div>
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Cloud Practitioner (CLF)<span class="cert-status acquired">取得済</span></div>
+                        <div class="cert-tier">
+                            <div class="cert-tier-label">Associate ×5<span class="cert-status acquired">取得済</span></div>
+                            <ul class="cert-tier-list">
+                                <li>Solutions Architect (SAA)</li>
+                                <li>SysOps Administrator (SOA)</li>
+                                <li>Developer (DVA)</li>
+                                <li>Data Engineer (DEA)</li>
+                                <li>Machine Learning Engineer (MLA)</li>
+                            </ul>
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Solutions Architect - Associate (SAA)<span class="cert-status acquired">取得済</span></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">SysOps Administrator - Associate (SOA)<span class="cert-status acquired">取得済</span></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Developer - Associate (DVA)<span class="cert-status acquired">取得済</span></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">AI Practitioner (AIF)<span class="cert-status acquired">取得済</span></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Data Engineer - Associate (DEA)<span class="cert-status acquired">取得済</span></div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">ML Engineer - Associate (MLA)<span class="cert-status acquired">取得済</span></div>
+                        <div class="cert-tier foundational">
+                            <div class="cert-tier-label">Foundational ×2<span class="cert-status acquired">取得済</span></div>
+                            <ul class="cert-tier-list">
+                                <li>Cloud Practitioner (CLF)</li>
+                                <li>AI Practitioner (AIF)</li>
+                            </ul>
                         </div>
                     </div>
                     
