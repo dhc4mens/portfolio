@@ -35,6 +35,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
   - 学習・今後: DOP 目標カードを削除し、SAP-C02 を「2026年11月受験予定／Professional 2冠目へ」に更新。「SRE深化」を「SRE・DevOps深化」に改め、DOP の知見を本番運用へ展開する旨を追記
 
 ### Fixed
+- **Runbook の本数の食い違いを修正（#39）**
+  - 自己PRは「ECS Fargate Runbook 4本」、SREカードは「ECS Fargate Runbook 7本」と食い違っていた
+  - daihou-sre の `runbooks/` を実測（2026-10-07: 全10本・うち ECS/Fargate 関連4本）し、SREカードを「Runbook 10本（うち ECS Fargate 4本）」に修正。自己PRの「4本」は ECS/Fargate 関連として正しいため据え置き
 - **プロジェクト実績の誤字を修正**（「王手小売りチェーン」→「大手小売りチェーン」）
 - **dependabot-digest.yml の startup failure を解消**（notify-on-failure ジョブを削除）
   - 7/13以降、portfolioの週次digestが "workflow file issue"（startup failure）で失敗していた
