@@ -4,868 +4,989 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Daisuke Hatada - Cloud & AI Infrastructure Engineer Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --paper: #f5f4ef;
+            --surface: #fbfaf7;
+            --ink: #15171c;
+            --ink-2: #474c56;
+            --ink-3: #6b7079;
+            --rule: #d9d7cf;
+            --accent: #bd391d;
+            --accent-line: rgba(189, 57, 29, 0.35);
+            --sans: 'IBM Plex Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
+            --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+            --header-h: 56px;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--header-h) + 16px);
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: var(--sans);
+            font-size: 16px;
+            line-height: 1.85;
+            color: var(--ink);
+            background: var(--paper);
+            -webkit-font-smoothing: antialiased;
         }
-        
-        /* サイドバー */
-        .sidebar {
-            position: fixed;
-            left: 0;
-            top: 0;
-            width: 220px;
-            height: 100vh;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            padding: 20px 0;
-            transition: transform 0.3s ease;
+
+        a {
+            color: inherit;
         }
-        
-        .sidebar-header {
-            text-align: center;
-            padding: 20px;
-            border-bottom: 1px solid #ecf0f1;
-            position: relative;
+
+        /* 見出しと短文は文節で折り返す（未対応ブラウザは通常の折り返し） */
+        h1, h2, h3,
+        .subtitle,
+        .pr-highlight-label,
+        .skill-detail,
+        .learning-item p {
+            word-break: auto-phrase;
         }
-        
-        .sidebar-close {
-            display: none;
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 36px;
-            height: 36px;
-            border: none;
-            background: #f8f9fa;
-            border-radius: 50%;
-            font-size: 20px;
-            cursor: pointer;
-            color: #666;
-        }
-        
-        .sidebar-avatar {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            margin: 0 auto 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 28px;
-            font-weight: bold;
-        }
-        
-        .sidebar-name {
-            font-size: 1.1em;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        
-        .sidebar-title {
-            font-size: 0.8em;
-            color: #7f8c8d;
-            margin-top: 5px;
-        }
-        
-        .sidebar-nav {
-            flex: 1;
-            padding: 20px 0;
-        }
-        
-        .nav-item {
-            display: block;
-            padding: 12px 25px;
-            color: #34495e;
-            text-decoration: none;
-            font-size: 0.95em;
-            transition: all 0.3s ease;
-            border-left: 3px solid transparent;
-        }
-        
-        .nav-item:hover {
-            background: #f8f9fa;
-            border-left-color: #667eea;
-            color: #667eea;
-        }
-        
-        .nav-item.active {
-            background: linear-gradient(90deg, rgba(102, 126, 234, 0.1), transparent);
-            border-left-color: #667eea;
-            color: #667eea;
-            font-weight: bold;
-        }
-        
-        .nav-icon {
-            margin-right: 10px;
-        }
-        
-        .sidebar-footer {
-            padding: 20px;
-            border-top: 1px solid #ecf0f1;
-        }
-        
-        .sidebar-contact a {
-            display: block;
-            padding: 8px 0;
-            color: #667eea;
-            text-decoration: none;
-            font-size: 0.85em;
-        }
-        
-        .sidebar-contact a:hover {
-            text-decoration: underline;
-        }
-        
-        /* モバイルメニューボタン */
-        .mobile-menu-btn {
-            display: none;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 1001;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.95);
-            border: none;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            cursor: pointer;
-            font-size: 24px;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        /* オーバーレイ */
-        .sidebar-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 999;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        
-        .sidebar-overlay.show {
-            opacity: 1;
-        }
-        
-        /* メインコンテンツ */
-        .main-content {
-            margin-left: 220px;
-            padding: 20px;
-        }
-        
+
         .container {
-            max-width: 1000px;
+            max-width: 1120px;
             margin: 0 auto;
+            padding: 0 32px;
         }
-        
-        .header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            margin-bottom: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            text-align: center;
+
+        /* ヘッダー */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background: var(--paper);
+            border-bottom: 1px solid var(--rule);
         }
-        
-        .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            color: #2c3e50;
+
+        .site-header .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            height: var(--header-h);
         }
-        
-        .header .subtitle {
-            font-size: 1.3em;
-            color: #7f8c8d;
-            margin-bottom: 20px;
+
+        .brand {
+            font-family: var(--mono);
+            font-size: 0.85rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-decoration: none;
+            white-space: nowrap;
         }
-        
-        .section {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-            scroll-margin-top: 20px;
+
+        .brand span {
+            color: var(--accent);
         }
-        
-        .section h2 {
-            font-size: 1.8em;
-            margin-bottom: 25px;
-            color: #2c3e50;
-            border-bottom: 3px solid #667eea;
-            padding-bottom: 10px;
+
+        .site-nav {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            scrollbar-width: none;
         }
-        
-        /* PRセクション */
-        .pr-content {
-            font-size: 1.05em;
-            color: #34495e;
-            line-height: 1.9;
+
+        .site-nav::-webkit-scrollbar {
+            display: none;
         }
-        
-        .pr-highlight {
-            background: linear-gradient(135deg, rgba(231, 76, 60, 0.1), rgba(231, 76, 60, 0.05));
-            border-left: 4px solid #e74c3c;
-            padding: 15px 20px;
-            margin: 20px 0;
-            border-radius: 0 10px 10px 0;
+
+        .site-nav a {
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            color: var(--ink-3);
+            padding: 4px 0;
+            border-bottom: 1px solid transparent;
+            white-space: nowrap;
+            transition: color 0.2s, border-color 0.2s;
         }
-        
+
+        .site-nav a:hover,
+        .site-nav a.active {
+            color: var(--ink);
+            border-bottom-color: var(--accent);
+        }
+
+        /* ヒーロー */
+        .hero {
+            padding: 96px 0 56px;
+        }
+
+        .eyebrow {
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 28px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 7vw, 4.6rem);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: 0.02em;
+        }
+
+        .hero-romaji {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            color: var(--ink-3);
+            margin-top: 16px;
+        }
+
+        .subtitle {
+            font-size: clamp(1.1rem, 2.4vw, 1.45rem);
+            font-weight: 500;
+            margin-top: 28px;
+        }
+
+        .hero-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 28px;
+            margin-top: 24px;
+            list-style: none;
+        }
+
+        .hero-links a {
+            font-family: var(--mono);
+            font-size: 0.84rem;
+            color: var(--ink-2);
+            text-decoration: none;
+            border-bottom: 1px solid var(--rule);
+            padding-bottom: 2px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .hero-links a:hover {
+            color: var(--ink);
+            border-bottom-color: var(--accent);
+        }
+
         .pr-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-top: 25px;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            margin-top: 64px;
+            border-top: 1px solid var(--ink);
+            border-bottom: 1px solid var(--rule);
         }
-        
+
         .pr-stat {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
+            padding: 22px 20px 20px;
+            border-left: 1px solid var(--rule);
         }
-        
+
+        .pr-stat:first-child {
+            padding-left: 0;
+            border-left: none;
+        }
+
         .pr-stat-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #667eea;
+            font-family: var(--mono);
+            font-size: clamp(2rem, 4.5vw, 2.9rem);
+            font-weight: 500;
+            line-height: 1;
+            letter-spacing: -0.02em;
         }
-        
+
         .pr-stat-label {
-            font-size: 0.85em;
-            color: #7f8c8d;
-            margin-top: 5px;
+            font-size: 0.82rem;
+            color: var(--ink-2);
+            margin-top: 10px;
         }
-        
-        /* スキルグリッド */
+
+        /* セクション共通 */
+        .section {
+            display: grid;
+            grid-template-columns: 220px minmax(0, 1fr);
+            gap: 48px;
+            padding: 72px 0;
+            border-top: 1px solid var(--rule);
+        }
+
+        .section-head {
+            position: sticky;
+            top: calc(var(--header-h) + 32px);
+            align-self: start;
+        }
+
+        .section-no {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.08em;
+            color: var(--accent);
+            margin-bottom: 10px;
+        }
+
+        .section-head h2 {
+            font-size: 1.45rem;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .section-en {
+            display: block;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-top: 6px;
+        }
+
+        /* 自己PR */
+        .pr-content p {
+            max-width: 46em;
+        }
+
+        .pr-content p + p {
+            margin-top: 1.2em;
+        }
+
+        .pr-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 32px;
+            margin: 40px 0;
+        }
+
+        .pr-highlight {
+            border-top: 2px solid var(--ink);
+            padding-top: 16px;
+            font-size: 0.92rem;
+            line-height: 1.85;
+            color: var(--ink-2);
+        }
+
+        .pr-highlight-label {
+            display: block;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .pr-highlight-label::before {
+            content: "";
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            margin-right: 10px;
+            vertical-align: 2px;
+        }
+
+        /* 技術スキル */
         .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 44px 48px;
         }
-        
-        .skill-category {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 20px;
-            border-left: 5px solid #667eea;
-        }
-        
-        .skill-category.ai-highlight {
-            border-left: 5px solid #e74c3c;
-            background: linear-gradient(135deg, #fff5f5 0%, #f8f9fa 100%);
-        }
-        
+
         .skill-category h3 {
-            color: #2c3e50;
-            margin-bottom: 15px;
-            font-size: 1.2em;
+            font-size: 0.98rem;
+            font-weight: 700;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--ink);
         }
-        
+
+        .skill-category.ai-highlight h3 {
+            border-bottom-color: var(--accent);
+        }
+
         .skill-item {
-            margin-bottom: 10px;
-            padding: 6px 0;
-            border-bottom: 1px solid #ecf0f1;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--rule);
         }
-        
+
         .skill-name {
-            font-weight: bold;
-            color: #34495e;
-            font-size: 0.95em;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            font-size: 0.95rem;
+            font-weight: 500;
         }
-        
+
         .skill-detail {
-            font-size: 0.85em;
-            color: #7f8c8d;
-            margin-top: 3px;
+            font-size: 0.84rem;
+            line-height: 1.7;
+            color: var(--ink-2);
+            margin-top: 4px;
         }
-        
+
         .experience-level {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.75em;
-            margin-left: 8px;
+            font-family: var(--mono);
+            font-size: 0.74rem;
+            font-weight: 400;
+            color: var(--ink-3);
+            white-space: nowrap;
         }
-        
+
         .experience-level.new {
-            background: #e74c3c;
+            color: var(--accent);
         }
-        
-        /* プロジェクトグリッド */
+
+        /* プロジェクト実績 */
         .project-grid {
-            display: grid;
-            gap: 20px;
-            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
         }
-        
+
         .project-card {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 25px;
-            border-left: 5px solid #27ae60;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: grid;
+            grid-template-columns: 168px minmax(0, 1fr);
+            gap: 32px;
+            padding: 36px 0;
+            border-bottom: 1px solid var(--rule);
         }
-        
-        .project-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+
+        .project-card:first-child {
+            padding-top: 0;
         }
-        
-        .project-card.featured {
-            border-left: 5px solid #e74c3c;
-            background: linear-gradient(135deg, #fff5f5 0%, #f8f9fa 100%);
-        }
-        
-        .project-card h3 {
-            color: #2c3e50;
-            margin-bottom: 12px;
-            font-size: 1.25em;
-        }
-        
-        .featured-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #e74c3c, #c0392b);
-            color: white;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 0.7em;
-            margin-left: 10px;
-            vertical-align: middle;
-        }
-        
+
         .project-meta {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            line-height: 1.7;
+            color: var(--ink-3);
+        }
+
+        .project-meta span {
+            display: block;
+        }
+
+        .project-meta .project-period {
+            font-size: 0.84rem;
+            font-weight: 500;
+            color: var(--ink);
+            margin-bottom: 8px;
+        }
+
+        .project-card.featured .project-period {
+            color: var(--accent);
+        }
+
+        .project-card h3 {
+            font-size: 1.15rem;
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        .featured-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: var(--mono);
+            font-size: 0.7rem;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            color: var(--accent);
+            border: 1px solid currentColor;
+            border-radius: 2px;
+            padding: 0 8px;
+            margin-left: 10px;
+            vertical-align: 3px;
+            white-space: nowrap;
+        }
+
+        .featured-badge.live::before {
+            content: "";
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.25; }
+        }
+
+        .project-description {
+            display: grid;
+            grid-template-columns: 3em minmax(0, 1fr);
+            gap: 8px 16px;
+            margin-top: 16px;
+            font-size: 0.92rem;
+        }
+
+        .project-description dt {
+            font-size: 0.8rem;
+            color: var(--ink-3);
+            padding-top: 2px;
+        }
+
+        .project-description dd {
+            line-height: 1.8;
+            color: var(--ink-2);
+        }
+
+        .project-links {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-bottom: 12px;
+            margin-top: 18px;
         }
-        
-        .project-meta span {
-            background: #ecf0f1;
-            padding: 4px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
-            color: #2c3e50;
+
+        .link-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            text-decoration: none;
+            color: var(--ink);
+            border: 1px solid var(--ink);
+            border-radius: 2px;
+            padding: 7px 16px;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
         }
-        
-        .project-description {
-            color: #34495e;
-            line-height: 1.7;
-            font-size: 0.95em;
+
+        .link-btn:hover {
+            background: var(--ink);
+            color: var(--paper);
         }
-        
+
+        .link-btn.primary {
+            background: var(--ink);
+            color: var(--paper);
+        }
+
+        .link-btn.primary:hover {
+            background: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .demo-note {
+            font-size: 0.8rem;
+            line-height: 1.9;
+            color: var(--ink-3);
+            margin-top: 12px;
+        }
+
+        .demo-note code {
+            font-family: var(--mono);
+            font-size: 0.78rem;
+            color: var(--ink);
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            border-radius: 2px;
+            padding: 1px 6px;
+        }
+
         .tech-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
-            margin-top: 12px;
+            margin-top: 18px;
         }
-        
+
         .tech-tag {
-            background: #667eea;
-            color: white;
-            padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 0.75em;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            color: var(--ink-2);
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            border-radius: 2px;
+            padding: 2px 8px;
         }
-        
+
         .tech-tag.ai {
-            background: #e74c3c;
+            color: var(--accent);
+            border-color: var(--accent-line);
         }
-        
-        /* 学習セクション */
-        .learning-section {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-        }
-        
-        .learning-section h2 {
-            color: white;
-            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
-        }
-        
+
+        /* 学習・今後 */
         .learning-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 32px;
         }
-        
+
         .learning-item {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
+            border-top: 2px solid var(--ink);
+            padding-top: 16px;
         }
-        
+
+        .learning-item:first-child {
+            border-top-color: var(--accent);
+        }
+
+        .learning-no {
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            color: var(--ink-3);
+        }
+
         .learning-item h3 {
-            margin-bottom: 10px;
-            font-size: 1.1em;
+            font-size: 1rem;
+            font-weight: 700;
+            margin: 6px 0 8px;
         }
-        
+
         .learning-item p {
-            font-size: 0.9em;
-            opacity: 0.9;
+            font-size: 0.88rem;
+            line-height: 1.8;
+            color: var(--ink-2);
         }
-        
-        /* 資格セクション */
+
+        /* 資格・認定 */
+        .credly-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.88rem;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid var(--ink);
+            padding-bottom: 2px;
+            margin-bottom: 32px;
+            transition: color 0.2s, border-color 0.2s;
+        }
+
+        .credly-btn:hover {
+            color: var(--accent);
+            border-bottom-color: var(--accent);
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+            gap: 44px 48px;
+        }
+
+        .cert-grid .ai-highlight {
+            grid-row: span 2;
+        }
+
         .cert-status {
-            display: inline-block;
-            padding: 2px 8px;
-            border-radius: 10px;
-            font-size: 0.7em;
-            margin-left: 8px;
+            font-size: 0.68rem;
+            font-weight: 400;
+            line-height: 1.6;
+            color: var(--ink-2);
+            border: 1px solid var(--rule);
+            border-radius: 2px;
+            padding: 0 7px;
+            white-space: nowrap;
         }
-        
-        .cert-status.acquired {
-            background: #27ae60;
-            color: white;
-        }
-        
+
         .cert-status.planned {
-            background: #f39c12;
-            color: white;
+            color: var(--accent);
+            border-color: currentColor;
         }
 
         .cert-status.expired {
-            background: #95a5a6;
-            color: white;
+            color: var(--ink-3);
+            border-style: dashed;
         }
 
-        /* AWS認定の階層表示（Professional / Associate / Foundational） */
+        /* 資格の階層表示（AWS: Professional / Associate / Foundational、LPIC: Level 3 / Level 2） */
         .cert-tier {
-            margin-bottom: 14px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #ecf0f1;
+            padding: 14px 0;
+            border-bottom: 1px solid var(--rule);
         }
 
         .cert-tier:last-child {
-            margin-bottom: 0;
-            padding-bottom: 0;
             border-bottom: none;
         }
 
         .cert-tier-label {
-            font-size: 0.8em;
-            font-weight: bold;
-            color: #7f8c8d;
-            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--ink-3);
+            margin-bottom: 8px;
         }
 
         .cert-tier.top {
-            background: white;
-            border: 2px solid #667eea;
-            border-radius: 10px;
-            padding: 12px 14px;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.12);
+            background: var(--surface);
+            border: 1px solid var(--rule);
+            border-left: 3px solid var(--ink);
+            padding: 16px 18px;
+            margin: 14px 0 4px;
         }
 
         .cert-tier.top .cert-tier-label {
-            color: #667eea;
+            color: var(--ink);
         }
 
         .ai-highlight .cert-tier.top {
-            border-color: #e74c3c;
-            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.12);
+            border-left-color: var(--accent);
         }
 
         .ai-highlight .cert-tier.top .cert-tier-label {
-            color: #e74c3c;
+            color: var(--accent);
         }
 
         .cert-tier.top .skill-name {
-            font-size: 1.02em;
-            color: #2c3e50;
+            font-size: 1rem;
+            font-weight: 700;
         }
 
         .cert-top-item + .cert-top-item {
-            margin-top: 10px;
+            margin-top: 12px;
         }
 
         .cert-tier-list {
             list-style: none;
-            padding: 0;
-            margin: 0;
         }
 
         .cert-tier-list li {
-            font-size: 0.9em;
-            color: #34495e;
-            padding: 2px 0;
+            font-size: 0.9rem;
+            padding: 3px 0;
         }
 
         .cert-tier.foundational .cert-tier-list li {
-            font-size: 0.85em;
-            color: #7f8c8d;
+            font-size: 0.85rem;
+            color: var(--ink-2);
         }
-        
-        .credly-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, #FF6B35, #F7931E);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 25px;
+
+        /* フッター */
+        .site-footer {
+            border-top: 1px solid var(--ink);
+            padding: 28px 0 48px;
+        }
+
+        .site-footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 12px;
+            font-family: var(--mono);
+            font-size: 0.76rem;
+            color: var(--ink-3);
+        }
+
+        .site-footer a {
             text-decoration: none;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
-            transition: transform 0.3s ease;
-            margin-bottom: 25px;
         }
-        
-        .credly-btn:hover {
-            transform: translateY(-2px);
+
+        .site-footer a:hover {
+            color: var(--ink);
         }
-        
-        /* レスポンシブ */
-        @media (max-width: 900px) {
-            .sidebar {
-                transform: translateX(-100%);
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
             }
-            
-            .sidebar.open {
-                transform: translateX(0);
+
+            .featured-badge.live::before {
+                animation: none;
             }
-            
-            .sidebar-close {
-                display: block;
+        }
+
+        /* タブレット・スマホ */
+        @media (max-width: 860px) {
+            .container {
+                padding: 0 20px;
             }
-            
-            .sidebar-overlay {
-                display: block;
+
+            .hero {
+                padding: 56px 0 40px;
             }
-            
-            .mobile-menu-btn {
-                display: flex;
+
+            .pr-stats {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                margin-top: 44px;
             }
-            
-            .main-content {
-                margin-left: 0;
-                padding-top: 80px;
+
+            .pr-stat:nth-child(3) {
+                padding-left: 0;
+                border-left: none;
             }
-            
-            .header h1 {
-                font-size: 1.6em;
+
+            .pr-stat:nth-child(n+3) {
+                border-top: 1px solid var(--rule);
             }
-            
-            .header .subtitle {
-                font-size: 1em;
-            }
-            
+
             .section {
-                padding: 20px 15px;
-                border-radius: 15px;
+                grid-template-columns: 1fr;
+                gap: 24px;
+                padding: 56px 0;
             }
-            
-            .section h2 {
-                font-size: 1.4em;
+
+            .section-head {
+                position: static;
             }
-            
-            .skills-grid {
+
+            .pr-highlights,
+            .skills-grid,
+            .learning-grid,
+            .cert-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .pr-stats {
-                grid-template-columns: repeat(2, 1fr);
+
+            .cert-grid .ai-highlight {
+                grid-row: auto;
             }
-            
-            .pr-stat-number {
-                font-size: 1.6em;
-            }
-            
-            .project-card h3 {
-                font-size: 1.1em;
-            }
-            
-            .featured-badge {
-                display: block;
-                margin: 8px 0 0 0;
-                width: fit-content;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .header {
-                padding: 25px 15px;
-            }
-            
-            .header h1 {
-                font-size: 1.4em;
-            }
-            
-            .pr-stats {
+
+            .project-card {
                 grid-template-columns: 1fr;
                 gap: 10px;
             }
-            
-            .pr-stat {
-                padding: 15px;
+
+            .project-meta span {
+                display: inline;
             }
-            
-            .learning-grid {
-                grid-template-columns: 1fr;
+
+            .project-meta span + span::before {
+                content: " / ";
+            }
+
+            .project-meta .project-period {
+                display: block;
+                margin-bottom: 2px;
+            }
+
+            .project-meta .project-period + span::before {
+                content: "";
             }
         }
     </style>
 </head>
 <body>
-    <!-- モバイルメニューボタン -->
-    <button class="mobile-menu-btn" id="menuBtn" aria-label="メニューを開く">☰</button>
-    
-    <!-- オーバーレイ -->
-    <div class="sidebar-overlay" id="overlay"></div>
-    
-    <!-- サイドバー -->
-    <aside class="sidebar" id="sidebar">
-        <div class="sidebar-header">
-            <button class="sidebar-close" id="closeBtn" aria-label="メニューを閉じる">✕</button>
-            <div class="sidebar-avatar">DH</div>
-            <div class="sidebar-name">畑田 大介</div>
-            <div class="sidebar-title">Cloud & AI Architect</div>
-        </div>
-        
-        <nav class="sidebar-nav">
-            <a href="#pr" class="nav-item active">
-                <span class="nav-icon">📋</span>自己PR
-            </a>
-            <a href="#sre-achievements" class="nav-item">
-                <span class="nav-icon">🎯</span>SRE実績
-            </a>
-            <a href="#skills" class="nav-item">
-                <span class="nav-icon">🛠️</span>技術スキル
-            </a>
-            <a href="#projects" class="nav-item">
-                <span class="nav-icon">📂</span>プロジェクト実績
-            </a>
-            <a href="#learning" class="nav-item">
-                <span class="nav-icon">🚀</span>学習・今後
-            </a>
-            <a href="#certifications" class="nav-item">
-                <span class="nav-icon">🏆</span>資格・認定
-            </a>
-        </nav>
-        
-        <div class="sidebar-footer">
-            <div class="sidebar-contact">
-                <a href="mailto:dhc4menz@gmail.com">📧 dhc4menz@gmail.com</a>
-                <a href="https://github.com/dhc4mens" target="_blank">🐙 GitHub</a>
-                <a href="https://daihou-llc.com" target="_blank">🏢 だいほう合同会社</a>
-            </div>
-        </div>
-    </aside>
-    
-    <!-- メインコンテンツ -->
-    <main class="main-content">
+    <header class="site-header">
         <div class="container">
-            <!-- ヘッダー -->
-            <header class="header">
-                <h1>畑田 大介（Daisuke Hatada）</h1>
-                <div class="subtitle">Cloud & AI Infrastructure Architect</div>
-            </header>
+            <a href="#top" class="brand">D.HATADA<span>_</span></a>
+            <nav class="site-nav" aria-label="ページ内ナビゲーション">
+                <a href="#pr">Profile</a>
+                <a href="#sre-achievements">SRE</a>
+                <a href="#skills">Skills</a>
+                <a href="#projects">Work</a>
+                <a href="#learning">Next</a>
+                <a href="#certifications">Certs</a>
+            </nav>
+        </div>
+    </header>
 
-            <!-- 自己PR -->
-            <section class="section" id="pr">
-                <h2>📋 自己PR</h2>
-                <div class="pr-content">
-                    <p>
-                        インフラアーキテクトとして、オンプレミスからクラウドまで幅広い技術領域で設計・構築・運用を担当してきました。
-                        2025年7月に<strong>だいほう合同会社を創業</strong>し、ITコンサルティング・SRE支援・Web制作・IT教育を提供しています。
-                        VMware/KVM等の仮想化基盤設計、RHEL等のOS基盤構築、AWS上でのインフラアーキテクチャ設計まで、
-                        <strong>上流工程から実装まで一貫して対応可能</strong>です。
-                    </p>
+    <main class="container" id="top">
+        <!-- ヒーロー -->
+        <header class="hero">
+            <p class="eyebrow">Portfolio</p>
+            <h1>畑田 大介<span class="hero-romaji">Daisuke Hatada</span></h1>
+            <p class="subtitle">Cloud & AI Infrastructure Architect</p>
+            <ul class="hero-links">
+                <li><a href="mailto:dhc4menz@gmail.com">dhc4menz@gmail.com</a></li>
+                <li><a href="https://github.com/dhc4mens" target="_blank" rel="noopener">GitHub ↗</a></li>
+                <li><a href="https://daihou-llc.com" target="_blank" rel="noopener">だいほう合同会社 ↗</a></li>
+            </ul>
 
+            <div class="pr-stats">
+                <div class="pr-stat">
+                    <div class="pr-stat-number">23+</div>
+                    <div class="pr-stat-label">年の実務経験</div>
+                </div>
+                <div class="pr-stat">
+                    <div class="pr-stat-number">8</div>
+                    <div class="pr-stat-label">AWS認定資格</div>
+                </div>
+                <div class="pr-stat">
+                    <div class="pr-stat-number">15+</div>
+                    <div class="pr-stat-label">年のVMware経験</div>
+                </div>
+                <div class="pr-stat">
+                    <div class="pr-stat-number">20+</div>
+                    <div class="pr-stat-label">年のLinux経験</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 自己PR -->
+        <section class="section" id="pr">
+            <div class="section-head">
+                <span class="section-no">01</span>
+                <h2>自己PR<span class="section-en">Profile</span></h2>
+            </div>
+            <div class="pr-content">
+                <p>
+                    インフラアーキテクトとして、オンプレミスからクラウドまで幅広い技術領域で設計・構築・運用を担当してきました。
+                    2025年7月に<strong>だいほう合同会社を創業</strong>し、ITコンサルティング・SRE支援・Web制作・IT教育を提供しています。
+                    VMware/KVM等の仮想化基盤設計、RHEL等のOS基盤構築、AWS上でのインフラアーキテクチャ設計まで、
+                    <strong>上流工程から実装まで一貫して対応可能</strong>です。
+                </p>
+
+                <div class="pr-highlights">
                     <div class="pr-highlight">
-                        <strong>🔥 直近の実績（AI監視SaaS）:</strong><br>
+                        <span class="pr-highlight-label">直近の実績（AI監視SaaS）</span>
                         AWS Bedrockを活用したAI異常検知システム（CloudLogAI）を0から設計・構築。
                         月額$1.15で24/7監視を実現し、41.6%エラー率の不正アクセスを自動検知しました。
                     </div>
-
                     <div class="pr-highlight">
-                        <strong>🛠️ SRE基盤構築実績:</strong><br>
+                        <span class="pr-highlight-label">SRE基盤構築実績</span>
                         Terraform IaC（infra/app層分離・週次drift検知自動起票・OIDC IAMロール保護）・
                         Lambda@Edge + Cognito認証基盤（SecretsManager統合）・CloudWatch Alarm 27本・
                         SLI/SLO定義・ECS Fargate Runbook 4本・Security Hub有効化まで、SRE基盤を一から設計・構築・継続運用中。
                     </div>
+                </div>
 
-                    <p>
-                        IaC（Terraform/Ansible）による自動化推進、大規模システム移行プロジェクトでの技術経験も豊富です。
-                        2026年9月には<strong>AWS Certified DevOps Engineer - Professional</strong>を取得し、
-                        CI/CD・IaC・監視を横断する実務知見に体系的な裏付けを得ました。
-                        オンプレミス時代の深い知見とクラウドネイティブな技術の両方を活かし、モダナイゼーション案件で価値を発揮できます。
-                    </p>
-                    
-                    <div class="pr-stats">
-                        <div class="pr-stat">
-                            <div class="pr-stat-number">23+</div>
-                            <div class="pr-stat-label">年の実務経験</div>
-                        </div>
-                        <div class="pr-stat">
-                            <div class="pr-stat-number">8</div>
-                            <div class="pr-stat-label">AWS認定資格</div>
-                        </div>
-                        <div class="pr-stat">
-                            <div class="pr-stat-number">15+</div>
-                            <div class="pr-stat-label">年のVMware経験</div>
-                        </div>
-                        <div class="pr-stat">
-                            <div class="pr-stat-number">20+</div>
-                            <div class="pr-stat-label">年のLinux経験</div>
-                        </div>
+                <p>
+                    IaC（Terraform/Ansible）による自動化推進、大規模システム移行プロジェクトでの技術経験も豊富です。
+                    2026年9月には<strong>AWS Certified DevOps Engineer - Professional</strong>を取得し、
+                    CI/CD・IaC・監視を横断する実務知見に体系的な裏付けを得ました。
+                    オンプレミス時代の深い知見とクラウドネイティブな技術の両方を活かし、モダナイゼーション案件で価値を発揮できます。
+                </p>
+            </div>
+        </section>
+
+        <!-- 技術スキル -->
+        <section class="section" id="skills">
+            <div class="section-head">
+                <span class="section-no">02</span>
+                <h2>技術スキル<span class="section-en">Skills</span></h2>
+            </div>
+            <div class="skills-grid">
+                <div class="skill-category ai-highlight">
+                    <h3>AI/ML・データエンジニアリング</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">AWS Bedrock (Claude)<span class="experience-level new">実績あり</span></div>
+                        <div class="skill-detail">AI異常検知システム構築、プロンプトエンジニアリング</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">データパイプライン<span class="experience-level new">実務1年</span></div>
+                        <div class="skill-detail">Glue, Athena, Kinesis, S3によるログ分析基盤</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Python<span class="experience-level">実務1年+</span></div>
+                        <div class="skill-detail">Lambda関数開発、boto3、FastAPI、データ処理</div>
                     </div>
                 </div>
-            </section>
 
-            <!-- 技術スキル -->
-            <section class="section" id="skills">
-                <h2>🛠️ 技術スキル</h2>
-                <div class="skills-grid">
-                    <div class="skill-category ai-highlight">
-                        <h3>🤖 AI/ML・データエンジニアリング</h3>
-                        <div class="skill-item">
-                            <div class="skill-name">AWS Bedrock (Claude)<span class="experience-level new">実績あり</span></div>
-                            <div class="skill-detail">AI異常検知システム構築、プロンプトエンジニアリング</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">データパイプライン<span class="experience-level new">実務1年</span></div>
-                            <div class="skill-detail">Glue, Athena, Kinesis, S3によるログ分析基盤</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Python<span class="experience-level">実務1年+</span></div>
-                            <div class="skill-detail">Lambda関数開発、boto3、FastAPI、データ処理</div>
-                        </div>
+                <div class="skill-category">
+                    <h3>クラウド（AWS）</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">AWS<span class="experience-level">実務3年</span></div>
+                        <div class="skill-detail">Lambda, ECS Fargate, S3, CloudFront, API Gateway, Bedrock, Glue, Athena, DynamoDB, CloudWatch, WAF, Security Hub</div>
                     </div>
-
-                    <div class="skill-category">
-                        <h3>☁️ クラウド（AWS）</h3>
-                        <div class="skill-item">
-                            <div class="skill-name">AWS<span class="experience-level">実務3年</span></div>
-                            <div class="skill-detail">Lambda, ECS Fargate, S3, CloudFront, API Gateway, Bedrock, Glue, Athena, DynamoDB, CloudWatch, WAF, Security Hub</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">ECS Fargate<span class="experience-level new">実務あり</span></div>
-                            <div class="skill-detail">コンテナ基盤構築・Runbook整備（サービス停止・タスク起動失敗・ALB 5xx対応）</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">VMware vCenter<span class="experience-level">実務15年</span></div>
-                            <div class="skill-detail">vSphere 6.0→7.0移行、大規模仮想化基盤</div>
-                        </div>
+                    <div class="skill-item">
+                        <div class="skill-name">ECS Fargate<span class="experience-level new">実務あり</span></div>
+                        <div class="skill-detail">コンテナ基盤構築・Runbook整備（サービス停止・タスク起動失敗・ALB 5xx対応）</div>
                     </div>
-
-                    <div class="skill-category">
-                        <h3>🔧 IaC・自動化</h3>
-                        <div class="skill-item">
-                            <div class="skill-name">Terraform<span class="experience-level">実務1年+</span></div>
-                            <div class="skill-detail">tfstate層分離・drift検知CI・OIDC認証・モジュール分割・マルチ環境管理</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">GitHub Actions<span class="experience-level new">実務あり</span></div>
-                            <div class="skill-detail">OIDC認証CI/CD・Terraform plan自動化・S3自動デプロイ・ヘルスチェック</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Ansible<span class="experience-level">実務2年</span></div>
-                            <div class="skill-detail">DR環境構築、運用自動化</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Git<span class="experience-level">実務2年</span></div>
-                            <div class="skill-detail">IaCコード管理、チーム開発</div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>🖥️ OS・サーバー</h3>
-                        <div class="skill-item">
-                            <div class="skill-name">RHEL<span class="experience-level">実務20年</span></div>
-                            <div class="skill-detail">RHEL4→9移行、運用、チューニング</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Windows Server<span class="experience-level">実務15年</span></div>
-                            <div class="skill-detail">NT〜2019、AD、構築・運用</div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>🔒 セキュリティ・NW</h3>
-                        <div class="skill-item">
-                            <div class="skill-name">AWSセキュリティ<span class="experience-level new">実務あり</span></div>
-                            <div class="skill-detail">GuardDuty, Security Hub, WAF, Config, CloudTrail, KMS, SecretsManager</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">Firewall<span class="experience-level">実務10年</span></div>
-                            <div class="skill-detail">Fortigate, SonicWall設計・運用</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">ネットワーク<span class="experience-level">実務10年</span></div>
-                            <div class="skill-detail">Cisco/Fujitsu L2,L3, VPN, VLAN</div>
-                        </div>
-                    </div>
-
-                    <div class="skill-category">
-                        <h3>📊 監視・ストレージ</h3>
-                        <div class="skill-item">
-                            <div class="skill-name">監視基盤<span class="experience-level">実務10年</span></div>
-                            <div class="skill-detail">Zabbix, CloudWatch, SystemWalker</div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">ストレージ<span class="experience-level">実務8年</span></div>
-                            <div class="skill-detail">NetApp FAS, Tintri, S3</div>
-                        </div>
+                    <div class="skill-item">
+                        <div class="skill-name">VMware vCenter<span class="experience-level">実務15年</span></div>
+                        <div class="skill-detail">vSphere 6.0→7.0移行、大規模仮想化基盤</div>
                     </div>
                 </div>
-            </section>
 
-            <!-- プロジェクト実績 -->
-            <section class="section" id="projects">
-                <h2>📂 プロジェクト実績</h2>
-                <div class="project-grid">
-                    <div class="project-card featured" id="sre-achievements">
-                        <h3>SRE基盤構築（daihou-sre）<span class="featured-badge">🔥 最新</span></h3>
-                        <div class="project-meta">
-                            <span>📅 2025年7月〜</span>
-                            <span>👥 PM/エンジニア（1名）</span>
-                            <span>🎯 SRE/IaC</span>
+                <div class="skill-category">
+                    <h3>IaC・自動化</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">Terraform<span class="experience-level">実務1年+</span></div>
+                        <div class="skill-detail">tfstate層分離・drift検知CI・OIDC認証・モジュール分割・マルチ環境管理</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">GitHub Actions<span class="experience-level new">実務あり</span></div>
+                        <div class="skill-detail">OIDC認証CI/CD・Terraform plan自動化・S3自動デプロイ・ヘルスチェック</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Ansible<span class="experience-level">実務2年</span></div>
+                        <div class="skill-detail">DR環境構築、運用自動化</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Git<span class="experience-level">実務2年</span></div>
+                        <div class="skill-detail">IaCコード管理、チーム開発</div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>OS・サーバー</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">RHEL<span class="experience-level">実務20年</span></div>
+                        <div class="skill-detail">RHEL4→9移行、運用、チューニング</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Windows Server<span class="experience-level">実務15年</span></div>
+                        <div class="skill-detail">NT〜2019、AD、構築・運用</div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>セキュリティ・NW</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">AWSセキュリティ<span class="experience-level new">実務あり</span></div>
+                        <div class="skill-detail">GuardDuty, Security Hub, WAF, Config, CloudTrail, KMS, SecretsManager</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Firewall<span class="experience-level">実務10年</span></div>
+                        <div class="skill-detail">Fortigate, SonicWall設計・運用</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">ネットワーク<span class="experience-level">実務10年</span></div>
+                        <div class="skill-detail">Cisco/Fujitsu L2,L3, VPN, VLAN</div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>監視・ストレージ</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">監視基盤<span class="experience-level">実務10年</span></div>
+                        <div class="skill-detail">Zabbix, CloudWatch, SystemWalker</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">ストレージ<span class="experience-level">実務8年</span></div>
+                        <div class="skill-detail">NetApp FAS, Tintri, S3</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- プロジェクト実績 -->
+        <section class="section" id="projects">
+            <div class="section-head">
+                <span class="section-no">03</span>
+                <h2>プロジェクト実績<span class="section-en">Work</span></h2>
+            </div>
+            <div class="project-grid">
+                <article class="project-card featured" id="sre-achievements">
+                    <div class="project-meta">
+                        <span class="project-period">2025年7月〜</span>
+                        <span>PM/エンジニア（1名）</span>
+                        <span>SRE/IaC</span>
+                    </div>
+                    <div>
+                        <h3>SRE基盤構築（daihou-sre）<span class="featured-badge">最新</span></h3>
+                        <div class="project-links">
+                            <a class="link-btn primary" href="https://ext-sre-dash.daihou-llc.com/" target="_blank" rel="noopener">SREダッシュボードを見る ↗</a>
+                            <a class="link-btn" href="https://github.com/dhc4mens/daihou-sre-demo" target="_blank" rel="noopener">デモリポを見る ↗</a>
                         </div>
-                        <div class="project-links" style="margin:10px 0 12px;">
-                            <a href="https://ext-sre-dash.daihou-llc.com/" target="_blank" rel="noopener" style="display:inline-block;padding:6px 14px;margin-right:8px;background:#764ba2;color:white;border-radius:6px;text-decoration:none;font-size:0.85em;font-weight:bold;">📊 SREダッシュボードを見る</a>
-                            <a href="https://github.com/dhc4mens/daihou-sre-demo" target="_blank" rel="noopener" style="display:inline-block;padding:6px 14px;background:#667eea;color:white;border-radius:6px;text-decoration:none;font-size:0.85em;font-weight:bold;">🔗 デモリポを見る</a>
-                            <div style="margin-top:10px;font-size:0.8em;color:#666;line-height:1.7;">
-                                デモ用ログイン：<code style="background:#f4f4f4;padding:2px 6px;border-radius:4px;">ext-guest@daihou-llc.com</code> ／ <code style="background:#f4f4f4;padding:2px 6px;border-radius:4px;">mZy!yi#X5XYmG2iE</code><br>
-                                <span style="color:#888;">※閲覧専用のデモ環境です（表示内容はサニタイズ済みの静的ページ）</span>
-                            </div>
-                        </div>
-                        <div class="project-description">
-                            <strong>概要：</strong>だいほう合同会社のSRE基盤をゼロから設計・構築・継続運用<br>
-                            <strong>成果：</strong>Terraform IaC化（infra/app層分離・週次drift検知Issue自動起票・OIDC IAMロール保護設計）・Lambda@Edge Cognito認証基盤構築（SecretsManager統合）・CloudWatch Alarm 27本・SLI/SLO定義・ECS Fargate Runbook 7本・Security Hub有効化・Issue駆動開発体制整備（Issue/PRテンプレート・ラベル・GitHub Flow統一）・標準リポジトリテンプレート作成（repo-setup-template）・GitHub Projects V2 横断管理ボード運用<br>
-                            <strong>役割：</strong>SRE全体設計・Terraform実装・セキュリティ設計・CI/CD整備・開発プロセス整備を単独担当
-                        </div>
+                        <p class="demo-note">
+                            デモ用ログイン：<code>ext-guest@daihou-llc.com</code> ／ <code>mZy!yi#X5XYmG2iE</code><br>
+                            ※閲覧専用のデモ環境です（表示内容はサニタイズ済みの静的ページ）
+                        </p>
+                        <dl class="project-description">
+                            <dt>概要</dt>
+                            <dd>だいほう合同会社のSRE基盤をゼロから設計・構築・継続運用</dd>
+                            <dt>成果</dt>
+                            <dd>Terraform IaC化（infra/app層分離・週次drift検知Issue自動起票・OIDC IAMロール保護設計）・Lambda@Edge Cognito認証基盤構築（SecretsManager統合）・CloudWatch Alarm 27本・SLI/SLO定義・ECS Fargate Runbook 7本・Security Hub有効化・Issue駆動開発体制整備（Issue/PRテンプレート・ラベル・GitHub Flow統一）・標準リポジトリテンプレート作成（repo-setup-template）・GitHub Projects V2 横断管理ボード運用</dd>
+                            <dt>役割</dt>
+                            <dd>SRE全体設計・Terraform実装・セキュリティ設計・CI/CD整備・開発プロセス整備を単独担当</dd>
+                        </dl>
                         <div class="tech-tags">
                             <span class="tech-tag">Terraform</span>
                             <span class="tech-tag">ECS Fargate</span>
@@ -880,19 +1001,24 @@
                             <span class="tech-tag">OIDC</span>
                         </div>
                     </div>
+                </article>
 
-                    <div class="project-card featured">
-                        <h3>AI監視SaaS（CloudLogAI）<span class="featured-badge">📡 本番運用中</span></h3>
-                        <div class="project-meta">
-                            <span>📅 2025年9月〜</span>
-                            <span>👥 PM/エンジニア（1名）</span>
-                            <span>🎯 AI/サーバーレス</span>
-                        </div>
-                        <div class="project-description">
-                            <strong>概要：</strong>AWS Bedrockを活用したAI異常検知SaaSをゼロから設計・構築し本番運用中<br>
-                            <strong>成果：</strong>実運用で攻撃検出（41.6%エラー率検知）・月額$1.15で24/7監視・SLI/SLO・エラーバジェット管理まで整備・マルチテナント対応完了・顧客管理CLI（customer-manage.fish）完成<br>
-                            <strong>役割：</strong>要件定義〜設計〜実装〜SRE運用まで全工程を単独担当
-                        </div>
+                <article class="project-card featured">
+                    <div class="project-meta">
+                        <span class="project-period">2025年9月〜</span>
+                        <span>PM/エンジニア（1名）</span>
+                        <span>AI/サーバーレス</span>
+                    </div>
+                    <div>
+                        <h3>AI監視SaaS（CloudLogAI）<span class="featured-badge live">本番運用中</span></h3>
+                        <dl class="project-description">
+                            <dt>概要</dt>
+                            <dd>AWS Bedrockを活用したAI異常検知SaaSをゼロから設計・構築し本番運用中</dd>
+                            <dt>成果</dt>
+                            <dd>実運用で攻撃検出（41.6%エラー率検知）・月額$1.15で24/7監視・SLI/SLO・エラーバジェット管理まで整備・マルチテナント対応完了・顧客管理CLI（customer-manage.fish）完成</dd>
+                            <dt>役割</dt>
+                            <dd>要件定義〜設計〜実装〜SRE運用まで全工程を単独担当</dd>
+                        </dl>
                         <div class="tech-tags">
                             <span class="tech-tag ai">AWS Bedrock</span>
                             <span class="tech-tag ai">Claude AI</span>
@@ -905,19 +1031,24 @@
                             <span class="tech-tag">SLI/SLO</span>
                         </div>
                     </div>
+                </article>
 
-                    <div class="project-card">
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span class="project-period">2026年2月〜5月</span>
+                        <span>PMO（10名）</span>
+                        <span>AWS移行・IaC</span>
+                    </div>
+                    <div>
                         <h3>オンプレ基盤更改に伴うAWS環境構築（Terraform IaC）</h3>
-                        <div class="project-meta">
-                            <span>📅 2026年2月〜5月</span>
-                            <span>👥 PMO（10名）</span>
-                            <span>🎯 AWS移行・IaC</span>
-                        </div>
-                        <div class="project-description">
-                            <strong>概要：</strong>王手小売りチェーンのオンプレプリントサービス基盤更改に伴うAWS環境の要件定義・設計・構築<br>
-                            <strong>成果：</strong>Terraform + GitでのIaC基盤を整備し、要件定義から構築・試験まで一貫して担当<br>
-                            <strong>役割：</strong>PMO・Terraform実装・CI/CD整備
-                        </div>
+                        <dl class="project-description">
+                            <dt>概要</dt>
+                            <dd>王手小売りチェーンのオンプレプリントサービス基盤更改に伴うAWS環境の要件定義・設計・構築</dd>
+                            <dt>成果</dt>
+                            <dd>Terraform + GitでのIaC基盤を整備し、要件定義から構築・試験まで一貫して担当</dd>
+                            <dt>役割</dt>
+                            <dd>PMO・Terraform実装・CI/CD整備</dd>
+                        </dl>
                         <div class="tech-tags">
                             <span class="tech-tag">Terraform</span>
                             <span class="tech-tag">Ansible</span>
@@ -926,19 +1057,24 @@
                             <span class="tech-tag">CI/CD</span>
                         </div>
                     </div>
+                </article>
 
-                    <div class="project-card">
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span class="project-period">2025年3月〜10月</span>
+                        <span>メンバー（5名）</span>
+                        <span>ハイブリッド</span>
+                    </div>
+                    <div>
                         <h3>オンプレ＋AWS環境のテスト基盤構築・運用</h3>
-                        <div class="project-meta">
-                            <span>📅 2025年3月〜10月</span>
-                            <span>👥 メンバー（5名）</span>
-                            <span>🎯 ハイブリッド</span>
-                        </div>
-                        <div class="project-description">
-                            <strong>概要：</strong>オンプレ＋AWSハイブリッド構成でのテスト基盤構築<br>
-                            <strong>成果：</strong>IaCによる環境自動構築、テスト効率化<br>
-                            <strong>役割：</strong>Ansible/Terraform実装、Postfix構築
-                        </div>
+                        <dl class="project-description">
+                            <dt>概要</dt>
+                            <dd>オンプレ＋AWSハイブリッド構成でのテスト基盤構築</dd>
+                            <dt>成果</dt>
+                            <dd>IaCによる環境自動構築、テスト効率化</dd>
+                            <dt>役割</dt>
+                            <dd>Ansible/Terraform実装、Postfix構築</dd>
+                        </dl>
                         <div class="tech-tags">
                             <span class="tech-tag">Ansible</span>
                             <span class="tech-tag">Terraform</span>
@@ -946,38 +1082,48 @@
                             <span class="tech-tag">Postfix</span>
                         </div>
                     </div>
+                </article>
 
-                    <div class="project-card">
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span class="project-period">2024年10月〜2025年1月</span>
+                        <span>メンバー（5名）</span>
+                        <span>OS移行</span>
+                    </div>
+                    <div>
                         <h3>メールサーバEOL対応（RHEL6→9）</h3>
-                        <div class="project-meta">
-                            <span>📅 2024年10月〜2025年1月</span>
-                            <span>👥 メンバー（5名）</span>
-                            <span>🎯 OS移行</span>
-                        </div>
-                        <div class="project-description">
-                            <strong>概要：</strong>基幹メールシステムのRHEL6→RHEL9移行<br>
-                            <strong>成果：</strong>ダウンタイム最小化での移行完了<br>
-                            <strong>役割：</strong>Postfix設計・構築、移行テスト
-                        </div>
+                        <dl class="project-description">
+                            <dt>概要</dt>
+                            <dd>基幹メールシステムのRHEL6→RHEL9移行</dd>
+                            <dt>成果</dt>
+                            <dd>ダウンタイム最小化での移行完了</dd>
+                            <dt>役割</dt>
+                            <dd>Postfix設計・構築、移行テスト</dd>
+                        </dl>
                         <div class="tech-tags">
                             <span class="tech-tag">RHEL6/9</span>
                             <span class="tech-tag">Postfix</span>
                             <span class="tech-tag">Symantec</span>
                         </div>
                     </div>
+                </article>
 
-                    <div class="project-card">
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span class="project-period">2024年1月〜9月</span>
+                        <span>メンバー（10名）</span>
+                        <span>IaC</span>
+                    </div>
+                    <div>
                         <h3>Ansible IaC基盤構築・運用改善</h3>
-                        <div class="project-meta">
-                            <span>📅 2024年1月〜9月</span>
-                            <span>👥 メンバー（10名）</span>
-                            <span>🎯 IaC</span>
-                        </div>
-                        <div class="project-description">
-                            <strong>概要：</strong>DNS/Proxy/Syslog等インフラのAnsible化<br>
-                            <strong>成果：</strong>構築時間70%削減、運用自動化推進<br>
-                            <strong>役割：</strong>Ansibleコード開発、Vault連携
-                        </div>
+                        <dl class="project-description">
+                            <dt>概要</dt>
+                            <dd>DNS/Proxy/Syslog等インフラのAnsible化</dd>
+                            <dt>成果</dt>
+                            <dd>構築時間70%削減、運用自動化推進</dd>
+                            <dt>役割</dt>
+                            <dd>Ansibleコード開発、Vault連携</dd>
+                        </dl>
                         <div class="tech-tags">
                             <span class="tech-tag">Ansible</span>
                             <span class="tech-tag">Git</span>
@@ -985,19 +1131,24 @@
                             <span class="tech-tag">VMware</span>
                         </div>
                     </div>
+                </article>
 
-                    <div class="project-card">
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span class="project-period">2021年10月〜2024年1月</span>
+                        <span>PMO（15名）</span>
+                        <span>仮想化</span>
+                    </div>
+                    <div>
                         <h3>VMware仮想化基盤リプレイス・PMO</h3>
-                        <div class="project-meta">
-                            <span>📅 2021年10月〜2024年1月</span>
-                            <span>👥 PMO（15名）</span>
-                            <span>🎯 仮想化</span>
-                        </div>
-                        <div class="project-description">
-                            <strong>概要：</strong>VMware 6.0→7.0段階的アップグレード統括<br>
-                            <strong>成果：</strong>4回のアップグレード全て予定通り完了<br>
-                            <strong>役割：</strong>プロジェクト統括、設計レビュー
-                        </div>
+                        <dl class="project-description">
+                            <dt>概要</dt>
+                            <dd>VMware 6.0→7.0段階的アップグレード統括</dd>
+                            <dt>成果</dt>
+                            <dd>4回のアップグレード全て予定通り完了</dd>
+                            <dt>役割</dt>
+                            <dd>プロジェクト統括、設計レビュー</dd>
+                        </dl>
                         <div class="tech-tags">
                             <span class="tech-tag">VMware</span>
                             <span class="tech-tag">oVirt</span>
@@ -1005,19 +1156,24 @@
                             <span class="tech-tag">PMO</span>
                         </div>
                     </div>
+                </article>
 
-                    <div class="project-card">
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span class="project-period">2010年5月〜2020年1月</span>
+                        <span>リーダー（15名）</span>
+                        <span>大規模基盤</span>
+                    </div>
+                    <div>
                         <h3>データセンター仮想化基盤（10年間）</h3>
-                        <div class="project-meta">
-                            <span>📅 2010年5月〜2020年1月</span>
-                            <span>👥 リーダー（15名）</span>
-                            <span>🎯 大規模基盤</span>
-                        </div>
-                        <div class="project-description">
-                            <strong>概要：</strong>データセンターVMware基盤の設計・構築・運用<br>
-                            <strong>成果：</strong>100台以上のVMホスト管理、SLA 99.99%達成<br>
-                            <strong>役割：</strong>チームリーダー、アーキテクチャ設計
-                        </div>
+                        <dl class="project-description">
+                            <dt>概要</dt>
+                            <dd>データセンターVMware基盤の設計・構築・運用</dd>
+                            <dt>成果</dt>
+                            <dd>100台以上のVMホスト管理、SLA 99.99%達成</dd>
+                            <dt>役割</dt>
+                            <dd>チームリーダー、アーキテクチャ設計</dd>
+                        </dl>
                         <div class="tech-tags">
                             <span class="tech-tag">VMware</span>
                             <span class="tech-tag">NetApp</span>
@@ -1025,19 +1181,24 @@
                             <span class="tech-tag">Fortigate</span>
                         </div>
                     </div>
+                </article>
 
-                    <div class="project-card">
+                <article class="project-card">
+                    <div class="project-meta">
+                        <span class="project-period">2001年4月〜2010年4月</span>
+                        <span>メンバー（15名）</span>
+                        <span>インフラ全般</span>
+                    </div>
+                    <div>
                         <h3>インフラエンジニア（OS・NW・Firewall 設計〜保守）</h3>
-                        <div class="project-meta">
-                            <span>📅 2001年4月〜2010年4月</span>
-                            <span>👥 メンバー（15名）</span>
-                            <span>🎯 インフラ全般</span>
-                        </div>
-                        <div class="project-description">
-                            <strong>概要：</strong>情報サービス業界でWindows/Linux/Firewallを中心としたインフラ案件の設計・構築・運用・保守を担当<br>
-                            <strong>成果：</strong>L2/L3スイッチ・Firewall・Windows/Linuxサーバ・DBまで幅広い技術領域を習得。10年間で大規模インフラの基盤スキルを確立<br>
-                            <strong>役割：</strong>メンバー（設計・構築・運用・保守）
-                        </div>
+                        <dl class="project-description">
+                            <dt>概要</dt>
+                            <dd>情報サービス業界でWindows/Linux/Firewallを中心としたインフラ案件の設計・構築・運用・保守を担当</dd>
+                            <dt>成果</dt>
+                            <dd>L2/L3スイッチ・Firewall・Windows/Linuxサーバ・DBまで幅広い技術領域を習得。10年間で大規模インフラの基盤スキルを確立</dd>
+                            <dt>役割</dt>
+                            <dd>メンバー（設計・構築・運用・保守）</dd>
+                        </dl>
                         <div class="tech-tags">
                             <span class="tech-tag">RHEL/CentOS</span>
                             <span class="tech-tag">Windows Server</span>
@@ -1048,41 +1209,48 @@
                             <span class="tech-tag">PostgreSQL</span>
                         </div>
                     </div>
-                </div>
-            </section>
+                </article>
+            </div>
+        </section>
 
-            <!-- 学習・今後 -->
-            <section class="section learning-section" id="learning">
-                <h2>🚀 現在の学習・今後の取り組み</h2>
-                <div class="learning-grid">
-                    <div class="learning-item">
-                        <h3>🏆 SAP-C02取得</h3>
-                        <p>AWS Solutions Architect Professional<br>2026年11月受験予定<br>Professional 2冠目へ</p>
-                    </div>
-                    <div class="learning-item">
-                        <h3>🛠️ SRE・DevOps深化</h3>
-                        <p>Observability強化・Terraform設計高度化<br>DOPで体系化した知見を本番運用へ展開</p>
-                    </div>
-                    <div class="learning-item">
-                        <h3>🤖 AI活用拡大</h3>
-                        <p>Bedrock活用深化<br>CloudLogAI機能拡張</p>
-                    </div>
+        <!-- 学習・今後 -->
+        <section class="section" id="learning">
+            <div class="section-head">
+                <span class="section-no">04</span>
+                <h2>現在の学習・今後の取り組み<span class="section-en">Next</span></h2>
+            </div>
+            <div class="learning-grid">
+                <div class="learning-item">
+                    <span class="learning-no">01</span>
+                    <h3>SAP-C02取得</h3>
+                    <p>AWS Solutions Architect Professional<br>2026年11月受験予定<br>Professional 2冠目へ</p>
                 </div>
-            </section>
+                <div class="learning-item">
+                    <span class="learning-no">02</span>
+                    <h3>SRE・DevOps深化</h3>
+                    <p>Observability強化・Terraform設計高度化<br>DOPで体系化した知見を本番運用へ展開</p>
+                </div>
+                <div class="learning-item">
+                    <span class="learning-no">03</span>
+                    <h3>AI活用拡大</h3>
+                    <p>Bedrock活用深化<br>CloudLogAI機能拡張</p>
+                </div>
+            </div>
+        </section>
 
-            <!-- 資格・認定 -->
-            <section class="section" id="certifications">
-                <h2>🏆 資格・認定</h2>
-                <div style="text-align: center; margin-bottom: 25px;">
-                    <a href="https://www.credly.com/users/daisuke-hatada.akiko/badges" target="_blank" class="credly-btn">
-                        🎖️ Credlyで資格バッジを確認
-                    </a>
-                </div>
-                <div class="skills-grid">
+        <!-- 資格・認定 -->
+        <section class="section" id="certifications">
+            <div class="section-head">
+                <span class="section-no">05</span>
+                <h2>資格・認定<span class="section-en">Certifications</span></h2>
+            </div>
+            <div>
+                <a href="https://www.credly.com/users/daisuke-hatada.akiko/badges" target="_blank" rel="noopener" class="credly-btn">Credlyで資格バッジを確認 ↗</a>
+                <div class="cert-grid">
                     <div class="skill-category ai-highlight">
-                        <h3>☁️ AWS認定資格（8）</h3>
+                        <h3>AWS認定資格（8）</h3>
                         <div class="cert-tier top">
-                            <div class="cert-tier-label">🏅 Professional</div>
+                            <div class="cert-tier-label">Professional</div>
                             <div class="cert-top-item">
                                 <div class="skill-name">DevOps Engineer - Professional (DOP)<span class="cert-status acquired">取得済</span></div>
                                 <div class="skill-detail">2026年9月取得</div>
@@ -1106,11 +1274,11 @@
                             </ul>
                         </div>
                     </div>
-                    
+
                     <div class="skill-category">
-                        <h3>🐧 Linux / 仮想化</h3>
+                        <h3>Linux / 仮想化</h3>
                         <div class="cert-tier top">
-                            <div class="cert-tier-label">🏅 LPIC Level 3（最上位）</div>
+                            <div class="cert-tier-label">LPIC Level 3（最上位）</div>
                             <div class="cert-top-item">
                                 <div class="skill-name">LPIC-3 Security (303)<span class="cert-status acquired">取得済</span></div>
                                 <div class="skill-detail">Linuxセキュリティ専門</div>
@@ -1127,91 +1295,46 @@
                             <div class="skill-detail">VMware vSphere専門</div>
                         </div>
                     </div>
-                    
+
                     <div class="skill-category">
-                        <h3>🎓 学歴</h3>
+                        <h3>学歴</h3>
                         <div class="skill-item">
                             <div class="skill-name">東京都立工業高等専門学校</div>
                             <div class="skill-detail">電気工学科卒（2001年3月）<br>※現：東京都立産業技術高等専門学校</div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
+            </div>
+        </section>
     </main>
 
+    <footer class="site-footer">
+        <div class="container">
+            <span>© 2026 Daisuke Hatada</span>
+            <a href="https://daihou-llc.com" target="_blank" rel="noopener">だいほう合同会社 ↗</a>
+        </div>
+    </footer>
+
     <script>
-        const sidebar = document.getElementById('sidebar');
-        const overlay = document.getElementById('overlay');
-        const menuBtn = document.getElementById('menuBtn');
-        const closeBtn = document.getElementById('closeBtn');
-        
-        // メニューを開く
-        function openSidebar() {
-            sidebar.classList.add('open');
-            overlay.classList.add('show');
-            document.body.style.overflow = 'hidden';
+        // スクロール位置に応じてナビの現在地を更新
+        const navLinks = Array.from(document.querySelectorAll('.site-nav a'));
+        const targets = navLinks.map(link => document.querySelector(link.getAttribute('href')));
+
+        function updateActiveNav() {
+            let current = -1;
+            targets.forEach((target, i) => {
+                if (target && target.getBoundingClientRect().top <= 140) {
+                    current = i;
+                }
+            });
+            if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
+                current = navLinks.length - 1;
+            }
+            navLinks.forEach((link, i) => link.classList.toggle('active', i === current));
         }
-        
-        // メニューを閉じる
-        function closeSidebar() {
-            sidebar.classList.remove('open');
-            overlay.classList.remove('show');
-            document.body.style.overflow = '';
-        }
-        
-        // イベントリスナー
-        menuBtn.addEventListener('click', openSidebar);
-        closeBtn.addEventListener('click', closeSidebar);
-        overlay.addEventListener('click', closeSidebar);
-        
-        // ナビゲーションクリック
-        document.querySelectorAll('.nav-item').forEach(link => {
-            link.addEventListener('click', function(e) {
-                e.preventDefault();
-                const targetId = this.getAttribute('href');
-                const target = document.querySelector(targetId);
-                
-                if (target) {
-                    // モバイルではメニューを閉じる
-                    if (window.innerWidth <= 900) {
-                        closeSidebar();
-                    }
-                    
-                    // 少し遅延してスクロール（メニューが閉じるのを待つ）
-                    setTimeout(() => {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }, 100);
-                }
-                
-                // アクティブ状態更新
-                document.querySelectorAll('.nav-item').forEach(l => l.classList.remove('active'));
-                this.classList.add('active');
-            });
-        });
-        
-        // スクロール時のアクティブ状態更新
-        window.addEventListener('scroll', function() {
-            const sections = ['pr', 'skills', 'projects', 'learning', 'certifications'];
-            let current = '';
-            
-            sections.forEach(id => {
-                const section = document.getElementById(id);
-                if (section) {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top <= 150) {
-                        current = id;
-                    }
-                }
-            });
-            
-            document.querySelectorAll('.nav-item').forEach(link => {
-                link.classList.remove('active');
-                if (link.getAttribute('href') === '#' + current) {
-                    link.classList.add('active');
-                }
-            });
-        });
+
+        window.addEventListener('scroll', updateActiveNav, { passive: true });
+        updateActiveNav();
     </script>
 </body>
 </html>

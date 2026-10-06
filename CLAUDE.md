@@ -45,39 +45,53 @@ portfolio/
 3. 学習セクション: 次の目標に更新
 
 ### 新規プロジェクト追加
-- `id="projects"` セクション内に追加
-- 最新は `project-card featured` クラスで目立たせる
+- `id="projects"` セクション内の先頭に `<article class="project-card">` を追加（新しい順）
+- 構成: 左列 `project-meta`（`project-period` ＋ 体制・領域の `<span>`）／右列 `h3` ＋ `dl.project-description`（概要・成果・役割）＋ `tech-tags`
+- 最新・注目は `project-card featured`（期間が朱色になる）。状態は `featured-badge`、稼働中は `featured-badge live`（点滅ドット付き）
 
 ### スキル追加
 - `id="skills"` セクション内
-- 新規は `experience-level new` クラスで赤バッジ
+- 新規は `experience-level new`（経験年数の表示が朱色になる）
 
 ---
+
+## デザインの約束（#37）
+
+- 配色と書体は `:root` の CSS 変数（`--paper` / `--ink` / `--ink-2` / `--ink-3` / `--rule` / `--accent` / `--sans` / `--mono`）だけを使う。色を直書きしない
+- アクセントは朱（`--accent`）の1色だけ。**旧パレット（`#667eea` / `#764ba2` 等）・グラデーション・見出しの絵文字は使わない**（「AIで作った感」の主因だったため）
+- 書体は IBM Plex Sans JP（本文）＋ IBM Plex Mono（番号・ラベル・数字）
+- 小さい文字の色はコントラスト比 4.5 以上（`--ink-3` 4.52 / `--accent` 5.06）。色を変える時は測り直す
 
 ## CSSクラス一覧
 
 | クラス | 用途 |
 |:---|:---|
-| `cert-status acquired` | 取得済（緑バッジ） |
-| `cert-status planned` | 予定（オレンジバッジ） |
-| `cert-status expired` | 失効（グレーバッジ） |
+| `section-head` / `section-no` / `section-en` | セクション見出し（左列・番号・英字ラベル） |
+| `pr-stats` / `pr-stat-number` | ヒーロー下の数字4つ |
+| `pr-highlight` / `pr-highlight-label` | 自己PR内の実績ハイライト |
+| `cert-status acquired` | 取得済（細枠のラベル） |
+| `cert-status planned` | 予定（朱色の枠） |
+| `cert-status expired` | 失効（点線枠・グレー） |
 | `cert-tier` | 資格の階層ブロック（Associate・LPIC Level 2 等） |
-| `cert-tier top` | 最上位階層の強調枠（`ai-highlight` カード内は赤、それ以外は青紫） |
+| `cert-tier top` | 最上位階層の強調枠（`ai-highlight` カード内は朱、それ以外は墨色の左線） |
 | `cert-tier foundational` | Foundational 階層（小さめ・グレー） |
 | `cert-top-item` | 最上位階層内の資格1件 |
 | `cert-tier-list` | 階層内の資格名リスト |
-| `experience-level` | 経験年数（紫バッジ） |
-| `experience-level new` | 新規スキル（赤バッジ） |
-| `project-card` | 通常プロジェクト（緑ボーダー） |
-| `project-card featured` | 注目案件（赤ボーダー） |
-| `tech-tag` | 技術タグ（紫） |
-| `tech-tag ai` | AI関連タグ（赤） |
+| `experience-level` | 経験年数（等幅・グレー） |
+| `experience-level new` | 新規スキル（朱色） |
+| `project-card` | プロジェクト1件（期間｜本文の2列） |
+| `project-card featured` | 注目案件（期間が朱色） |
+| `featured-badge` / `featured-badge live` | 状態ラベル（`live` は点滅ドット付き） |
+| `link-btn` / `link-btn primary` | デモ等へのリンクボタン |
+| `tech-tag` | 技術タグ（等幅・細枠） |
+| `tech-tag ai` | AI関連タグ（朱色） |
 
 ---
 
 ## セクション構造
 
 ```html
+<header class="hero">         <!-- 氏名・肩書き・連絡先・数字（pr-stats） -->
 <section id="pr">             <!-- 自己PR -->
 <section id="skills">         <!-- 技術スキル -->
 <section id="projects">       <!-- プロジェクト実績 -->
@@ -106,13 +120,6 @@ portfolio/
 
 ---
 
-## 現在の状態
-
-- AWS認定資格: 7個（CLF, SAA, SOA, DVA, AIF, DEA, MLA）
-- 次の目標: SAP / DOP（2026年後半）
-
----
-
 ## 参照リンク
 
 - [CHANGELOG.md](CHANGELOG.md)
@@ -121,4 +128,4 @@ portfolio/
 
 ---
 
-最終更新: 2026-04-17
+最終更新: 2026-10-07
