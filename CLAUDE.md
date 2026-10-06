@@ -45,8 +45,10 @@ portfolio/
 3. 学習セクション: 次の目標に更新
 
 ### 新規プロジェクト追加
-- `id="projects"` セクション内の先頭に `<article class="project-card">` を追加（新しい順）
-- 構成: 左列 `project-meta`（`project-period` ＋ 体制・領域の `<span>`）／右列 `h3` ＋ `dl.project-description`（概要・成果・役割）＋ `tech-tags`
+- 並び順: **featured（進行中）を先頭、その後は終了日の新しい順**（開始日順ではない）
+- 構成: `<article class="project-card">` の中に `div.project-body`（`h3` ＋ `dl.project-description`（概要・成果・役割）＋ `tech-tags`）→ `div.project-meta`（`project-period` ＋ 体制・領域の `<span>`）の順で書く
+  - 本文を先に書くのは読み上げ順のため。期間はグリッド指定で左列に出る
+  - `project-body` で包み忘れると、h3・dl・タグがグリッドに直接並んで崩れる
 - 最新・注目は `project-card featured`（期間が朱色になる）。状態は `featured-badge`、稼働中は `featured-badge live`（点滅ドット付き）
 
 ### スキル追加
@@ -57,10 +59,11 @@ portfolio/
 
 ## デザインの約束（#37）
 
-- 配色と書体は `:root` の CSS 変数（`--paper` / `--ink` / `--ink-2` / `--ink-3` / `--rule` / `--accent` / `--sans` / `--mono`）だけを使う。色を直書きしない
+- 配色と書体は `:root` の CSS 変数だけを使い、色を直書きしない（**変数の一覧は index.html の `:root` が正本**。ここに写さない）
 - アクセントは朱（`--accent`）の1色だけ。**旧パレット（`#667eea` / `#764ba2` 等）・グラデーション・見出しの絵文字は使わない**（「AIで作った感」の主因だったため）
 - 書体は IBM Plex Sans JP（本文）＋ IBM Plex Mono（番号・ラベル・数字）
-- 小さい文字の色はコントラスト比 4.5 以上（`--ink-3` 4.52 / `--accent` 5.06）。色を変える時は測り直す
+- 小さい文字の色は背景（`--paper`）に対してコントラスト比 4.5 以上を保つ。色を変える時は測り直す
+- 番号（`section-no` の 01〜05、`learning-no` の 01〜03）は手書きの連番。項目を増減したら振り直す
 
 ## CSSクラス一覧
 
@@ -69,6 +72,7 @@ portfolio/
 | `section-head` / `section-no` / `section-en` | セクション見出し（左列・番号・英字ラベル） |
 | `pr-stats` / `pr-stat-number` | ヒーロー下の数字4つ |
 | `pr-highlight` / `pr-highlight-label` | 自己PR内の実績ハイライト |
+| `ai-highlight` | AI関連カードの強調色（朱）。**資格欄では先頭カードの2行ぶち抜き（`grid-row: span 2`）も兼ねる**ので、他の資格カードに付け外ししない |
 | `cert-status acquired` | 取得済（細枠のラベル） |
 | `cert-status planned` | 予定（朱色の枠） |
 | `cert-status expired` | 失効（点線枠・グレー） |
@@ -80,6 +84,7 @@ portfolio/
 | `experience-level` | 経験年数（等幅・グレー） |
 | `experience-level new` | 新規スキル（朱色） |
 | `project-card` | プロジェクト1件（期間｜本文の2列） |
+| `project-body` / `project-meta` | プロジェクトの本文（右列）／期間・体制・領域（左列） |
 | `project-card featured` | 注目案件（期間が朱色） |
 | `featured-badge` / `featured-badge live` | 状態ラベル（`live` は点滅ドット付き） |
 | `link-btn` / `link-btn primary` | デモ等へのリンクボタン |

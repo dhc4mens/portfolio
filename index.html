@@ -16,9 +16,9 @@
             --ink-3: #6b7079;
             --rule: #d9d7cf;
             --accent: #bd391d;
-            --accent-line: rgba(189, 57, 29, 0.35);
+            --accent-line: color-mix(in srgb, var(--accent) 35%, transparent);
             --sans: 'IBM Plex Sans JP', 'Hiragino Kaku Gothic ProN', 'Yu Gothic', 'Meiryo', sans-serif;
-            --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+            --mono: 'IBM Plex Mono', 'IBM Plex Sans JP', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
             --header-h: 56px;
         }
 
@@ -365,6 +365,16 @@
             padding-top: 0;
         }
 
+        .project-card > .project-meta {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .project-card > .project-body {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
         .project-meta {
             font-family: var(--mono);
             font-size: 0.78rem;
@@ -704,8 +714,24 @@
 
         /* タブレット・スマホ */
         @media (max-width: 860px) {
+            :root {
+                --header-h: 84px;
+            }
+
             .container {
                 padding: 0 20px;
+            }
+
+            .site-header .container {
+                flex-wrap: wrap;
+                align-content: center;
+                row-gap: 4px;
+            }
+
+            .site-nav {
+                width: 100%;
+                justify-content: space-between;
+                gap: 8px;
             }
 
             .hero {
@@ -752,12 +778,21 @@
                 gap: 10px;
             }
 
+            .project-card > .project-meta,
+            .project-card > .project-body {
+                grid-column: 1;
+            }
+
+            .project-card > .project-body {
+                grid-row: 2;
+            }
+
             .project-meta span {
                 display: inline;
             }
 
             .project-meta span + span::before {
-                content: " / ";
+                content: " | ";
             }
 
             .project-meta .project-period {
@@ -780,7 +815,7 @@
                 <a href="#sre-achievements">SRE</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Work</a>
-                <a href="#learning">Next</a>
+                <a href="#learning">Learning</a>
                 <a href="#certifications">Certs</a>
             </nav>
         </div>
@@ -790,7 +825,8 @@
         <!-- ヒーロー -->
         <header class="hero">
             <p class="eyebrow">Portfolio</p>
-            <h1>畑田 大介<span class="hero-romaji">Daisuke Hatada</span></h1>
+            <h1>畑田 大介</h1>
+            <p class="hero-romaji" lang="en">Daisuke Hatada</p>
             <p class="subtitle">Cloud & AI Infrastructure Architect</p>
             <ul class="hero-links">
                 <li><a href="mailto:dhc4menz@gmail.com">dhc4menz@gmail.com</a></li>
@@ -822,7 +858,8 @@
         <section class="section" id="pr">
             <div class="section-head">
                 <span class="section-no">01</span>
-                <h2>自己PR<span class="section-en">Profile</span></h2>
+                <h2>自己PR</h2>
+                <span class="section-en" lang="en">Profile</span>
             </div>
             <div class="pr-content">
                 <p>
@@ -859,7 +896,8 @@
         <section class="section" id="skills">
             <div class="section-head">
                 <span class="section-no">02</span>
-                <h2>技術スキル<span class="section-en">Skills</span></h2>
+                <h2>技術スキル</h2>
+                <span class="section-en" lang="en">Skills</span>
             </div>
             <div class="skills-grid">
                 <div class="skill-category ai-highlight">
@@ -960,16 +998,12 @@
         <section class="section" id="projects">
             <div class="section-head">
                 <span class="section-no">03</span>
-                <h2>プロジェクト実績<span class="section-en">Work</span></h2>
+                <h2>プロジェクト実績</h2>
+                <span class="section-en" lang="en">Work</span>
             </div>
             <div class="project-grid">
                 <article class="project-card featured" id="sre-achievements">
-                    <div class="project-meta">
-                        <span class="project-period">2025年7月〜</span>
-                        <span>PM/エンジニア（1名）</span>
-                        <span>SRE/IaC</span>
-                    </div>
-                    <div>
+                    <div class="project-body">
                         <h3>SRE基盤構築（daihou-sre）<span class="featured-badge">最新</span></h3>
                         <div class="project-links">
                             <a class="link-btn primary" href="https://ext-sre-dash.daihou-llc.com/" target="_blank" rel="noopener">SREダッシュボードを見る ↗</a>
@@ -1001,15 +1035,15 @@
                             <span class="tech-tag">OIDC</span>
                         </div>
                     </div>
+                    <div class="project-meta">
+                        <span class="project-period">2025年7月〜</span>
+                        <span>PM/エンジニア（1名）</span>
+                        <span>SRE/IaC</span>
+                    </div>
                 </article>
 
                 <article class="project-card featured">
-                    <div class="project-meta">
-                        <span class="project-period">2025年9月〜</span>
-                        <span>PM/エンジニア（1名）</span>
-                        <span>AI/サーバーレス</span>
-                    </div>
-                    <div>
+                    <div class="project-body">
                         <h3>AI監視SaaS（CloudLogAI）<span class="featured-badge live">本番運用中</span></h3>
                         <dl class="project-description">
                             <dt>概要</dt>
@@ -1031,15 +1065,15 @@
                             <span class="tech-tag">SLI/SLO</span>
                         </div>
                     </div>
+                    <div class="project-meta">
+                        <span class="project-period">2025年9月〜</span>
+                        <span>PM/エンジニア（1名）</span>
+                        <span>AI/サーバーレス</span>
+                    </div>
                 </article>
 
                 <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-period">2026年2月〜5月</span>
-                        <span>PMO（10名）</span>
-                        <span>AWS移行・IaC</span>
-                    </div>
-                    <div>
+                    <div class="project-body">
                         <h3>オンプレ基盤更改に伴うAWS環境構築（Terraform IaC）</h3>
                         <dl class="project-description">
                             <dt>概要</dt>
@@ -1057,15 +1091,15 @@
                             <span class="tech-tag">CI/CD</span>
                         </div>
                     </div>
+                    <div class="project-meta">
+                        <span class="project-period">2026年2月〜5月</span>
+                        <span>PMO（10名）</span>
+                        <span>AWS移行・IaC</span>
+                    </div>
                 </article>
 
                 <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-period">2025年3月〜10月</span>
-                        <span>メンバー（5名）</span>
-                        <span>ハイブリッド</span>
-                    </div>
-                    <div>
+                    <div class="project-body">
                         <h3>オンプレ＋AWS環境のテスト基盤構築・運用</h3>
                         <dl class="project-description">
                             <dt>概要</dt>
@@ -1082,15 +1116,15 @@
                             <span class="tech-tag">Postfix</span>
                         </div>
                     </div>
+                    <div class="project-meta">
+                        <span class="project-period">2025年3月〜10月</span>
+                        <span>メンバー（5名）</span>
+                        <span>ハイブリッド</span>
+                    </div>
                 </article>
 
                 <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-period">2024年10月〜2025年1月</span>
-                        <span>メンバー（5名）</span>
-                        <span>OS移行</span>
-                    </div>
-                    <div>
+                    <div class="project-body">
                         <h3>メールサーバEOL対応（RHEL6→9）</h3>
                         <dl class="project-description">
                             <dt>概要</dt>
@@ -1106,15 +1140,15 @@
                             <span class="tech-tag">Symantec</span>
                         </div>
                     </div>
+                    <div class="project-meta">
+                        <span class="project-period">2024年10月〜2025年1月</span>
+                        <span>メンバー（5名）</span>
+                        <span>OS移行</span>
+                    </div>
                 </article>
 
                 <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-period">2024年1月〜9月</span>
-                        <span>メンバー（10名）</span>
-                        <span>IaC</span>
-                    </div>
-                    <div>
+                    <div class="project-body">
                         <h3>Ansible IaC基盤構築・運用改善</h3>
                         <dl class="project-description">
                             <dt>概要</dt>
@@ -1131,15 +1165,15 @@
                             <span class="tech-tag">VMware</span>
                         </div>
                     </div>
+                    <div class="project-meta">
+                        <span class="project-period">2024年1月〜9月</span>
+                        <span>メンバー（10名）</span>
+                        <span>IaC</span>
+                    </div>
                 </article>
 
                 <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-period">2021年10月〜2024年1月</span>
-                        <span>PMO（15名）</span>
-                        <span>仮想化</span>
-                    </div>
-                    <div>
+                    <div class="project-body">
                         <h3>VMware仮想化基盤リプレイス・PMO</h3>
                         <dl class="project-description">
                             <dt>概要</dt>
@@ -1156,15 +1190,15 @@
                             <span class="tech-tag">PMO</span>
                         </div>
                     </div>
+                    <div class="project-meta">
+                        <span class="project-period">2021年10月〜2024年1月</span>
+                        <span>PMO（15名）</span>
+                        <span>仮想化</span>
+                    </div>
                 </article>
 
                 <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-period">2010年5月〜2020年1月</span>
-                        <span>リーダー（15名）</span>
-                        <span>大規模基盤</span>
-                    </div>
-                    <div>
+                    <div class="project-body">
                         <h3>データセンター仮想化基盤（10年間）</h3>
                         <dl class="project-description">
                             <dt>概要</dt>
@@ -1181,15 +1215,15 @@
                             <span class="tech-tag">Fortigate</span>
                         </div>
                     </div>
+                    <div class="project-meta">
+                        <span class="project-period">2010年5月〜2020年1月</span>
+                        <span>リーダー（15名）</span>
+                        <span>大規模基盤</span>
+                    </div>
                 </article>
 
                 <article class="project-card">
-                    <div class="project-meta">
-                        <span class="project-period">2001年4月〜2010年4月</span>
-                        <span>メンバー（15名）</span>
-                        <span>インフラ全般</span>
-                    </div>
-                    <div>
+                    <div class="project-body">
                         <h3>インフラエンジニア（OS・NW・Firewall 設計〜保守）</h3>
                         <dl class="project-description">
                             <dt>概要</dt>
@@ -1209,6 +1243,11 @@
                             <span class="tech-tag">PostgreSQL</span>
                         </div>
                     </div>
+                    <div class="project-meta">
+                        <span class="project-period">2001年4月〜2010年4月</span>
+                        <span>メンバー（15名）</span>
+                        <span>インフラ全般</span>
+                    </div>
                 </article>
             </div>
         </section>
@@ -1217,7 +1256,8 @@
         <section class="section" id="learning">
             <div class="section-head">
                 <span class="section-no">04</span>
-                <h2>現在の学習・今後の取り組み<span class="section-en">Next</span></h2>
+                <h2>現在の学習・今後の取り組み</h2>
+                <span class="section-en" lang="en">Learning</span>
             </div>
             <div class="learning-grid">
                 <div class="learning-item">
@@ -1242,7 +1282,8 @@
         <section class="section" id="certifications">
             <div class="section-head">
                 <span class="section-no">05</span>
-                <h2>資格・認定<span class="section-en">Certifications</span></h2>
+                <h2>資格・認定</h2>
+                <span class="section-en" lang="en">Certifications</span>
             </div>
             <div>
                 <a href="https://www.credly.com/users/daisuke-hatada.akiko/badges" target="_blank" rel="noopener" class="credly-btn">Credlyで資格バッジを確認 ↗</a>
@@ -1321,16 +1362,28 @@
         const targets = navLinks.map(link => document.querySelector(link.getAttribute('href')));
 
         function updateActiveNav() {
+            const line = 140;
             let current = -1;
+            let currentTop = -Infinity;
             targets.forEach((target, i) => {
-                if (target && target.getBoundingClientRect().top <= 140) {
+                if (!target) return;
+                const rect = target.getBoundingClientRect();
+                if (rect.top <= line && rect.bottom > line && rect.top > currentTop) {
                     current = i;
+                    currentTop = rect.top;
                 }
             });
-            if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
+            if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
                 current = navLinks.length - 1;
             }
-            navLinks.forEach((link, i) => link.classList.toggle('active', i === current));
+            navLinks.forEach((link, i) => {
+                link.classList.toggle('active', i === current);
+                if (i === current) {
+                    link.setAttribute('aria-current', 'location');
+                } else {
+                    link.removeAttribute('aria-current');
+                }
+            });
         }
 
         window.addEventListener('scroll', updateActiveNav, { passive: true });
