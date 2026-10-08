@@ -1,0 +1,15 @@
+name: pr-gate
+# 必須ステータスチェック専用（dhc4mens/dotfiles#314）。strict は必須チェックが1つ以上ないと効かないため、
+# どの変更でも必ず起動するジョブを置く。
+# ⚠️ paths / paths-ignore / branches / types / if を付けない。job 名を変えない（永久にマージ不能になる）
+# ⚠️ このファイルを消す時は、先にブランチ保護から pr-gate を外す（逆だと消す PR が永久に待ちになる）
+on:
+  pull_request:
+permissions: {}
+jobs:
+  pr-gate:
+    name: pr-gate
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - run: echo "pr-gate ok"
