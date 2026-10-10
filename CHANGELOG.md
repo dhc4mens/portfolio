@@ -7,6 +7,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ## [Unreleased]
 
 ### Changed
+- Claude 設定を dotfiles ADR-013 に揃えた（dotfiles#344）: `.claude/settings.json` から `effortLevel` を外した（プロジェクト層の値は個人の選択を上書きするため）
 - **ビジュアルを全面刷新（AI生成感の除去・#37）**
   - 原因だった紫グラデーション（`#667eea → #764ba2`）・ピンクグラデーション・Flat UI 系パレット・見出し17箇所の絵文字・全要素の角丸カードを撤去
   - 生成り地＋墨色＋朱1色のエディトリアル調に変更。書体は IBM Plex Sans JP（本文）＋ IBM Plex Mono（番号・ラベル・数字）
