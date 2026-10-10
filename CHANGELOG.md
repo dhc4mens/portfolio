@@ -9,7 +9,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 - **ルートの CLAUDE.md を「毎ターン要る事実と作法だけ」に縮めた**（dhc4mens/dotfiles#344 の Phase 2・2026-10-10）
   - 136行 → 48行。資格・プロジェクト・スキルの更新パターンとデザインの約束（index.html から読み取れない作法）は残し、構成図・セクション構造・CSS クラスの一覧・反映の確かめ方を `docs/README.md` へ移した。構成図は古かったので、実物（`git ls-files`）から作り直した
-  - 実物と食い違っていた「README は公開対象。内部情報はこの CLAUDE.md に」を直した。リポは PUBLIC で、CLAUDE.md も公開される
+  - 実物と食い違っていた「README は公開対象。内部情報はこの CLAUDE.md に」を直した。リポは PUBLIC で、CLAUDE.md・CHANGELOG・docs・コミットメッセージ・PR 本文まで公開される
 - Claude 設定を dotfiles ADR-013 に揃えた（dotfiles#344）: `.claude/settings.json` から `effortLevel` を外した（プロジェクト層の値は個人の選択を上書きするため）
 - **ビジュアルを全面刷新（AI生成感の除去・#37）**
   - 原因だった紫グラデーション（`#667eea → #764ba2`）・ピンクグラデーション・Flat UI 系パレット・見出し17箇所の絵文字・全要素の角丸カードを撤去

@@ -22,6 +22,9 @@ portfolio/
 ├── CLAUDE.md             # Claude Code 向けの作法（これも公開される）
 ├── CHANGELOG.md
 ├── TODO.md               # GitHub Issue への導線
+├── .gitignore
+├── .claude/
+│   └── settings.json     # Claude Code のプロジェクト設定
 ├── docs/
 │   ├── README.md         # このファイル
 │   └── adr/              # 設計判断の記録

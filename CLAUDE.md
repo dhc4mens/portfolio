@@ -2,7 +2,7 @@
 
 ## 事実
 
-- 🔴 リポは **PUBLIC**。README だけでなく、この CLAUDE.md も公開される。内部向けの情報はどちらにも書かない
+- 🔴 リポは **PUBLIC**。README・この CLAUDE.md・CHANGELOG・docs・コミットメッセージ・PR 本文まで、リポのすべてが公開される。内部向けの情報（採用や営業の事情など）はどこにも書かない
 - GitHub Pages（main から）で公開する。main にマージすると1〜2分で https://dhc4mens.github.io/portfolio/ に出る
 - サイトは `index.html` 1ファイル（CSS・JS もインライン）。編集はほぼここだけ
 
@@ -40,7 +40,7 @@
 
 ### その他
 
-- ファイルを足す・消す・リネームした時は、同じディレクトリの README.md の一覧も直す
+- ファイルを足す・消す・リネームした時は、`docs/README.md` の「リポの構成」を直す（ルートの README.md は公開用なので一覧を足さない）。ディレクトリを作ったら、そこにも README を置く
 - CSS クラスを足したり意味を変えたりした時は、`docs/README.md` の一覧も直す
 
 ## やらないこと
