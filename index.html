@@ -531,7 +531,7 @@
         /* 学習・今後 */
         .learning-grid {
             display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-template-columns: repeat(2, minmax(0, 1fr));
             gap: 32px;
         }
 
@@ -815,7 +815,7 @@
                 <a href="#sre-achievements">SRE</a>
                 <a href="#skills">Skills</a>
                 <a href="#projects">Work</a>
-                <a href="#learning">Learning</a>
+                <a href="#learning">Now</a>
                 <a href="#certifications">Certs</a>
             </nav>
         </div>
@@ -864,29 +864,31 @@
             <div class="pr-content">
                 <p>
                     インフラアーキテクトとして、オンプレミスからクラウドまで幅広い技術領域で設計・構築・運用を担当してきました。
+                    現在は<strong>商社のデータ連携基盤の刷新</strong>に参画し、開発と並行して CI/CD と開発環境の整備を担当しています。
                     2025年7月に<strong>だいほう合同会社を創業</strong>し、ITコンサルティング・SRE支援・Web制作・IT教育を提供しています。
+                    自社の AWS 基盤の開発・運用は、AI エージェント（Claude Code）を組み込んだ仕組みで回しています。
                     VMware/KVM等の仮想化基盤設計、RHEL等のOS基盤構築、AWS上でのインフラアーキテクチャ設計まで、
                     <strong>上流工程から実装まで一貫して対応可能</strong>です。
                 </p>
 
                 <div class="pr-highlights">
                     <div class="pr-highlight">
-                        <span class="pr-highlight-label">直近の実績（AI監視SaaS）</span>
-                        AWS Bedrockを活用したAI異常検知システム（CloudLogAI）を0から設計・構築。
-                        月額$1.15で24/7監視を実現し、41.6%エラー率の不正アクセスを自動検知しました。
+                        <span class="pr-highlight-label">直近の実績（AI ログ監視）</span>
+                        AWS Bedrock でアクセスログを日次分析する仕組み（CloudLogAI）を設計・構築し、自社サイトの監視として本番で毎日動かしています。
+                        生成 AI モデルの提供終了で止まっていた分析を見つけて後継モデルへ移し、成功を返しながら本番に反映されていなかった CI を真因まで直すなど、作って終わりにせず、運用で見つけたことを直し続けています。
                     </div>
                     <div class="pr-highlight">
                         <span class="pr-highlight-label">SRE基盤構築実績</span>
                         Terraform IaC（infra/app層分離・週次drift検知自動起票・OIDC IAMロール保護）・
-                        Lambda@Edge + Cognito認証基盤（SecretsManager統合）・CloudWatch Alarm 27本・
-                        SLI/SLO定義・ECS Fargate Runbook 4本・Security Hub有効化まで、SRE基盤を一から設計・構築・継続運用中。
+                        Lambda@Edge + Cognito認証基盤（SecretsManager統合）・SLI/SLO定義と CloudWatch アラーム・
+                        ECS Fargate Runbook 4本・AWS Organizations による5アカウント構成への移行（本番影響なし）まで、SRE基盤を一から設計・構築し、継続して運用しています。
                     </div>
                 </div>
 
                 <p>
                     IaC（Terraform/Ansible）による自動化推進、大規模システム移行プロジェクトでの技術経験も豊富です。
                     2026年9月には<strong>AWS Certified DevOps Engineer - Professional</strong>を取得し、
-                    CI/CD・IaC・監視を横断する実務知見に体系的な裏付けを得ました。
+                    CI/CD・IaC・監視を横断する実務知見に体系的な裏付けを得ました。2026年11月には AWS Certified Solutions Architect - Professional を受験予定です。
                     オンプレミス時代の深い知見とクラウドネイティブな技術の両方を活かし、モダナイゼーション案件で価値を発揮できます。
                 </p>
             </div>
@@ -914,6 +916,10 @@
                         <div class="skill-name">Python<span class="experience-level">実務1年+</span></div>
                         <div class="skill-detail">Lambda関数開発、boto3、FastAPI、データ処理</div>
                     </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Claude Code（AI エージェント）<span class="experience-level new">実務あり</span></div>
+                        <div class="skill-detail">開発・運用フローの設計、ADR による判断の記録、別モデルのレビューと一次情報による裏取り、不可逆な操作を権限設定で止める仕組み</div>
+                    </div>
                 </div>
 
                 <div class="skill-category">
@@ -921,6 +927,10 @@
                     <div class="skill-item">
                         <div class="skill-name">AWS<span class="experience-level">実務3年</span></div>
                         <div class="skill-detail">Lambda, ECS Fargate, S3, CloudFront, API Gateway, Bedrock, Glue, Athena, DynamoDB, CloudWatch, WAF, Security Hub</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">AWS Organizations<span class="experience-level new">実務あり</span></div>
+                        <div class="skill-detail">単一アカウントから5アカウント構成への移行・SCP（ルート利用禁止・リージョン制限）・IAM Identity Center・組織の証跡と Config の集約</div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">ECS Fargate<span class="experience-level new">実務あり</span></div>
@@ -941,6 +951,14 @@
                     <div class="skill-item">
                         <div class="skill-name">GitHub Actions<span class="experience-level new">実務あり</span></div>
                         <div class="skill-detail">OIDC認証CI/CD・Terraform plan自動化・S3自動デプロイ・ヘルスチェック</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">CodePipeline / CodeBuild<span class="experience-level new">実務あり</span></div>
+                        <div class="skill-detail">CodeCommit 起点の CI/CD 構築・CloudFormation によるデプロイ</div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">Docker<span class="experience-level new">実務あり</span></div>
+                        <div class="skill-detail">devcontainer による開発環境の統一・ECS 向けイメージのビルドと起動確認</div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">Ansible<span class="experience-level">実務2年</span></div>
@@ -1002,6 +1020,34 @@
                 <span class="section-en" lang="en">Work</span>
             </div>
             <div class="project-grid">
+                <article class="project-card featured">
+                    <div class="project-body">
+                        <h3>データ連携基盤の刷新（CI/CD・開発環境の整備）<span class="featured-badge">進行中</span></h3>
+                        <dl class="project-description">
+                            <dt>概要</dt>
+                            <dd>商社のデータ連携基盤を AWS 上で刷新するプロジェクトに参画し、開発と並行して CI/CD と開発環境を整備</dd>
+                            <dt>成果</dt>
+                            <dd>CodeCommit・CodeBuild・CodePipeline による CI/CD の初期構築（CloudFormation でのデプロイまで通る状態）・devcontainer による開発環境の統一（いずれも継続中）</dd>
+                            <dt>役割</dt>
+                            <dd>設計支援・CI/CD 構築・開発環境整備・用語集とコーディング規約の提案</dd>
+                        </dl>
+                        <div class="tech-tags">
+                            <span class="tech-tag">CodePipeline</span>
+                            <span class="tech-tag">CodeBuild</span>
+                            <span class="tech-tag">CodeCommit</span>
+                            <span class="tech-tag">CloudFormation</span>
+                            <span class="tech-tag">Lambda</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">devcontainer</span>
+                        </div>
+                    </div>
+                    <div class="project-meta">
+                        <span class="project-period">2026年8月〜</span>
+                        <span>エンジニア（チーム開発）</span>
+                        <span>データ連携・CI/CD</span>
+                    </div>
+                </article>
+
                 <article class="project-card featured" id="sre-achievements">
                     <div class="project-body">
                         <h3>SRE基盤構築（daihou-sre）<span class="featured-badge">最新</span></h3>
@@ -1017,7 +1063,7 @@
                             <dt>概要</dt>
                             <dd>だいほう合同会社のSRE基盤をゼロから設計・構築・継続運用</dd>
                             <dt>成果</dt>
-                            <dd>Terraform IaC化（infra/app層分離・週次drift検知Issue自動起票・OIDC IAMロール保護設計）・Lambda@Edge Cognito認証基盤構築（SecretsManager統合）・CloudWatch Alarm 27本・SLI/SLO定義・Runbook 10本（うち ECS Fargate 4本）・Security Hub有効化・Issue駆動開発体制整備（Issue/PRテンプレート・ラベル・GitHub Flow統一）・標準リポジトリテンプレート作成（repo-setup-template）・GitHub Projects V2 横断管理ボード運用</dd>
+                            <dd>Terraform IaC化（infra/app層分離・週次drift検知Issue自動起票・OIDC IAMロール保護設計）・Lambda@Edge Cognito認証基盤構築（SecretsManager統合）・SLI/SLO定義と CloudWatch アラーム・Runbook 10本（うち ECS Fargate 4本）・AWS Organizations で5アカウント構成へ移行（SCP・組織の証跡・Config の集約）・Issue駆動開発体制整備（Issue/PRテンプレート・ラベル・GitHub Flow統一）・標準リポジトリテンプレート作成（repo-setup-template）・GitHub Projects V2 横断管理ボード運用</dd>
                             <dt>役割</dt>
                             <dd>SRE全体設計・Terraform実装・セキュリティ設計・CI/CD整備・開発プロセス整備を単独担当</dd>
                         </dl>
@@ -1029,7 +1075,7 @@
                             <span class="tech-tag">SecretsManager</span>
                             <span class="tech-tag">GitHub Actions</span>
                             <span class="tech-tag">CloudWatch</span>
-                            <span class="tech-tag">Security Hub</span>
+                            <span class="tech-tag">Organizations</span>
                             <span class="tech-tag">EventBridge</span>
                             <span class="tech-tag">SLI/SLO</span>
                             <span class="tech-tag">OIDC</span>
@@ -1044,12 +1090,12 @@
 
                 <article class="project-card featured">
                     <div class="project-body">
-                        <h3>AI監視SaaS（CloudLogAI）<span class="featured-badge live">本番運用中</span></h3>
+                        <h3>AI ログ監視（CloudLogAI）<span class="featured-badge live">自社サイトで稼働中</span></h3>
                         <dl class="project-description">
                             <dt>概要</dt>
-                            <dd>AWS Bedrockを活用したAI異常検知SaaSをゼロから設計・構築し本番運用中</dd>
+                            <dd>AWS Bedrock でアクセスログを日次分析する監視の仕組みを SaaS 化を見据えてゼロから設計・構築し、現在は自社サイトの監視として本番で毎日稼働</dd>
                             <dt>成果</dt>
-                            <dd>実運用で攻撃検出（41.6%エラー率検知）・月額$1.15で24/7監視・SLI/SLO・エラーバジェット管理まで整備・マルチテナント対応完了・顧客管理CLI（customer-manage.fish）完成</dd>
+                            <dd>Claude 3 Haiku の提供終了で止まっていた分析を発見し、Claude Haiku 4.5（国内リージョンの推論プロファイル）へ移行・main へのマージで自動 apply する CI が、7週間以上成功を返しながら本番に反映されていなかったのを真因（Terraform ラッパーが差分ありの終了コードを成功扱いにしていた）まで掘って修正・WAF IP Set への連携は、CDN のエッジ IP を誤って遮断しないよう過去の判定815件で検算してから有効化</dd>
                             <dt>役割</dt>
                             <dd>要件定義〜設計〜実装〜SRE運用まで全工程を単独担当</dd>
                         </dl>
@@ -1062,7 +1108,7 @@
                             <span class="tech-tag">Athena</span>
                             <span class="tech-tag">Terraform</span>
                             <span class="tech-tag">Python</span>
-                            <span class="tech-tag">SLI/SLO</span>
+                            <span class="tech-tag">WAF</span>
                         </div>
                     </div>
                     <div class="project-meta">
@@ -1252,28 +1298,33 @@
             </div>
         </section>
 
-        <!-- 学習・今後 -->
+        <!-- 現在の取り組み -->
         <section class="section" id="learning">
             <div class="section-head">
                 <span class="section-no">04</span>
-                <h2>現在の学習・今後の取り組み</h2>
-                <span class="section-en" lang="en">Learning</span>
+                <h2>現在の取り組み</h2>
+                <span class="section-en" lang="en">Now</span>
             </div>
             <div class="learning-grid">
                 <div class="learning-item">
-                    <span class="learning-no">01</span>
-                    <h3>SAP-C02取得</h3>
-                    <p>AWS Solutions Architect Professional<br>2026年11月受験予定<br>Professional 2冠目へ</p>
+                    <span class="learning-no">01</span><span class="featured-badge">進行中</span>
+                    <h3>データ連携基盤の刷新</h3>
+                    <p>商社のデータ連携基盤の刷新に参画<br>開発と並行して CI/CD（CodePipeline・CodeBuild）と開発環境（devcontainer）を整備</p>
                 </div>
                 <div class="learning-item">
-                    <span class="learning-no">02</span>
-                    <h3>SRE・DevOps深化</h3>
-                    <p>Observability強化・Terraform設計高度化<br>DOPで体系化した知見を本番運用へ展開</p>
+                    <span class="learning-no">02</span><span class="featured-badge live">運用中</span>
+                    <h3>AI エージェントで回す開発・運用</h3>
+                    <p>Claude Code で設計・実装・レビューを回す仕組みを自社で運用<br>判断は ADR に残し、別モデルのレビューと一次情報で裏を取る<br>不可逆な操作は権限設定で止める</p>
                 </div>
                 <div class="learning-item">
-                    <span class="learning-no">03</span>
-                    <h3>AI活用拡大</h3>
-                    <p>Bedrock活用深化<br>CloudLogAI機能拡張</p>
+                    <span class="learning-no">03</span><span class="featured-badge">計画中</span>
+                    <h3>コンテナ基盤への移行</h3>
+                    <p>自社の社内ポータル API を Lambda から ECS on EC2 へ移す計画<br>同じ API を両方で動かし、移した理由と戻す条件を ADR で説明できる形にする</p>
+                </div>
+                <div class="learning-item">
+                    <span class="learning-no">04</span><span class="featured-badge">受験予定</span>
+                    <h3>AWS SAP-C02</h3>
+                    <p>Solutions Architect - Professional<br>2026年11月に受験予定<br>DOP（2026年9月取得）に続く Professional 2冠目へ</p>
                 </div>
             </div>
         </section>

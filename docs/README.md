@@ -46,7 +46,7 @@ portfolio/
 <section id="pr">             <!-- 自己PR -->
 <section id="skills">         <!-- 技術スキル -->
 <section id="projects">       <!-- プロジェクト実績 -->
-<section id="learning">       <!-- 学習・今後 -->
+<section id="learning">       <!-- 現在の取り組み（ナビは Now。id は旧名のまま） -->
 <section id="certifications"><!-- 資格・認定 -->
 ```
 
@@ -73,7 +73,7 @@ portfolio/
 | `project-card` | プロジェクト1件（期間｜本文の2列） |
 | `project-body` / `project-meta` | プロジェクトの本文（右列）／期間・体制・領域（左列） |
 | `project-card featured` | 注目案件（期間が朱色） |
-| `featured-badge` / `featured-badge live` | 状態ラベル（`live` は点滅ドット付き） |
+| `featured-badge` / `featured-badge live` | 状態ラベル（`live` は点滅ドット付き）。プロジェクトの `h3` の中と、04 の `learning-no` の直後（進行中・運用中・計画中・受験予定）で使う |
 | `link-btn` / `link-btn primary` | デモ等へのリンクボタン |
 | `tech-tag` | 技術タグ（等幅・細枠） |
 | `tech-tag ai` | AI関連タグ（朱色） |
